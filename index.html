@@ -517,6 +517,15 @@
   }
   .quiz-nav-next:hover { opacity: .88; }
 
+
+  .lesson-photo { margin:16px 0 22px; border-radius:12px; overflow:hidden; }
+  .lesson-photo img { display:block; width:100%; height:220px; object-fit:cover; }
+  .lesson-chart { margin:16px 0 22px; border-radius:12px; overflow:hidden;
+    background:#0D1420; border:1px solid #1C2E46; }
+  .lesson-chart svg { display:block; width:100%; height:auto; }
+  .lesson-chart-caption { font-size:12px; color:#5E7A9A; text-align:center;
+    padding:8px 0 10px; border-top:1px solid #1C2E46; }
+
 </style>
 </head>
 <body>
@@ -863,6 +872,20 @@
       <div class="content-block">
 <div class="lesson-img"><svg viewBox="0 0 540 130" xmlns="http://www.w3.org/2000/svg"><rect width="540" height="130" fill="#101928" rx="10"/><text x="270" y="20" text-anchor="middle" fill="#9AB6D4" font-size="11" font-family="Calibri,sans-serif">Форекс работает круглосуточно — 4 сессии сменяют друг друга</text><rect x="30" y="60" width="480" height="3" fill="#1C2E46" rx="1"/><rect x="30" y="34" width="75" height="24" rx="5" fill="#2ECC71" fill-opacity=".2" stroke="#2ECC71" stroke-width="1.2"/><text x="68" y="50" text-anchor="middle" fill="#2ECC71" font-size="10" font-weight="700" font-family="Calibri,sans-serif">Сидней</text><rect x="65" y="34" width="115" height="24" rx="5" fill="#00C8A0" fill-opacity=".2" stroke="#00C8A0" stroke-width="1.2"/><text x="123" y="50" text-anchor="middle" fill="#00C8A0" font-size="10" font-weight="700" font-family="Calibri,sans-serif">Токио</text><rect x="215" y="34" width="155" height="24" rx="5" fill="#4A9EFF" fill-opacity=".2" stroke="#4A9EFF" stroke-width="1.2"/><text x="293" y="50" text-anchor="middle" fill="#4A9EFF" font-size="10" font-weight="700" font-family="Calibri,sans-serif">Лондон</text><rect x="330" y="34" width="180" height="24" rx="5" fill="#F5B800" fill-opacity=".2" stroke="#F5B800" stroke-width="1.2"/><text x="420" y="50" text-anchor="middle" fill="#F5B800" font-size="10" font-weight="700" font-family="Calibri,sans-serif">Нью-Йорк</text><text x="30" y="78" fill="#5E7A9A" font-size="9" font-family="Calibri,sans-serif">00:00</text><text x="148" y="78" fill="#5E7A9A" font-size="9" font-family="Calibri,sans-serif">06:00</text><text x="265" y="78" fill="#5E7A9A" font-size="9" font-family="Calibri,sans-serif">12:00</text><text x="383" y="78" fill="#5E7A9A" font-size="9" font-family="Calibri,sans-serif">18:00</text><text x="498" y="78" fill="#5E7A9A" font-size="9" font-family="Calibri,sans-serif">24:00</text><rect x="148" y="60" width="1" height="8" fill="#1C2E46"/><rect x="265" y="60" width="1" height="8" fill="#1C2E46"/><rect x="383" y="60" width="1" height="8" fill="#1C2E46"/><rect x="100" y="95" width="340" height="26" rx="8" fill="#152030"/><text x="270" y="113" text-anchor="middle" fill="#00C8A0" font-size="11" font-weight="600" font-family="Calibri,sans-serif">Пн 00:00 — Пт 24:00 → рынок всегда открыт</text></svg></div>
         <h3>Кто торгует на Форексе?</h3>
+<div class="lesson-chart"><svg viewBox="0 0 600 180" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="180" fill="#0D1420"/>
+  <text x="300" y="18" text-anchor="middle" fill="#9AB6D4" font-size="12" font-family="Calibri,sans-serif" font-weight="700">Кто торгует на Форексе — доля в дневном обороте $7 трлн</text>
+  <rect x="40" y="32" width="200" height="26" rx="4" fill="#00C8A0"/>
+  <text x="248" y="50" fill="#00C8A0" font-size="12" font-weight="700" font-family="Calibri,sans-serif">50% — Центральные и коммерческие банки</text>
+  <rect x="40" y="68" width="80" height="26" rx="4" fill="#4A9EFF"/>
+  <text x="128" y="86" fill="#4A9EFF" font-size="12" font-weight="700" font-family="Calibri,sans-serif">20% — Корпорации и компании</text>
+  <rect x="40" y="104" width="60" height="26" rx="4" fill="#F5B800"/>
+  <text x="108" y="122" fill="#F5B800" font-size="12" font-weight="700" font-family="Calibri,sans-serif">15% — Хедж-фонды</text>
+  <rect x="40" y="140" width="40" height="26" rx="4" fill="#E05252"/>
+  <text x="88" y="158" fill="#E05252" font-size="12" font-weight="700" font-family="Calibri,sans-serif">10% — Правительства</text>
+  <text x="248" y="158" fill="#9AB6D4" font-size="11" font-family="Calibri,sans-serif">5% — Частные участники рынка</text>
+</svg><div class="lesson-chart-caption">Форекс — децентрализованный глобальный рынок без центральной биржи</div></div>
+
         <div class="types-grid">
           <div class="type-card">
             <div class="type-card-icon">🏦</div>
@@ -987,7 +1010,46 @@
       </div>
 
       <div class="content-block">
-        <h3>Что такое спред?</h3>
+        <div class="lesson-chart"><svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="220" fill="#0D1420"/>
+  <text x="300" y="16" text-anchor="middle" fill="#9AB6D4" font-size="12" font-family="Calibri,sans-serif" font-weight="700">Три типа графиков — одни и те же данные, разное отображение</text>
+  <!-- Panel 1: Line -->
+  <rect x="12" y="24" width="182" height="120" rx="6" fill="#101928" stroke="#1C2E46" stroke-width="1"/>
+  <text x="103" y="40" text-anchor="middle" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">📉 Линейный</text>
+  <polyline points="22,126 42,110 62,116 82,96 102,102 122,78 142,84 162,65 180,68"
+    stroke="#00C8A0" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <text x="103" y="158" text-anchor="middle" fill="#5E7A9A" font-size="9" font-family="Calibri,sans-serif">Только цена закрытия</text>
+  <!-- Panel 2: OHLC bars -->
+  <rect x="208" y="24" width="182" height="120" rx="6" fill="#101928" stroke="#1C2E46" stroke-width="1"/>
+  <text x="299" y="40" text-anchor="middle" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">📊 Бары (OHLC)</text>
+  <g stroke-width="1.5">
+    <line x1="228" y1="118" x2="228" y2="90" stroke="#2ECC71"/><line x1="224" y1="112" x2="228" y2="112" stroke="#2ECC71"/><line x1="228" y1="95" x2="232" y2="95" stroke="#2ECC71"/>
+    <line x1="248" y1="128" x2="248" y2="98" stroke="#2ECC71"/><line x1="244" y1="122" x2="248" y2="122" stroke="#2ECC71"/><line x1="248" y1="103" x2="252" y2="103" stroke="#2ECC71"/>
+    <line x1="268" y1="108" x2="268" y2="80" stroke="#E05252"/><line x1="264" y1="85" x2="268" y2="85" stroke="#E05252"/><line x1="268" y1="103" x2="272" y2="103" stroke="#E05252"/>
+    <line x1="288" y1="97" x2="288" y2="70" stroke="#2ECC71"/><line x1="284" y1="92" x2="288" y2="92" stroke="#2ECC71"/><line x1="288" y1="74" x2="292" y2="74" stroke="#2ECC71"/>
+    <line x1="308" y1="86" x2="308" y2="58" stroke="#2ECC71"/><line x1="304" y1="82" x2="308" y2="82" stroke="#2ECC71"/><line x1="308" y1="62" x2="312" y2="62" stroke="#2ECC71"/>
+    <line x1="328" y1="75" x2="328" y2="48" stroke="#E05252"/><line x1="324" y1="52" x2="328" y2="52" stroke="#E05252"/><line x1="328" y1="70" x2="332" y2="70" stroke="#E05252"/>
+    <line x1="348" y1="62" x2="348" y2="37" stroke="#2ECC71"/><line x1="344" y1="58" x2="348" y2="58" stroke="#2ECC71"/><line x1="348" y1="41" x2="352" y2="41" stroke="#2ECC71"/>
+  </g>
+  <text x="299" y="158" text-anchor="middle" fill="#5E7A9A" font-size="9" font-family="Calibri,sans-serif">Open, High, Low, Close</text>
+  <!-- Panel 3: Candlestick -->
+  <rect x="404" y="24" width="184" height="120" rx="6" fill="#101928" stroke="#00C8A0" stroke-width="1.5"/>
+  <text x="496" y="40" text-anchor="middle" fill="#00C8A0" font-size="10" font-family="Calibri,sans-serif" font-weight="700">🕯️ Свечной ★ Самый популярный</text>
+  <line x1="424" y1="124" x2="424" y2="90" stroke="#2ECC71" stroke-width="1.2"/><rect x="420" y="100" width="9" height="19" fill="#2ECC71" rx="1"/>
+  <line x1="444" y1="130" x2="444" y2="95" stroke="#2ECC71" stroke-width="1.2"/><rect x="440" y="108" width="9" height="16" fill="#2ECC71" rx="1"/>
+  <line x1="464" y1="116" x2="464" y2="78" stroke="#E05252" stroke-width="1.2"/><rect x="460" y="86" width="9" height="18" fill="#E05252" rx="1"/>
+  <line x1="484" y1="100" x2="484" y2="64" stroke="#2ECC71" stroke-width="1.2"/><rect x="480" y="72" width="9" height="21" fill="#2ECC71" rx="1"/>
+  <line x1="504" y1="88" x2="504" y2="52" stroke="#2ECC71" stroke-width="1.2"/><rect x="500" y="60" width="9" height="20" fill="#2ECC71" rx="1"/>
+  <line x1="524" y1="72" x2="524" y2="38" stroke="#E05252" stroke-width="1.2"/><rect x="520" y="44" width="9" height="20" fill="#E05252" rx="1"/>
+  <line x1="544" y1="56" x2="544" y2="28" stroke="#2ECC71" stroke-width="1.2"/><rect x="540" y="34" width="9" height="15" fill="#2ECC71" rx="1"/>
+  <text x="496" y="158" text-anchor="middle" fill="#00C8A0" font-size="9" font-family="Calibri,sans-serif">Тело = диапазон откр./закр.</text>
+  <!-- Legend -->
+  <rect x="12" y="175" width="12" height="12" fill="#2ECC71" rx="2"/>
+  <text x="28" y="186" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">Бычья свеча — цена выросла (зелёная)</text>
+  <rect x="250" y="175" width="12" height="12" fill="#E05252" rx="2"/>
+  <text x="266" y="186" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">Медвежья свеча — цена упала (красная)</text>
+</svg><div class="lesson-chart-caption">Свечной график используется в 90% случаев — он мгновенно показывает баланс сил на рынке</div></div>
+<h3>Что такое спред?</h3>
         <p>Спред — это разница между ценой покупки (Ask) и ценой продажи (Bid). Чем ликвиднее пара, тем меньше спред. Это важный показатель стоимости транзакции на валютном рынке.</p>
 <div class="lesson-img"><svg viewBox="0 0 540 110" xmlns="http://www.w3.org/2000/svg"><rect width="540" height="110" fill="#101928" rx="10"/><rect x="30" y="22" width="220" height="66" rx="8" fill="#152030" stroke="#E05252" stroke-width="1.5"/><text x="140" y="45" text-anchor="middle" fill="#9AB6D4" font-size="11" font-family="Calibri,sans-serif">BID (продажа)</text><text x="140" y="72" text-anchor="middle" fill="#E8F4FF" font-size="22" font-weight="800" font-family="Calibri,sans-serif">1.0848</text><rect x="290" y="22" width="220" height="66" rx="8" fill="#152030" stroke="#00C8A0" stroke-width="1.5"/><text x="400" y="45" text-anchor="middle" fill="#9AB6D4" font-size="11" font-family="Calibri,sans-serif">ASK (покупка)</text><text x="400" y="72" text-anchor="middle" fill="#E8F4FF" font-size="22" font-weight="800" font-family="Calibri,sans-serif">1.0850</text><line x1="250" y1="55" x2="290" y2="55" stroke="#F5B800" stroke-width="2" stroke-dasharray="4,3"/><text x="270" y="50" text-anchor="middle" fill="#F5B800" font-size="8" font-weight="700" font-family="Calibri,sans-serif">СПРЕД</text><text x="270" y="64" text-anchor="middle" fill="#F5B800" font-size="8" font-weight="700" font-family="Calibri,sans-serif">2 пункта</text><text x="270" y="99" text-anchor="middle" fill="#5E7A9A" font-size="10" font-family="Calibri,sans-serif">Спред = Ask − Bid. Чем ликвиднее пара, тем меньше спред</text></svg></div>
 
@@ -1047,6 +1109,63 @@
 
       <div class="content-block">
         <h3>Что такое фундаментальный анализ?</h3>
+<div class="lesson-chart"><svg viewBox="0 0 600 175" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="175" fill="#0D1420"/>
+  <text x="300" y="16" text-anchor="middle" fill="#9AB6D4" font-size="12" font-family="Calibri,sans-serif" font-weight="700">Экономический календарь — пример реальных событий</text>
+  <!-- Header row -->
+  <rect x="12" y="24" width="576" height="24" rx="0" fill="#152030"/>
+  <text x="22" y="40" fill="#5E7A9A" font-size="10" font-weight="700" font-family="Calibri,sans-serif">ВРЕМЯ</text>
+  <text x="90" y="40" fill="#5E7A9A" font-size="10" font-weight="700" font-family="Calibri,sans-serif">СТРАНА</text>
+  <text x="160" y="40" fill="#5E7A9A" font-size="10" font-weight="700" font-family="Calibri,sans-serif">СОБЫТИЕ</text>
+  <text x="400" y="40" fill="#5E7A9A" font-size="10" font-weight="700" font-family="Calibri,sans-serif">ВЛИЯНИЕ</text>
+  <text x="470" y="40" fill="#5E7A9A" font-size="10" font-weight="700" font-family="Calibri,sans-serif">ПРОГНОЗ</text>
+  <text x="540" y="40" fill="#5E7A9A" font-size="10" font-weight="700" font-family="Calibri,sans-serif">ФАКТ</text>
+  <!-- Row 1: Fed Rate -->
+  <rect x="12" y="48" width="576" height="26" rx="0" fill="#101928"/>
+  <text x="22" y="65" fill="#E8F4FF" font-size="11" font-family="Calibri,sans-serif">14:30</text>
+  <text x="90" y="65" fill="#E8F4FF" font-size="11" font-family="Calibri,sans-serif">🇺🇸 USD</text>
+  <text x="160" y="65" fill="#E8F4FF" font-size="11" font-family="Calibri,sans-serif">Решение ФРС по процентной ставке</text>
+  <circle cx="415" cy="61" r="7" fill="#E05252"/>
+  <text x="427" y="65" fill="#E05252" font-size="9" font-weight="700" font-family="Calibri,sans-serif">ВЫСОКОЕ</text>
+  <text x="470" y="65" fill="#9AB6D4" font-size="11" font-family="Calibri,sans-serif">5.25%</text>
+  <text x="540" y="65" fill="#2ECC71" font-size="11" font-weight="700" font-family="Calibri,sans-serif">5.50% ↑</text>
+  <!-- Row 2: CPI -->
+  <rect x="12" y="74" width="576" height="26" rx="0" fill="#152030"/>
+  <text x="22" y="91" fill="#E8F4FF" font-size="11" font-family="Calibri,sans-serif">16:00</text>
+  <text x="90" y="91" fill="#E8F4FF" font-size="11" font-family="Calibri,sans-serif">🇪🇺 EUR</text>
+  <text x="160" y="91" fill="#E8F4FF" font-size="11" font-family="Calibri,sans-serif">Индекс потребительских цен (CPI)</text>
+  <circle cx="415" cy="87" r="7" fill="#E05252"/>
+  <text x="427" y="91" fill="#E05252" font-size="9" font-weight="700" font-family="Calibri,sans-serif">ВЫСОКОЕ</text>
+  <text x="470" y="91" fill="#9AB6D4" font-size="11" font-family="Calibri,sans-serif">2.4%</text>
+  <text x="540" y="91" fill="#E05252" font-size="11" font-weight="700" font-family="Calibri,sans-serif">2.2% ↓</text>
+  <!-- Row 3: Unemployment -->
+  <rect x="12" y="100" width="576" height="26" rx="0" fill="#101928"/>
+  <text x="22" y="117" fill="#E8F4FF" font-size="11" font-family="Calibri,sans-serif">18:30</text>
+  <text x="90" y="117" fill="#E8F4FF" font-size="11" font-family="Calibri,sans-serif">🇺🇸 USD</text>
+  <text x="160" y="117" fill="#E8F4FF" font-size="11" font-family="Calibri,sans-serif">Количество новых рабочих мест (NFP)</text>
+  <circle cx="415" cy="113" r="7" fill="#F5B800"/>
+  <text x="427" y="117" fill="#F5B800" font-size="9" font-weight="700" font-family="Calibri,sans-serif">СРЕДНЕЕ</text>
+  <text x="470" y="117" fill="#9AB6D4" font-size="11" font-family="Calibri,sans-serif">185K</text>
+  <text x="540" y="117" fill="#2ECC71" font-size="11" font-weight="700" font-family="Calibri,sans-serif">225K ↑</text>
+  <!-- Row 4: Retail -->
+  <rect x="12" y="126" width="576" height="26" rx="0" fill="#152030"/>
+  <text x="22" y="143" fill="#E8F4FF" font-size="11" font-family="Calibri,sans-serif">20:00</text>
+  <text x="90" y="143" fill="#E8F4FF" font-size="11" font-family="Calibri,sans-serif">🇬🇧 GBP</text>
+  <text x="160" y="143" fill="#E8F4FF" font-size="11" font-family="Calibri,sans-serif">Розничные продажи м/м</text>
+  <circle cx="415" cy="139" r="7" fill="#5E7A9A"/>
+  <text x="427" y="143" fill="#5E7A9A" font-size="9" font-weight="700" font-family="Calibri,sans-serif">НИЗКОЕ</text>
+  <text x="470" y="143" fill="#9AB6D4" font-size="11" font-family="Calibri,sans-serif">0.3%</text>
+  <text x="540" y="143" fill="#9AB6D4" font-size="11" font-family="Calibri,sans-serif">0.3%</text>
+  <!-- Legend -->
+  <circle cx="22" cy="165" r="5" fill="#E05252"/>
+  <text x="32" y="169" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">Высокое влияние — рынок реагирует резко</text>
+  <circle cx="250" cy="165" r="5" fill="#F5B800"/>
+  <text x="260" y="169" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">Среднее</text>
+  <circle cx="320" cy="165" r="5" fill="#5E7A9A"/>
+  <text x="330" y="169" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">Низкое</text>
+</svg><div class="lesson-chart-caption">Зелёное «Факт» = лучше прогноза = валюта растёт. Красное = хуже прогноза = валюта падает.</div></div>
+
+
         <p>Фундаментальный анализ — это изучение экономических, политических и социальных событий, которые влияют на курс валют. Главная логика проста: сильная экономика → высокий спрос на валюту страны → рост курса.</p>
 
         <div class="compare-table">
@@ -1077,7 +1196,7 @@
 
       <div class="content-block">
         <h3>Экономический календарь — твой главный инструмент</h3>
-<div class="lesson-img"><svg viewBox="0 0 540 140" xmlns="http://www.w3.org/2000/svg"><rect width="540" height="140" fill="#101928" rx="10"/><text x="270" y="20" text-anchor="middle" fill="#9AB6D4" font-size="11" font-family="Calibri,sans-serif">Экономический календарь — расписание важных событий</text><rect x="20" y="28" width="500" height="22" rx="4" fill="#152030"/><text x="30" y="43" fill="#5E7A9A" font-size="9" font-weight="700" font-family="Calibri,sans-serif">ВРЕМЯ</text><text x="110" y="43" fill="#5E7A9A" font-size="9" font-weight="700" font-family="Calibri,sans-serif">СОБЫТИЕ</text><text x="340" y="43" fill="#5E7A9A" font-size="9" font-weight="700" font-family="Calibri,sans-serif">ВЛИЯНИЕ</text><text x="430" y="43" fill="#5E7A9A" font-size="9" font-weight="700" font-family="Calibri,sans-serif">ФАКТ / ПРОГНОЗ</text><rect x="20" y="50" width="500" height="22" rx="0" fill="#0D1B2A"/><text x="30" y="65" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">14:30</text><text x="110" y="65" fill="#E8F4FF" font-size="10" font-family="Calibri,sans-serif">Решение ФРС по ставке</text><circle cx="360" cy="61" r="6" fill="#E05252"/><text x="375" y="65" fill="#E05252" font-size="9" font-weight="700" font-family="Calibri,sans-serif">ВЫСОКОЕ</text><text x="430" y="65" fill="#2ECC71" font-size="10" font-weight="700" font-family="Calibri,sans-serif">5.50% / 5.25%</text><rect x="20" y="72" width="500" height="22" rx="0" fill="#101928"/><text x="30" y="87" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">16:00</text><text x="110" y="87" fill="#E8F4FF" font-size="10" font-family="Calibri,sans-serif">Индекс потребит. цен (CPI)</text><circle cx="360" cy="83" r="6" fill="#F5B800"/><text x="375" y="87" fill="#F5B800" font-size="9" font-weight="700" font-family="Calibri,sans-serif">СРЕДНЕЕ</text><text x="430" y="87" fill="#E8F4FF" font-size="10" font-family="Calibri,sans-serif">3.2% / 3.1%</text><rect x="20" y="94" width="500" height="22" rx="0" fill="#0D1B2A"/><text x="30" y="109" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">18:30</text><text x="110" y="109" fill="#E8F4FF" font-size="10" font-family="Calibri,sans-serif">Уровень безработицы</text><circle cx="360" cy="105" r="6" fill="#5E7A9A"/><text x="375" y="109" fill="#5E7A9A" font-size="9" font-weight="700" font-family="Calibri,sans-serif">НИЗКОЕ</text><text x="430" y="109" fill="#E8F4FF" font-size="10" font-family="Calibri,sans-serif">3.8% / 3.9%</text><text x="270" y="130" text-anchor="middle" fill="#5E7A9A" font-size="9" font-family="Calibri,sans-serif">Красный круг = сильное влияние на рынок | Жёлтый = среднее | Серый = слабое</text></svg></div>
+<div style="display:none"><svg viewBox="0 0 1 1" xmlns="http://www.w3.org/2000/svg"><rect width="540" height="140" fill="#101928" rx="10"/><text x="270" y="20" text-anchor="middle" fill="#9AB6D4" font-size="11" font-family="Calibri,sans-serif">Экономический календарь — расписание важных событий</text><rect x="20" y="28" width="500" height="22" rx="4" fill="#152030"/><text x="30" y="43" fill="#5E7A9A" font-size="9" font-weight="700" font-family="Calibri,sans-serif">ВРЕМЯ</text><text x="110" y="43" fill="#5E7A9A" font-size="9" font-weight="700" font-family="Calibri,sans-serif">СОБЫТИЕ</text><text x="340" y="43" fill="#5E7A9A" font-size="9" font-weight="700" font-family="Calibri,sans-serif">ВЛИЯНИЕ</text><text x="430" y="43" fill="#5E7A9A" font-size="9" font-weight="700" font-family="Calibri,sans-serif">ФАКТ / ПРОГНОЗ</text><rect x="20" y="50" width="500" height="22" rx="0" fill="#0D1B2A"/><text x="30" y="65" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">14:30</text><text x="110" y="65" fill="#E8F4FF" font-size="10" font-family="Calibri,sans-serif">Решение ФРС по ставке</text><circle cx="360" cy="61" r="6" fill="#E05252"/><text x="375" y="65" fill="#E05252" font-size="9" font-weight="700" font-family="Calibri,sans-serif">ВЫСОКОЕ</text><text x="430" y="65" fill="#2ECC71" font-size="10" font-weight="700" font-family="Calibri,sans-serif">5.50% / 5.25%</text><rect x="20" y="72" width="500" height="22" rx="0" fill="#101928"/><text x="30" y="87" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">16:00</text><text x="110" y="87" fill="#E8F4FF" font-size="10" font-family="Calibri,sans-serif">Индекс потребит. цен (CPI)</text><circle cx="360" cy="83" r="6" fill="#F5B800"/><text x="375" y="87" fill="#F5B800" font-size="9" font-weight="700" font-family="Calibri,sans-serif">СРЕДНЕЕ</text><text x="430" y="87" fill="#E8F4FF" font-size="10" font-family="Calibri,sans-serif">3.2% / 3.1%</text><rect x="20" y="94" width="500" height="22" rx="0" fill="#0D1B2A"/><text x="30" y="109" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">18:30</text><text x="110" y="109" fill="#E8F4FF" font-size="10" font-family="Calibri,sans-serif">Уровень безработицы</text><circle cx="360" cy="105" r="6" fill="#5E7A9A"/><text x="375" y="109" fill="#5E7A9A" font-size="9" font-weight="700" font-family="Calibri,sans-serif">НИЗКОЕ</text><text x="430" y="109" fill="#E8F4FF" font-size="10" font-family="Calibri,sans-serif">3.8% / 3.9%</text><text x="270" y="130" text-anchor="middle" fill="#5E7A9A" font-size="9" font-family="Calibri,sans-serif">Красный круг = сильное влияние на рынок | Жёлтый = среднее | Серый = слабое</text></svg></div>
         <p>Экономический календарь — это расписание важных событий: заседания банков, публикации статистики, выступления официальных лиц. Большинство событий <strong style="color:var(--white);">известны заранее</strong>, и ты можешь к ним готовиться.</p>
 
         <div class="types-grid">
@@ -1230,6 +1349,56 @@
 
       <div class="content-block">
         <h3>Тренды — основа технического анализа</h3>
+<div class="lesson-chart"><svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="200" fill="#0D1420"/>
+  <text x="300" y="16" text-anchor="middle" fill="#9AB6D4" font-size="12" font-family="Calibri,sans-serif" font-weight="700">Три типа трендов — как выглядят на настоящем графике</text>
+
+  <!-- UPTREND panel -->
+  <rect x="8" y="24" width="185" height="140" rx="6" fill="#101928" stroke="#2ECC71" stroke-width="1.5"/>
+  <text x="100" y="40" text-anchor="middle" fill="#2ECC71" font-size="11" font-weight="700" font-family="Calibri,sans-serif">↗ АПТРЕНД</text>
+  <line x1="20" y1="152" x2="185" y2="52" stroke="#2ECC71" stroke-width="1" stroke-dasharray="4,3" opacity=".5"/>
+  <line x1="20" y1="148" x2="20" y2="118" stroke="#2ECC71" stroke-width="1.2"/><rect x="16" y="126" width="8" height="16" fill="#2ECC71" rx="1"/>
+  <line x1="38" y1="140" x2="38" y2="108" stroke="#2ECC71" stroke-width="1.2"/><rect x="34" y="116" width="8" height="18" fill="#2ECC71" rx="1"/>
+  <line x1="56" y1="132" x2="56" y2="100" stroke="#E05252" stroke-width="1.2"/><rect x="52" y="105" width="8" height="12" fill="#E05252" rx="1"/>
+  <line x1="74" y1="118" x2="74" y2="88" stroke="#2ECC71" stroke-width="1.2"/><rect x="70" y="95" width="8" height="17" fill="#2ECC71" rx="1"/>
+  <line x1="92" y1="108" x2="92" y2="78" stroke="#2ECC71" stroke-width="1.2"/><rect x="88" y="84" width="8" height="18" fill="#2ECC71" rx="1"/>
+  <line x1="110" y1="95" x2="110" y2="65" stroke="#E05252" stroke-width="1.2"/><rect x="106" y="70" width="8" height="12" fill="#E05252" rx="1"/>
+  <line x1="128" y1="82" x2="128" y2="54" stroke="#2ECC71" stroke-width="1.2"/><rect x="124" y="60" width="8" height="16" fill="#2ECC71" rx="1"/>
+  <line x1="146" y1="70" x2="146" y2="44" stroke="#2ECC71" stroke-width="1.2"/><rect x="142" y="50" width="8" height="14" fill="#2ECC71" rx="1"/>
+  <line x1="164" y1="60" x2="164" y2="36" stroke="#E05252" stroke-width="1.2"/><rect x="160" y="40" width="8" height="12" fill="#E05252" rx="1"/>
+  <text x="100" y="175" text-anchor="middle" fill="#5E7A9A" font-size="9" font-family="Calibri,sans-serif">Выше максимумы → выше минимумы</text>
+
+  <!-- DOWNTREND panel -->
+  <rect x="206" y="24" width="185" height="140" rx="6" fill="#101928" stroke="#E05252" stroke-width="1.5"/>
+  <text x="298" y="40" text-anchor="middle" fill="#E05252" font-size="11" font-weight="700" font-family="Calibri,sans-serif">↘ ДАУНТРЕНД</text>
+  <line x1="218" y1="52" x2="383" y2="152" stroke="#E05252" stroke-width="1" stroke-dasharray="4,3" opacity=".5"/>
+  <line x1="218" y1="58" x2="218" y2="40" stroke="#E05252" stroke-width="1.2"/><rect x="214" y="44" width="8" height="11" fill="#E05252" rx="1"/>
+  <line x1="236" y1="72" x2="236" y2="52" stroke="#E05252" stroke-width="1.2"/><rect x="232" y="56" width="8" height="12" fill="#E05252" rx="1"/>
+  <line x1="254" y1="60" x2="254" y2="44" stroke="#2ECC71" stroke-width="1.2"/><rect x="250" y="48" width="8" height="9" fill="#2ECC71" rx="1"/>
+  <line x1="272" y1="88" x2="272" y2="68" stroke="#E05252" stroke-width="1.2"/><rect x="268" y="72" width="8" height="12" fill="#E05252" rx="1"/>
+  <line x1="290" y1="102" x2="290" y2="82" stroke="#E05252" stroke-width="1.2"/><rect x="286" y="86" width="8" height="12" fill="#E05252" rx="1"/>
+  <line x1="308" y1="92" x2="308" y2="76" stroke="#2ECC71" stroke-width="1.2"/><rect x="304" y="80" width="8" height="9" fill="#2ECC71" rx="1"/>
+  <line x1="326" y1="118" x2="326" y2="100" stroke="#E05252" stroke-width="1.2"/><rect x="322" y="104" width="8" height="11" fill="#E05252" rx="1"/>
+  <line x1="344" y1="132" x2="344" y2="112" stroke="#E05252" stroke-width="1.2"/><rect x="340" y="116" width="8" height="12" fill="#E05252" rx="1"/>
+  <line x1="362" y1="122" x2="362" y2="108" stroke="#2ECC71" stroke-width="1.2"/><rect x="358" y="112" width="8" height="8" fill="#2ECC71" rx="1"/>
+  <text x="298" y="175" text-anchor="middle" fill="#5E7A9A" font-size="9" font-family="Calibri,sans-serif">Ниже максимумы → ниже минимумы</text>
+
+  <!-- SIDEWAYS panel -->
+  <rect x="404" y="24" width="188" height="140" rx="6" fill="#101928" stroke="#9AB6D4" stroke-width="1.5"/>
+  <text x="498" y="40" text-anchor="middle" fill="#9AB6D4" font-size="11" font-weight="700" font-family="Calibri,sans-serif">↔ ФЛЕТ (боковик)</text>
+  <line x1="416" y1="80" x2="584" y2="80" stroke="#9AB6D4" stroke-width="1" stroke-dasharray="4,3" opacity=".4"/>
+  <line x1="416" y1="120" x2="584" y2="120" stroke="#9AB6D4" stroke-width="1" stroke-dasharray="4,3" opacity=".4"/>
+  <line x1="416" y1="88" x2="416" y2="70" stroke="#2ECC71" stroke-width="1.2"/><rect x="412" y="75" width="8" height="10" fill="#2ECC71" rx="1"/>
+  <line x1="434" y1="122" x2="434" y2="104" stroke="#E05252" stroke-width="1.2"/><rect x="430" y="107" width="8" height="10" fill="#E05252" rx="1"/>
+  <line x1="452" y1="86" x2="452" y2="68" stroke="#2ECC71" stroke-width="1.2"/><rect x="448" y="73" width="8" height="9" fill="#2ECC71" rx="1"/>
+  <line x1="470" y1="125" x2="470" y2="108" stroke="#E05252" stroke-width="1.2"/><rect x="466" y="111" width="8" height="10" fill="#E05252" rx="1"/>
+  <line x1="488" y1="84" x2="488" y2="68" stroke="#2ECC71" stroke-width="1.2"/><rect x="484" y="72" width="8" height="9" fill="#2ECC71" rx="1"/>
+  <line x1="506" y1="120" x2="506" y2="104" stroke="#E05252" stroke-width="1.2"/><rect x="502" y="107" width="8" height="10" fill="#E05252" rx="1"/>
+  <line x1="524" y1="88" x2="524" y2="72" stroke="#2ECC71" stroke-width="1.2"/><rect x="520" y="76" width="8" height="9" fill="#2ECC71" rx="1"/>
+  <line x1="542" y1="122" x2="542" y2="106" stroke="#E05252" stroke-width="1.2"/><rect x="538" y="109" width="8" height="10" fill="#E05252" rx="1"/>
+  <line x1="560" y1="86" x2="560" y2="70" stroke="#2ECC71" stroke-width="1.2"/><rect x="556" y="74" width="8" height="9" fill="#2ECC71" rx="1"/>
+  <text x="498" y="175" text-anchor="middle" fill="#5E7A9A" font-size="9" font-family="Calibri,sans-serif">Цена движется в горизонтальном диапазоне</text>
+</svg><div class="lesson-chart-caption">«Trend is your friend» — торгуй в направлении тренда, а не против него</div></div>
         <p>Тренд — это устойчивое преимущественное направление движения цены. Умение распознавать тренды — одна из базовых компетенций, которую изучают специалисты по финансовым рынкам.</p>
 <div class="lesson-img"><svg viewBox="0 0 540 140" xmlns="http://www.w3.org/2000/svg"><rect width="540" height="140" fill="#101928" rx="10"/><text x="270" y="18" text-anchor="middle" fill="#9AB6D4" font-size="11" font-family="Calibri,sans-serif">Три типа трендов на валютном графике</text><rect x="20" y="26" width="155" height="90" rx="8" fill="#152030" stroke="#2ECC71" stroke-width="1.5"/><text x="97" y="44" text-anchor="middle" fill="#2ECC71" font-size="10" font-weight="700" font-family="Calibri,sans-serif">↗ АПТРЕНД</text><polyline points="30,108 55,95 80,85 105,72 130,60 155,48" stroke="#2ECC71" stroke-width="2" fill="none" stroke-linejoin="round"/><circle cx="30" cy="108" r="3" fill="#2ECC71"/><circle cx="80" cy="85" r="3" fill="#2ECC71"/><circle cx="130" cy="60" r="3" fill="#2ECC71"/><circle cx="155" cy="48" r="3" fill="#2ECC71"/><text x="97" y="125" text-anchor="middle" fill="#5E7A9A" font-size="9" font-family="Calibri,sans-serif">Цена растёт</text><rect x="192" y="26" width="155" height="90" rx="8" fill="#152030" stroke="#E05252" stroke-width="1.5"/><text x="269" y="44" text-anchor="middle" fill="#E05252" font-size="10" font-weight="700" font-family="Calibri,sans-serif">↘ ДАУНТРЕНД</text><polyline points="202,48 227,60 252,72 277,84 302,96 327,108" stroke="#E05252" stroke-width="2" fill="none" stroke-linejoin="round"/><circle cx="202" cy="48" r="3" fill="#E05252"/><circle cx="252" cy="72" r="3" fill="#E05252"/><circle cx="302" cy="96" r="3" fill="#E05252"/><circle cx="327" cy="108" r="3" fill="#E05252"/><text x="269" y="125" text-anchor="middle" fill="#5E7A9A" font-size="9" font-family="Calibri,sans-serif">Цена падает</text><rect x="365" y="26" width="155" height="90" rx="8" fill="#152030" stroke="#9AB6D4" stroke-width="1.5"/><text x="442" y="44" text-anchor="middle" fill="#9AB6D4" font-size="10" font-weight="700" font-family="Calibri,sans-serif">↔ ФЛЕТ</text><polyline points="375,78 400,65 425,80 450,65 475,78 500,65" stroke="#9AB6D4" stroke-width="2" fill="none" stroke-linejoin="round"/><circle cx="375" cy="78" r="3" fill="#9AB6D4"/><circle cx="425" cy="80" r="3" fill="#9AB6D4"/><circle cx="475" cy="78" r="3" fill="#9AB6D4"/><text x="442" y="125" text-anchor="middle" fill="#5E7A9A" font-size="9" font-family="Calibri,sans-serif">Без направления</text></svg></div>
 
@@ -1337,6 +1506,55 @@
 
       <div class="content-block">
         <h3>Уровни Фибоначчи — математика природы на рынке</h3>
+<div class="lesson-chart"><svg viewBox="0 0 600 240" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="240" fill="#0D1420"/>
+  <text x="300" y="16" text-anchor="middle" fill="#9AB6D4" font-size="12" font-family="Calibri,sans-serif" font-weight="700">Уровни Фибоначчи — коррекция после роста</text>
+  <rect x="12" y="24" width="576" height="185" rx="6" fill="#101928" stroke="#1C2E46" stroke-width="1"/>
+  <!-- Fib levels horizontal lines -->
+  <line x1="12" y1="44" x2="588" y2="44" stroke="#9AB6D4" stroke-width=".8" stroke-dasharray="2,3" opacity=".5"/>
+  <line x1="12" y1="88" x2="588" y2="88" stroke="#F5B800" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="12" y1="118" x2="588" y2="118" stroke="#00C8A0" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="12" y1="148" x2="588" y2="148" stroke="#4A9EFF" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="12" y1="190" x2="588" y2="190" stroke="#9AB6D4" stroke-width=".8" stroke-dasharray="2,3" opacity=".5"/>
+  <!-- Fib labels right side -->
+  <text x="540" y="48" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">0% (пик)</text>
+  <text x="540" y="86" fill="#F5B800" font-size="10" font-weight="700" font-family="Calibri,sans-serif">38.2%</text>
+  <text x="540" y="116" fill="#00C8A0" font-size="11" font-weight="700" font-family="Calibri,sans-serif">★ 50%</text>
+  <text x="540" y="146" fill="#4A9EFF" font-size="10" font-weight="700" font-family="Calibri,sans-serif">61.8%</text>
+  <text x="540" y="194" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">100% (дно)</text>
+  <!-- Upward move (left part) -->
+  <line x1="22" y1="186" x2="22" y2="158" stroke="#2ECC71" stroke-width="1.2"/><rect x="18" y="165" width="8" height="17" fill="#2ECC71" rx="1"/>
+  <line x1="40" y1="175" x2="40" y2="145" stroke="#2ECC71" stroke-width="1.2"/><rect x="36" y="152" width="8" height="17" fill="#2ECC71" rx="1"/>
+  <line x1="58" y1="162" x2="58" y2="132" stroke="#2ECC71" stroke-width="1.2"/><rect x="54" y="140" width="8" height="16" fill="#2ECC71" rx="1"/>
+  <line x1="76" y1="148" x2="76" y2="118" stroke="#2ECC71" stroke-width="1.2"/><rect x="72" y="126" width="8" height="16" fill="#2ECC71" rx="1"/>
+  <line x1="94" y1="132" x2="94" y2="102" stroke="#2ECC71" stroke-width="1.2"/><rect x="90" y="110" width="8" height="16" fill="#2ECC71" rx="1"/>
+  <line x1="112" y1="115" x2="112" y2="85" stroke="#2ECC71" stroke-width="1.2"/><rect x="108" y="92" width="8" height="17" fill="#2ECC71" rx="1"/>
+  <line x1="130" y1="98" x2="130" y2="68" stroke="#2ECC71" stroke-width="1.2"/><rect x="126" y="76" width="8" height="16" fill="#2ECC71" rx="1"/>
+  <line x1="148" y1="80" x2="148" y2="52" stroke="#2ECC71" stroke-width="1.2"/><rect x="144" y="60" width="8" height="15" fill="#2ECC71" rx="1"/>
+  <!-- Peak arrow -->
+  <text x="158" y="48" fill="#9AB6D4" font-size="9" font-family="Calibri,sans-serif">← ПИКОВАЯ ЦЕНА</text>
+  <!-- Correction (middle part) -->
+  <line x1="180" y1="58" x2="180" y2="42" stroke="#E05252" stroke-width="1.2"/><rect x="176" y="46" width="8" height="9" fill="#E05252" rx="1"/>
+  <line x1="198" y1="72" x2="198" y2="55" stroke="#E05252" stroke-width="1.2"/><rect x="194" y="59" width="8" height="10" fill="#E05252" rx="1"/>
+  <line x1="216" y1="88" x2="216" y2="70" stroke="#E05252" stroke-width="1.2"/><rect x="212" y="74" width="8" height="11" fill="#E05252" rx="1"/>
+  <line x1="234" y1="102" x2="234" y2="84" stroke="#E05252" stroke-width="1.2"/><rect x="230" y="88" width="8" height="11" fill="#E05252" rx="1"/>
+  <line x1="252" y1="115" x2="252" y2="98" stroke="#E05252" stroke-width="1.2"/><rect x="248" y="102" width="8" height="10" fill="#E05252" rx="1"/>
+  <!-- Price touches 50% fib and bounces -->
+  <line x1="270" y1="128" x2="270" y2="112" stroke="#E05252" stroke-width="1.2"/><rect x="266" y="116" width="8" height="9" fill="#E05252" rx="1"/>
+  <!-- Star at 50% touch -->
+  <circle cx="274" cy="119" r="5" fill="none" stroke="#00C8A0" stroke-width="2"/>
+  <text x="285" y="116" fill="#00C8A0" font-size="10" font-weight="700" font-family="Calibri,sans-serif">← Отскок от 50%!</text>
+  <!-- Bounce up -->
+  <line x1="300" y1="118" x2="300" y2="98" stroke="#2ECC71" stroke-width="1.2"/><rect x="296" y="104" width="8" height="11" fill="#2ECC71" rx="1"/>
+  <line x1="318" y1="105" x2="318" y2="84" stroke="#2ECC71" stroke-width="1.2"/><rect x="314" y="90" width="8" height="11" fill="#2ECC71" rx="1"/>
+  <line x1="336" y1="90" x2="336" y2="70" stroke="#2ECC71" stroke-width="1.2"/><rect x="332" y="76" width="8" height="10" fill="#2ECC71" rx="1"/>
+  <line x1="354" y1="75" x2="354" y2="55" stroke="#2ECC71" stroke-width="1.2"/><rect x="350" y="61" width="8" height="10" fill="#2ECC71" rx="1"/>
+  <line x1="372" y1="60" x2="372" y2="42" stroke="#2ECC71" stroke-width="1.2"/><rect x="368" y="48" width="8" height="9" fill="#2ECC71" rx="1"/>
+  <!-- Direction annotation -->
+  <text x="20" y="215" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">① Рост</text>
+  <text x="185" y="215" fill="#E05252" font-size="10" font-family="Calibri,sans-serif">② Коррекция (до 50% Fib)</text>
+  <text x="305" y="215" fill="#2ECC71" font-size="10" font-family="Calibri,sans-serif">③ Продолжение тренда</text>
+</svg><div class="lesson-chart-caption">Уровень 50% — самая частая точка разворота коррекции перед продолжением основного тренда</div></div>
         <p>После сильного движения цена почти всегда делает <strong style="color:var(--white);">коррекцию</strong> — откатывается назад — перед продолжением тренда. Уровни Фибоначчи помогают предсказать, до какой точки цена откатится.</p>
 
         <div class="compare-table">
@@ -1416,6 +1634,50 @@
 
       <div class="content-block">
         <h3>Эмоции и финансовые решения</h3>
+<div class="lesson-chart"><svg viewBox="0 0 600 210" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="210" fill="#0D1420"/>
+  <text x="300" y="16" text-anchor="middle" fill="#9AB6D4" font-size="12" font-family="Calibri,sans-serif" font-weight="700">Цикл эмоций на финансовом рынке</text>
+  <rect x="12" y="22" width="576" height="155" rx="6" fill="#101928" stroke="#1C2E46" stroke-width="1"/>
+  <!-- The market cycle curve -->
+  <path d="M 30,160 C 80,155 120,140 160,100 C 200,60 220,40 250,35 C 280,30 290,45 310,65 C 330,85 340,120 360,140 C 380,155 400,148 430,120 C 460,92 480,60 510,45 C 530,35 550,40 570,42"
+        stroke="#4A9EFF" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Emotion labels at key points on the curve -->
+  <!-- Optimism -->
+  <circle cx="100" cy="130" r="3" fill="#2ECC71"/>
+  <text x="88" y="145" fill="#2ECC71" font-size="9" font-family="Calibri,sans-serif">Оптимизм</text>
+  <!-- Excitement -->
+  <circle cx="160" cy="100" r="3" fill="#2ECC71"/>
+  <text x="148" y="94" fill="#2ECC71" font-size="9" font-family="Calibri,sans-serif">Воодушевление</text>
+  <!-- Euphoria (peak) -->
+  <circle cx="250" cy="35" r="5" fill="#F5B800"/>
+  <text x="220" y="28" fill="#F5B800" font-size="10" font-weight="700" font-family="Calibri,sans-serif">⚠️ ЭЙФОРИЯ</text>
+  <text x="218" y="18" fill="#F5B800" font-size="8" font-family="Calibri,sans-serif">Максимальный финансовый риск</text>
+  <!-- Anxiety -->
+  <circle cx="310" cy="65" r="3" fill="#E05252"/>
+  <text x="315" y="62" fill="#E05252" font-size="9" font-family="Calibri,sans-serif">Тревога</text>
+  <!-- Denial -->
+  <circle cx="360" cy="140" r="3" fill="#E05252"/>
+  <text x="340" y="155" fill="#E05252" font-size="9" font-family="Calibri,sans-serif">Отрицание</text>
+  <!-- Panic -->
+  <circle cx="400" cy="148" r="3" fill="#E05252"/>
+  <text x="385" y="168" fill="#E05252" font-size="9" font-family="Calibri,sans-serif">Паника</text>
+  <!-- Depression (bottom) -->
+  <circle cx="440" cy="120" r="5" fill="#9AB6D4"/>
+  <text x="405" y="110" fill="#9AB6D4" font-size="10" font-weight="700" font-family="Calibri,sans-serif">⚠️ ДЕПРЕССИЯ</text>
+  <text x="400" y="122" fill="#9AB6D4" font-size="8" font-family="Calibri,sans-serif">Макс. финансовые возможности</text>
+  <!-- Hope -->
+  <circle cx="490" cy="58" r="3" fill="#2ECC71"/>
+  <text x="478" y="52" fill="#2ECC71" font-size="9" font-family="Calibri,sans-serif">Надежда</text>
+  <!-- Optimism again -->
+  <circle cx="555" cy="44" r="3" fill="#2ECC71"/>
+  <text x="543" y="38" fill="#2ECC71" font-size="9" font-family="Calibri,sans-serif">Оптимизм</text>
+  <!-- Axes -->
+  <text x="20" y="185" fill="#5E7A9A" font-size="10" font-family="Calibri,sans-serif">Цена актива →</text>
+  <line x1="22" y1="170" x2="580" y2="170" stroke="#1C2E46" stroke-width="1"/>
+  <!-- Key insight -->
+  <rect x="12" y="185" width="576" height="20" rx="0" fill="#0D1420"/>
+  <text x="300" y="197" text-anchor="middle" fill="#5E7A9A" font-size="10" font-family="Calibri,sans-serif">Большинство покупает на эйфории (пике) и продаёт в депрессии (дне) — наоборот от оптимального</text>
+</svg><div class="lesson-chart-caption">Поведенческая экономика: эмоции мешают принимать рациональные финансовые решения</div></div>
         <p>Поведенческая экономика изучает, как эмоции влияют на финансовые решения. На любом рынке проявляются три основных паттерна поведения, которые исследователи фиксируют у большинства участников.</p>
 <div class="lesson-img"><svg viewBox="0 0 540 130" xmlns="http://www.w3.org/2000/svg"><rect width="540" height="130" fill="#101928" rx="10"/><text x="270" y="18" text-anchor="middle" fill="#9AB6D4" font-size="11" font-family="Calibri,sans-serif">Три паттерна поведения на финансовых рынках</text><rect x="20" y="28" width="120" height="72" rx="10" fill="#1A1020" stroke="#E05252" stroke-width="1.5"/><text x="80" y="52" text-anchor="middle" font-size="22" font-family="Calibri,sans-serif">😨</text><text x="80" y="70" text-anchor="middle" fill="#E05252" font-size="11" font-weight="700" font-family="Calibri,sans-serif">СТРАХ</text><text x="80" y="86" text-anchor="middle" fill="#5E7A9A" font-size="9" font-family="Calibri,sans-serif">Слишком раннее</text><text x="80" y="97" text-anchor="middle" fill="#5E7A9A" font-size="9" font-family="Calibri,sans-serif">закрытие позиции</text><rect x="210" y="28" width="120" height="72" rx="10" fill="#1A1800" stroke="#F5B800" stroke-width="1.5"/><text x="270" y="52" text-anchor="middle" font-size="22" font-family="Calibri,sans-serif">🤑</text><text x="270" y="70" text-anchor="middle" fill="#F5B800" font-size="11" font-weight="700" font-family="Calibri,sans-serif">ЖАДНОСТЬ</text><text x="270" y="86" text-anchor="middle" fill="#5E7A9A" font-size="9" font-family="Calibri,sans-serif">Нарушение плана</text><text x="270" y="97" text-anchor="middle" fill="#5E7A9A" font-size="9" font-family="Calibri,sans-serif">и правил</text><rect x="400" y="28" width="120" height="72" rx="10" fill="#001018" stroke="#4A9EFF" stroke-width="1.5"/><text x="460" y="52" text-anchor="middle" font-size="22" font-family="Calibri,sans-serif">🙏</text><text x="460" y="70" text-anchor="middle" fill="#4A9EFF" font-size="11" font-weight="700" font-family="Calibri,sans-serif">НАДЕЖДА</text><text x="460" y="86" text-anchor="middle" fill="#5E7A9A" font-size="9" font-family="Calibri,sans-serif">Удержание</text><text x="460" y="97" text-anchor="middle" fill="#5E7A9A" font-size="9" font-family="Calibri,sans-serif">убыточных позиций</text><text x="155" y="67" text-anchor="middle" fill="#5E7A9A" font-size="16" font-family="Calibri,sans-serif">→</text><text x="345" y="67" text-anchor="middle" fill="#5E7A9A" font-size="16" font-family="Calibri,sans-serif">→</text><rect x="150" y="108" width="240" height="16" rx="8" fill="#00C8A0" fill-opacity=".15" stroke="#00C8A0" stroke-width="1"/><text x="270" y="120" text-anchor="middle" fill="#00C8A0" font-size="10" font-weight="700" font-family="Calibri,sans-serif">Системный подход — единственный выход из этого цикла</text></svg></div>
 
@@ -1855,6 +2117,52 @@
 
       <div class="content-block">
         <h3>Как работает алгоритм: 4 шага</h3>
+<div class="lesson-chart"><svg viewBox="0 0 600 180" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="180" fill="#0D1420"/>
+  <text x="300" y="16" text-anchor="middle" fill="#9AB6D4" font-size="12" font-family="Calibri,sans-serif" font-weight="700">Цикл работы торгового алгоритма (каждые несколько секунд)</text>
+  <!-- Step boxes -->
+  <!-- Step 1 -->
+  <rect x="15" y="32" width="120" height="110" rx="10" fill="#101928" stroke="#00C8A0" stroke-width="1.5"/>
+  <text x="75" y="56" text-anchor="middle" fill="#00C8A0" font-size="24" font-family="Calibri,sans-serif">📡</text>
+  <text x="75" y="76" text-anchor="middle" fill="#00C8A0" font-size="11" font-weight="700" font-family="Calibri,sans-serif">СКАНИРОВАНИЕ</text>
+  <text x="75" y="90" text-anchor="middle" fill="#9AB6D4" font-size="9" font-family="Calibri,sans-serif">Цена, индикаторы,</text>
+  <text x="75" y="102" text-anchor="middle" fill="#9AB6D4" font-size="9" font-family="Calibri,sans-serif">волатильность</text>
+  <text x="75" y="120" text-anchor="middle" fill="#5E7A9A" font-size="8" font-family="Calibri,sans-serif">каждые 1-5 сек.</text>
+  <!-- Arrow 1→2 -->
+  <path d="M 135,87 L 165,87" stroke="#00C8A0" stroke-width="2" marker-end="url(#arr)"/>
+  <defs><marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#00C8A0"/></marker></defs>
+  <!-- Step 2 -->
+  <rect x="165" y="32" width="120" height="110" rx="10" fill="#101928" stroke="#4A9EFF" stroke-width="1.5"/>
+  <text x="225" y="56" text-anchor="middle" fill="#4A9EFF" font-size="24" font-family="Calibri,sans-serif">🔍</text>
+  <text x="225" y="76" text-anchor="middle" fill="#4A9EFF" font-size="11" font-weight="700" font-family="Calibri,sans-serif">АНАЛИЗ</text>
+  <text x="225" y="90" text-anchor="middle" fill="#9AB6D4" font-size="9" font-family="Calibri,sans-serif">Сравнение с</text>
+  <text x="225" y="102" text-anchor="middle" fill="#9AB6D4" font-size="9" font-family="Calibri,sans-serif">условиями сигнала</text>
+  <text x="225" y="120" text-anchor="middle" fill="#5E7A9A" font-size="8" font-family="Calibri,sans-serif">да / нет?</text>
+  <!-- Arrow 2→3 -->
+  <path d="M 285,87 L 315,87" stroke="#4A9EFF" stroke-width="2" marker-end="url(#arr2)"/>
+  <defs><marker id="arr2" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#4A9EFF"/></marker></defs>
+  <!-- Step 3 -->
+  <rect x="315" y="32" width="120" height="110" rx="10" fill="#101928" stroke="#F5B800" stroke-width="1.5"/>
+  <text x="375" y="56" text-anchor="middle" fill="#F5B800" font-size="24" font-family="Calibri,sans-serif">⚡</text>
+  <text x="375" y="76" text-anchor="middle" fill="#F5B800" font-size="11" font-weight="700" font-family="Calibri,sans-serif">ИСПОЛНЕНИЕ</text>
+  <text x="375" y="90" text-anchor="middle" fill="#9AB6D4" font-size="9" font-family="Calibri,sans-serif">Открытие позиции,</text>
+  <text x="375" y="102" text-anchor="middle" fill="#9AB6D4" font-size="9" font-family="Calibri,sans-serif">установка SL/TP</text>
+  <text x="375" y="120" text-anchor="middle" fill="#5E7A9A" font-size="8" font-family="Calibri,sans-serif">миллисекунды</text>
+  <!-- Arrow 3→4 -->
+  <path d="M 435,87 L 465,87" stroke="#F5B800" stroke-width="2" marker-end="url(#arr3)"/>
+  <defs><marker id="arr3" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#F5B800"/></marker></defs>
+  <!-- Step 4 -->
+  <rect x="465" y="32" width="120" height="110" rx="10" fill="#101928" stroke="#2ECC71" stroke-width="1.5"/>
+  <text x="525" y="56" text-anchor="middle" fill="#2ECC71" font-size="24" font-family="Calibri,sans-serif">🔒</text>
+  <text x="525" y="76" text-anchor="middle" fill="#2ECC71" font-size="11" font-weight="700" font-family="Calibri,sans-serif">КОНТРОЛЬ</text>
+  <text x="525" y="90" text-anchor="middle" fill="#9AB6D4" font-size="9" font-family="Calibri,sans-serif">Мониторинг, закрытие</text>
+  <text x="525" y="102" text-anchor="middle" fill="#9AB6D4" font-size="9" font-family="Calibri,sans-serif">при достижении цели</text>
+  <text x="525" y="120" text-anchor="middle" fill="#5E7A9A" font-size="8" font-family="Calibri,sans-serif">без эмоций</text>
+  <!-- Loop arrow -->
+  <path d="M 525,142 C 525,165 75,165 75,142" stroke="#1C2E46" stroke-width="1.5" fill="none" stroke-dasharray="4,3"/>
+  <path d="M 72,142 L 75,155 L 78,142" stroke="#1C2E46" stroke-width="1.5" fill="none"/>
+  <text x="300" y="170" text-anchor="middle" fill="#5E7A9A" font-size="9" font-family="Calibri,sans-serif">← Цикл повторяется автоматически 24/5</text>
+</svg><div class="lesson-chart-caption">Алгоритм выполняет этот цикл тысячи раз в сутки — без усталости, эмоций и ошибок внимания</div></div>
         <p>Любой алгоритм проходит один и тот же цикл при каждой проверке рынка.</p>
         <div class="types-grid">
           <div class="type-card"><div class="type-card-icon">📡</div><div class="type-card-title">1. Сканирование</div><div class="type-card-desc">Непрерывное отслеживание цены, индикаторов и состояния рынка — тренд, флэт, волатильность.</div></div>
