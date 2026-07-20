@@ -592,7 +592,7 @@
     <div class="section-label" style="margin-bottom:14px;">Программа обучения</div>
     <div class="courses-grid">
 
-      <div class="course-card active-course" onclick="showSection('lesson')">
+      <div class="course-card active-course" onclick="showLesson('ch1')">
         <div class="course-icon acc-bg">🌍</div>
         <div class="course-info">
           <div class="course-num">Глава 01 · 5 уроков · 25 мин</div>
@@ -608,7 +608,7 @@
         </div>
       </div>
 
-      <div class="course-card" onclick="showSection('courses')">
+      <div class="course-card" onclick="showLesson('ch2')">
         <div class="course-icon dark-bg">📊</div>
         <div class="course-info">
           <div class="course-num">Глава 02 · 4 темы · 25 мин</div>
@@ -620,7 +620,7 @@
         </div>
       </div>
 
-      <div class="course-card" onclick="showSection('courses')">
+      <div class="course-card" onclick="showLesson('ch3')">
         <div class="course-icon dark-bg">📰</div>
         <div class="course-info">
           <div class="course-num">Глава 03 · 3 темы · 20 мин</div>
@@ -632,7 +632,7 @@
         </div>
       </div>
 
-      <div class="course-card" onclick="showSection('courses')">
+      <div class="course-card" onclick="showLesson('ch4')">
         <div class="course-icon dark-bg">📈</div>
         <div class="course-info">
           <div class="course-num">Глава 04 · 5 тем · 30 мин</div>
@@ -644,7 +644,7 @@
         </div>
       </div>
 
-      <div class="course-card" onclick="showSection('courses')">
+      <div class="course-card" onclick="showLesson('ch5')">
         <div class="course-icon dark-bg">🧠</div>
         <div class="course-info">
           <div class="course-num">Глава 05 · 3 темы · 20 мин</div>
@@ -656,7 +656,7 @@
         </div>
       </div>
 
-      <div class="course-card algo-card" onclick="showSection('courses')">
+      <div class="course-card algo-card" onclick="showLesson('ch6')">
         <div class="course-icon" style="background:rgba(245,184,0,.15);font-size:24px;display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:12px;flex-shrink:0;">🤖</div>
         <div class="course-info">
           <div class="course-num">Глава 06 · 6 тем · 35 мин</div>
@@ -1023,7 +1023,7 @@
         <div class="quiz-result wrong" id="quiz-ch2-wrong">❌ Не совсем. EUR — это базовая валюта. EUR/USD = 1.0850 означает: 1 евро = 1.0850 доллара, то есть евро дороже доллара.</div>
       </div>
       <div style="display:flex; justify-content:space-between; align-items:center; margin-top:36px; padding-top:20px; border-top:1px solid var(--border);">
-        <button onclick="showLesson('ch1')" style="padding:11px 22px; border-radius:10px; border:1.5px solid var(--border); background:none; color:var(--white); font-weight:600; font-size:14px; cursor:pointer; font-family:inherit;">← К курсам</button>
+        <button onclick="showSection('courses')" style="padding:11px 22px; border-radius:10px; border:1.5px solid var(--border); background:none; color:var(--white); font-weight:600; font-size:14px; cursor:pointer; font-family:inherit;">← К курсам</button>
         <button onclick="showQuizStep('ch2')" style="padding:12px 28px; border-radius:10px; background:var(--accent); color:var(--black); font-weight:800; font-size:14px; border:none; cursor:pointer; font-family:inherit;">Следующий урок →</button>
       </div>
 
@@ -1199,7 +1199,7 @@
         <div class="quiz-result wrong" id="quiz-ch3-wrong">❌ Не совсем. Самые важные фундаментальные события — решения центральных банков, данные по инфляции и занятости. Именно они вызывают самые сильные движения на валютном рынке.</div>
       </div>
       <div style="display:flex; justify-content:space-between; align-items:center; margin-top:36px; padding-top:20px; border-top:1px solid var(--border);">
-        <button onclick="showLesson('ch2')" style="padding:11px 22px; border-radius:10px; border:1.5px solid var(--border); background:none; color:var(--white); font-weight:600; font-size:14px; cursor:pointer; font-family:inherit;">← К курсам</button>
+        <button onclick="showSection('courses')" style="padding:11px 22px; border-radius:10px; border:1.5px solid var(--border); background:none; color:var(--white); font-weight:600; font-size:14px; cursor:pointer; font-family:inherit;">← К курсам</button>
         <button onclick="showQuizStep('ch3')" style="padding:12px 28px; border-radius:10px; background:var(--accent); color:var(--black); font-weight:800; font-size:14px; border:none; cursor:pointer; font-family:inherit;">Следующий урок →</button>
       </div>
 
@@ -1392,7 +1392,7 @@
         <div class="quiz-result wrong" id="quiz-ch4-wrong">❌ Посмотри на график ещё раз: каждый новый пик выше предыдущего, и каждое дно тоже выше. Это классическое определение восходящего тренда — аптренда.</div>
       </div>
       <div style="display:flex; justify-content:space-between; align-items:center; margin-top:36px; padding-top:20px; border-top:1px solid var(--border);">
-        <button onclick="showLesson('ch3')" style="padding:11px 22px; border-radius:10px; border:1.5px solid var(--border); background:none; color:var(--white); font-weight:600; font-size:14px; cursor:pointer; font-family:inherit;">← К курсам</button>
+        <button onclick="showSection('courses')" style="padding:11px 22px; border-radius:10px; border:1.5px solid var(--border); background:none; color:var(--white); font-weight:600; font-size:14px; cursor:pointer; font-family:inherit;">← К курсам</button>
         <button onclick="showQuizStep('ch4')" style="padding:12px 28px; border-radius:10px; background:var(--accent); color:var(--black); font-weight:800; font-size:14px; border:none; cursor:pointer; font-family:inherit;">Следующий урок →</button>
       </div>
 
@@ -1556,7 +1556,7 @@
         <div class="quiz-result wrong" id="quiz-ch5-wrong">❌ Вспомни три эмоции из урока: Страх, Жадность, Надежда. «Подождать — само вырастет» — это надежда без анализа. Именно она заставляет людей удерживать убыточные позиции дольше, чем следует.</div>
       </div>
       <div style="display:flex; justify-content:space-between; align-items:center; margin-top:36px; padding-top:20px; border-top:1px solid var(--border);">
-        <button onclick="showLesson('ch4')" style="padding:11px 22px; border-radius:10px; border:1.5px solid var(--border); background:none; color:var(--white); font-weight:600; font-size:14px; cursor:pointer; font-family:inherit;">← К курсам</button>
+        <button onclick="showSection('courses')" style="padding:11px 22px; border-radius:10px; border:1.5px solid var(--border); background:none; color:var(--white); font-weight:600; font-size:14px; cursor:pointer; font-family:inherit;">← К курсам</button>
         <button onclick="showQuizStep('ch5')" style="padding:12px 28px; border-radius:10px; background:var(--accent); color:var(--black); font-weight:800; font-size:14px; border:none; cursor:pointer; font-family:inherit;">Следующий урок →</button>
       </div>
 
@@ -1599,13 +1599,7 @@
     }
   }
 
-  function showLesson(chapter) {
-    showSection('lesson');
-    switchChapter(chapter, document.querySelectorAll('.chapter-tab')[
-      ['ch1','ch2','ch3','ch4','ch5'].indexOf(chapter)
-    ]);
-  }
-
+  
   function switchChapter(chId, btn) {
     currentChapter = chId;
     // hide all chapters
@@ -1693,27 +1687,73 @@
   // Trigger particles when ch6 is shown
   var _origSwitchChapter = typeof switchChapter !== 'undefined' ? switchChapter : null;
   function switchChapter(id, btn) {
+    // Ensure lesson section is visible
+    document.querySelectorAll('.section').forEach(function(s){ s.classList.remove('active'); });
+    var ls = document.getElementById('section-lesson');
+    if (ls) ls.classList.add('active');
+    document.querySelectorAll('.nav-tab').forEach(function(t){ t.classList.remove('active'); });
+    document.querySelectorAll('.nav-tab').forEach(function(t){
+      if (t.getAttribute('onclick') && t.getAttribute('onclick').indexOf("'lesson'") > -1) t.classList.add('active');
+    });
+    // Activate tab
     document.querySelectorAll('.chapter-tab').forEach(function(t){ t.classList.remove('active'); });
     if (btn) btn.classList.add('active');
+    // Show chapter content
     document.querySelectorAll('[id^="lesson-ch"]').forEach(function(el){ el.style.display='none'; });
     var target = document.getElementById('lesson-' + id);
     if (target) target.style.display = 'block';
+    // Update breadcrumb
+    var labels = {ch1:'Глава 01 — Введение в Форекс',ch2:'Глава 02 — Основы Форекс',ch3:'Глава 03 — Фундаментальный анализ',ch4:'Глава 04 — Технический анализ',ch5:'Глава 05 — Финансовая грамотность',ch6:'Глава 06 — Алготрейдинг'};
+    var lbl = document.getElementById('lesson-chapter-label');
+    if (lbl && labels[id]) lbl.textContent = labels[id];
     if (id === 'ch6') { setTimeout(initAlgoParticles, 100); }
+    window.scrollTo(0, 0);
   }
 
   function showLesson(id) {
+    // 1. Switch to lesson section and update nav tabs
+    document.querySelectorAll('.section').forEach(function(s){ s.classList.remove('active'); });
+    var lessonSection = document.getElementById('section-lesson');
+    if (lessonSection) lessonSection.classList.add('active');
+    document.querySelectorAll('.nav-tab').forEach(function(t){ t.classList.remove('active'); });
+    document.querySelectorAll('.nav-tab').forEach(function(t){
+      if (t.getAttribute('onclick') && t.getAttribute('onclick').indexOf("'lesson'") > -1) {
+        t.classList.add('active');
+      }
+    });
+
+    // 2. Show the right chapter content, hide others
     document.querySelectorAll('[id^="lesson-ch"]').forEach(function(el){ el.style.display='none'; });
     var target = document.getElementById('lesson-' + id);
     if (target) target.style.display = 'block';
+
+    // 3. Update chapter tabs
     document.querySelectorAll('.chapter-tab').forEach(function(t){ t.classList.remove('active'); });
-    var tabMap = {ch1:'ch1',ch2:'ch2',ch3:'ch3',ch4:'ch4',ch5:'ch5',ch6:'ch6'};
     document.querySelectorAll('.chapter-tab').forEach(function(t){
       if (t.getAttribute('onclick') && t.getAttribute('onclick').indexOf("'" + id + "'") > -1) {
         t.classList.add('active');
       }
     });
+
+    // 4. Update lesson breadcrumb label
+    var labels = {
+      ch1: 'Глава 01 — Введение в Форекс',
+      ch2: 'Глава 02 — Основы Форекс',
+      ch3: 'Глава 03 — Фундаментальный анализ',
+      ch4: 'Глава 04 — Технический анализ',
+      ch5: 'Глава 05 — Финансовая грамотность',
+      ch6: 'Глава 06 — Алготрейдинг'
+    };
+    var lbl = document.getElementById('lesson-chapter-label');
+    if (lbl && labels[id]) lbl.textContent = labels[id];
+
+    // 5. Special: init algo particles for ch6
     if (id === 'ch6') { setTimeout(initAlgoParticles, 100); }
-    document.querySelector('.lesson-section').scrollTop = 0;
+
+    // 6. Scroll to top
+    window.scrollTo(0, 0);
+    var ls = document.querySelector('.lesson-section');
+    if (ls) ls.scrollTop = 0;
   }
 
 
@@ -1892,7 +1932,7 @@
         <div class="quiz-result wrong" id="quiz-ch6-wrong">❌ Не совсем. Win rate — не единственная метрика. При risk/reward 1:3 даже 34% побед дают итоговый плюс.</div>
       </div>
       <div style="display:flex; justify-content:space-between; align-items:center; margin-top:36px; padding-top:20px; border-top:1px solid var(--border);">
-        <button onclick="showLesson('ch5')" style="padding:11px 22px; border-radius:10px; border:1.5px solid var(--border); background:none; color:var(--white); font-weight:600; font-size:14px; cursor:pointer; font-family:inherit;">← К курсам</button>
+        <button onclick="showSection('courses')" style="padding:11px 22px; border-radius:10px; border:1.5px solid var(--border); background:none; color:var(--white); font-weight:600; font-size:14px; cursor:pointer; font-family:inherit;">← К курсам</button>
         <button onclick="showQuizStep('ch6')" style="padding:12px 28px; border-radius:10px; background:var(--accent); color:var(--black); font-weight:800; font-size:14px; border:none; cursor:pointer; font-family:inherit;">Следующий урок →</button>
       </div>
 
