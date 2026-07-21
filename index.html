@@ -1292,81 +1292,190 @@
 
       <div class="content-block">
         <h3>Тренды — основа технического анализа</h3>
-<div class="lesson-chart"><svg viewBox="0 0 660 270" xmlns="http://www.w3.org/2000/svg">
-  <rect width="660" height="270" fill="#0D1420" rx="12"/>
-  <text x="330" y="20" text-anchor="middle" fill="#9AB6D4" font-size="13" font-weight="700" font-family="Calibri,sans-serif">Три типа трендов — как определить на графике</text>
+<div class="lesson-chart"><svg viewBox="0 0 720 520" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="520" fill="#0D1420" rx="12"/>
+  <text x="360" y="24" text-anchor="middle" fill="#E8F4FF" font-size="14" font-weight="700" font-family="Calibri,sans-serif">Три типа трендов — как выглядят на графике цены</text>
 
-  <!-- ══ UPTREND panel ══ -->
-  <rect x="10" y="30" width="200" height="190" rx="10" fill="#101928" stroke="#2ECC71" stroke-width="2"/>
-  <text x="110" y="50" text-anchor="middle" fill="#2ECC71" font-size="13" font-weight="700" font-family="Calibri,sans-serif">↗ АПТРЕНД</text>
-  <!-- Zigzag up with numbered points -->
-  <polyline points="25,185 60,155 80,170 115,138 135,152 170,118 190,130 210,100"
-    stroke="#2ECC71" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Peak dots -->
-  <circle cx="60"  cy="155" r="5" fill="#2ECC71"/><text x="62"  y="148" fill="#2ECC71" font-size="9" font-weight="700" font-family="Calibri,sans-serif">1</text>
-  <circle cx="115" cy="138" r="5" fill="#2ECC71"/><text x="117" y="131" fill="#2ECC71" font-size="9" font-weight="700" font-family="Calibri,sans-serif">2</text>
-  <circle cx="170" cy="118" r="5" fill="#2ECC71"/><text x="172" y="111" fill="#2ECC71" font-size="9" font-weight="700" font-family="Calibri,sans-serif">3</text>
-  <!-- Trough dots -->
-  <circle cx="80"  cy="170" r="4" fill="none" stroke="#2ECC71" stroke-width="1.5"/>
-  <circle cx="135" cy="152" r="4" fill="none" stroke="#2ECC71" stroke-width="1.5"/>
-  <!-- Trend line -->
-  <line x1="25" y1="185" x2="210" y2="100" stroke="#2ECC71" stroke-width="1" stroke-dasharray="5,4" opacity=".5"/>
-  <!-- Labels -->
-  <text x="110" y="165" text-anchor="middle" fill="#2ECC71" font-size="9" font-family="Calibri,sans-serif">● каждый пик</text>
-  <text x="110" y="177" text-anchor="middle" fill="#2ECC71" font-size="9" font-family="Calibri,sans-serif">ВЫШЕ предыдущего</text>
-  <rect x="15" y="200" width="180" height="14" rx="4" fill="rgba(46,204,113,.1)"/>
-  <text x="105" y="211" text-anchor="middle" fill="#2ECC71" font-size="10" font-weight="700" font-family="Calibri,sans-serif">Покупают, держат позицию</text>
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- PANEL 1: UPTREND                           -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="12" y="36" width="220" height="460" rx="10" fill="#101928" stroke="#2ECC71" stroke-width="2"/>
 
-  <!-- ══ DOWNTREND panel ══ -->
-  <rect x="230" y="30" width="200" height="190" rx="10" fill="#101928" stroke="#E05252" stroke-width="2"/>
-  <text x="330" y="50" text-anchor="middle" fill="#E05252" font-size="13" font-weight="700" font-family="Calibri,sans-serif">↘ ДАУНТРЕНД</text>
-  <!-- Zigzag down -->
-  <polyline points="245,95 280,125 300,110 335,145 355,130 390,162 410,148 430,178"
-    stroke="#E05252" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Peak dots going down -->
-  <circle cx="280" cy="125" r="5" fill="#E05252"/><text x="282" y="138" fill="#E05252" font-size="9" font-weight="700" font-family="Calibri,sans-serif">1</text>
-  <circle cx="335" cy="145" r="5" fill="#E05252"/><text x="337" y="158" fill="#E05252" font-size="9" font-weight="700" font-family="Calibri,sans-serif">2</text>
-  <circle cx="390" cy="162" r="5" fill="#E05252"/><text x="392" y="175" fill="#E05252" font-size="9" font-weight="700" font-family="Calibri,sans-serif">3</text>
-  <!-- Trend line -->
-  <line x1="245" y1="95" x2="430" y2="178" stroke="#E05252" stroke-width="1" stroke-dasharray="5,4" opacity=".5"/>
-  <!-- Labels -->
-  <text x="330" y="113" text-anchor="middle" fill="#E05252" font-size="9" font-family="Calibri,sans-serif">● каждый пик</text>
-  <text x="330" y="125" text-anchor="middle" fill="#E05252" font-size="9" font-family="Calibri,sans-serif">НИЖЕ предыдущего</text>
-  <rect x="235" y="200" width="180" height="14" rx="4" fill="rgba(224,82,82,.1)"/>
-  <text x="325" y="211" text-anchor="middle" fill="#E05252" font-size="10" font-weight="700" font-family="Calibri,sans-serif">Цена снижается — медведи</text>
+  <!-- Title -->
+  <rect x="12" y="36" width="220" height="38" rx="10" fill="#0D2010"/>
+  <rect x="12" y="56" width="220" height="18" fill="#0D2010"/>
+  <text x="122" y="62" text-anchor="middle" fill="#2ECC71" font-size="14" font-weight="700" font-family="Calibri,sans-serif">↗  АПТРЕНД</text>
 
-  <!-- ══ SIDEWAYS panel ══ -->
-  <rect x="450" y="30" width="200" height="190" rx="10" fill="#101928" stroke="#9AB6D4" stroke-width="2"/>
-  <text x="550" y="50" text-anchor="middle" fill="#9AB6D4" font-size="13" font-weight="700" font-family="Calibri,sans-serif">↔ ФЛЕТ (боковик)</text>
-  <!-- Horizontal range lines -->
-  <line x1="462" y1="105" x2="638" y2="105" stroke="#9AB6D4" stroke-width="1" stroke-dasharray="4,4" opacity=".5"/>
-  <line x1="462" y1="155" x2="638" y2="155" stroke="#9AB6D4" stroke-width="1" stroke-dasharray="4,4" opacity=".5"/>
-  <text x="642" y="109" fill="#9AB6D4" font-size="9" font-family="Calibri,sans-serif">макс.</text>
-  <text x="642" y="159" fill="#9AB6D4" font-size="9" font-family="Calibri,sans-serif">мин.</text>
-  <!-- Zigzag horizontal -->
-  <polyline points="465,155 495,108 525,150 555,110 585,148 615,108 638,145"
-    stroke="#9AB6D4" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="495" cy="108" r="5" fill="#9AB6D4"/>
-  <circle cx="555" cy="110" r="5" fill="#9AB6D4"/>
-  <circle cx="615" cy="108" r="5" fill="#9AB6D4"/>
-  <circle cx="525" cy="150" r="4" fill="none" stroke="#9AB6D4" stroke-width="1.5"/>
-  <circle cx="585" cy="148" r="4" fill="none" stroke="#9AB6D4" stroke-width="1.5"/>
-  <!-- Fill range -->
-  <rect x="462" y="105" width="176" height="50" fill="#9AB6D4" opacity=".05"/>
-  <!-- Labels -->
-  <text x="550" y="172" text-anchor="middle" fill="#9AB6D4" font-size="9" font-family="Calibri,sans-serif">пики на одном уровне</text>
-  <text x="550" y="183" text-anchor="middle" fill="#9AB6D4" font-size="9" font-family="Calibri,sans-serif">цена отскакивает от границ</text>
-  <rect x="455" y="200" width="180" height="14" rx="4" fill="rgba(154,182,212,.1)"/>
-  <text x="545" y="211" text-anchor="middle" fill="#9AB6D4" font-size="10" font-weight="700" font-family="Calibri,sans-serif">Без чёткого направления</text>
+  <!-- Chart area -->
+  <rect x="22" y="82" width="200" height="200" rx="6" fill="#0A1208"/>
 
-  <!-- Bottom rule -->
-  <rect x="10" y="232" width="640" height="28" rx="8" fill="#152030"/>
-  <text x="330" y="243" text-anchor="middle" fill="#5E7A9A" font-size="10" font-family="Calibri,sans-serif">Правило:</text>
-  <text x="380" y="243" fill="#00C8A0" font-size="11" font-weight="700" font-family="Calibri,sans-serif">Аптренд</text>
-  <text x="440" y="243" fill="#5E7A9A" font-size="10" font-family="Calibri,sans-serif">= каждый максимум выше предыдущего ·</text>
-  <text x="490" y="257" text-anchor="middle" fill="#E05252" font-size="11" font-weight="700" font-family="Calibri,sans-serif">Даунтренд</text>
-  <text x="610" y="257" fill="#5E7A9A" font-size="10" font-family="Calibri,sans-serif">= каждый ниже</text>
-</svg><div class="lesson-chart-caption">«Trend is your friend» — торгуй в направлении тренда, не против него</div></div>
+  <!-- Grid -->
+  <line x1="22" y1="132" x2="222" y2="132" stroke="#1C2E46" stroke-width=".7" stroke-dasharray="3,3"/>
+  <line x1="22" y1="182" x2="222" y2="182" stroke="#1C2E46" stroke-width=".7" stroke-dasharray="3,3"/>
+  <line x1="22" y1="232" x2="222" y2="232" stroke="#1C2E46" stroke-width=".7" stroke-dasharray="3,3"/>
+
+  <!-- Trend guide line -->
+  <line x1="35" y1="272" x2="210" y2="98" stroke="#2ECC71" stroke-width="1" stroke-dasharray="5,4" opacity=".3"/>
+
+  <!-- Price zigzag line going UP -->
+  <polyline points="35,268 70,228 95,248 130,205 155,220 190,175 210,190"
+    stroke="#2ECC71" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- HIGH points (peaks) with labels -->
+  <circle cx="70" cy="228" r="7" fill="#2ECC71"/>
+  <text x="70" y="225" text-anchor="middle" fill="#0D1420" font-size="9" font-weight="900" font-family="Calibri,sans-serif">П1</text>
+  <line x1="70" y1="221" x2="70" y2="200" stroke="#2ECC71" stroke-width="1" stroke-dasharray="2,2" opacity=".7"/>
+  <text x="72" y="197" fill="#2ECC71" font-size="9" font-weight="700" font-family="Calibri,sans-serif">Пик 1</text>
+
+  <circle cx="130" cy="205" r="7" fill="#2ECC71"/>
+  <text x="130" y="202" text-anchor="middle" fill="#0D1420" font-size="9" font-weight="900" font-family="Calibri,sans-serif">П2</text>
+  <line x1="130" y1="198" x2="130" y2="177" stroke="#2ECC71" stroke-width="1" stroke-dasharray="2,2" opacity=".7"/>
+  <text x="132" y="174" fill="#2ECC71" font-size="9" font-weight="700" font-family="Calibri,sans-serif">Пик 2 ↑ выше</text>
+
+  <circle cx="190" cy="175" r="7" fill="#2ECC71"/>
+  <text x="190" y="172" text-anchor="middle" fill="#0D1420" font-size="9" font-weight="900" font-family="Calibri,sans-serif">П3</text>
+  <line x1="190" y1="168" x2="190" y2="148" stroke="#2ECC71" stroke-width="1" stroke-dasharray="2,2" opacity=".7"/>
+  <text x="192" y="145" fill="#2ECC71" font-size="9" font-weight="700" font-family="Calibri,sans-serif">Пик 3 ↑ выше</text>
+
+  <!-- LOW points (troughs) -->
+  <circle cx="95" cy="248" r="5" fill="none" stroke="#2ECC71" stroke-width="1.5"/>
+  <text x="80" y="266" fill="#2ECC71" font-size="8" font-family="Calibri,sans-serif">Дно 1</text>
+  <circle cx="155" cy="220" r="5" fill="none" stroke="#2ECC71" stroke-width="1.5"/>
+  <text x="140" y="238" fill="#2ECC71" font-size="8" font-family="Calibri,sans-serif">Дно 2↑</text>
+
+  <!-- Rules below chart -->
+  <rect x="22" y="292" width="200" height="44" rx="6" fill="#0F2010"/>
+  <text x="122" y="308" text-anchor="middle" fill="#2ECC71" font-size="11" font-weight="700" font-family="Calibri,sans-serif">✓ Каждый ПИК выше</text>
+  <text x="122" y="323" text-anchor="middle" fill="#2ECC71" font-size="11" font-weight="700" font-family="Calibri,sans-serif">✓ Каждое ДНО выше</text>
+  <text x="122" y="352" text-anchor="middle" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">Рынок растёт.</text>
+  <text x="122" y="367" text-anchor="middle" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">Участники рынка покупают</text>
+  <text x="122" y="382" text-anchor="middle" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">и удерживают позиции.</text>
+
+  <rect x="22" y="400" width="200" height="86" rx="6" fill="#152030"/>
+  <text x="122" y="418" text-anchor="middle" fill="#5E7A9A" font-size="10" font-weight="700" font-family="Calibri,sans-serif">Пример на рынке:</text>
+  <text x="122" y="434" text-anchor="middle" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">EUR/USD рос с 1.05 до 1.12</text>
+  <text x="122" y="449" text-anchor="middle" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">в течение 3 месяцев —</text>
+  <text x="122" y="464" text-anchor="middle" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">каждый откат был выше</text>
+  <text x="122" y="479" text-anchor="middle" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">предыдущего минимума.</text>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- PANEL 2: DOWNTREND                         -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="250" y="36" width="220" height="460" rx="10" fill="#101928" stroke="#E05252" stroke-width="2"/>
+
+  <rect x="250" y="36" width="220" height="38" rx="10" fill="#200D0D"/>
+  <rect x="250" y="56" width="220" height="18" fill="#200D0D"/>
+  <text x="360" y="62" text-anchor="middle" fill="#E05252" font-size="14" font-weight="700" font-family="Calibri,sans-serif">↘  ДАУНТРЕНД</text>
+
+  <rect x="260" y="82" width="200" height="200" rx="6" fill="#120808"/>
+
+  <line x1="260" y1="132" x2="460" y2="132" stroke="#1C2E46" stroke-width=".7" stroke-dasharray="3,3"/>
+  <line x1="260" y1="182" x2="460" y2="182" stroke="#1C2E46" stroke-width=".7" stroke-dasharray="3,3"/>
+  <line x1="260" y1="232" x2="460" y2="232" stroke="#1C2E46" stroke-width=".7" stroke-dasharray="3,3"/>
+
+  <!-- Trend guide DOWN -->
+  <line x1="275" y1="98" x2="448" y2="270" stroke="#E05252" stroke-width="1" stroke-dasharray="5,4" opacity=".3"/>
+
+  <!-- Price zigzag DOWN -->
+  <polyline points="275,100 310,142 330,118 370,162 390,140 430,182 448,165"
+    stroke="#E05252" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- HIGH points (peaks going lower) -->
+  <circle cx="275" cy="100" r="7" fill="#E05252"/>
+  <text x="275" y="97" text-anchor="middle" fill="white" font-size="9" font-weight="900" font-family="Calibri,sans-serif">П1</text>
+  <text x="277" y="90" fill="#E05252" font-size="9" font-weight="700" font-family="Calibri,sans-serif">Пик 1</text>
+
+  <circle cx="330" cy="118" r="7" fill="#E05252"/>
+  <text x="330" y="115" text-anchor="middle" fill="white" font-size="9" font-weight="900" font-family="Calibri,sans-serif">П2</text>
+  <text x="332" y="108" fill="#E05252" font-size="9" font-weight="700" font-family="Calibri,sans-serif">Пик 2 ↓ ниже</text>
+
+  <circle cx="390" cy="140" r="7" fill="#E05252"/>
+  <text x="390" y="137" text-anchor="middle" fill="white" font-size="9" font-weight="900" font-family="Calibri,sans-serif">П3</text>
+  <text x="354" y="130" fill="#E05252" font-size="9" font-weight="700" font-family="Calibri,sans-serif">Пик 3 ↓ ниже</text>
+
+  <!-- LOW points -->
+  <circle cx="310" cy="142" r="5" fill="none" stroke="#E05252" stroke-width="1.5"/>
+  <text x="295" y="158" fill="#E05252" font-size="8" font-family="Calibri,sans-serif">Дно 1</text>
+  <circle cx="370" cy="162" r="5" fill="none" stroke="#E05252" stroke-width="1.5"/>
+  <text x="355" y="178" fill="#E05252" font-size="8" font-family="Calibri,sans-serif">Дно 2↓</text>
+  <circle cx="430" cy="182" r="5" fill="none" stroke="#E05252" stroke-width="1.5"/>
+  <text x="415" y="198" fill="#E05252" font-size="8" font-family="Calibri,sans-serif">Дно 3↓</text>
+
+  <rect x="260" y="292" width="200" height="44" rx="6" fill="#200D0D"/>
+  <text x="360" y="308" text-anchor="middle" fill="#E05252" font-size="11" font-weight="700" font-family="Calibri,sans-serif">✗ Каждый ПИК ниже</text>
+  <text x="360" y="323" text-anchor="middle" fill="#E05252" font-size="11" font-weight="700" font-family="Calibri,sans-serif">✗ Каждое ДНО ниже</text>
+  <text x="360" y="352" text-anchor="middle" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">Рынок снижается.</text>
+  <text x="360" y="367" text-anchor="middle" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">Называется «медвежьим».</text>
+  <text x="360" y="382" text-anchor="middle" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">Каждый отскок слабее</text>
+
+  <rect x="260" y="400" width="200" height="86" rx="6" fill="#152030"/>
+  <text x="360" y="418" text-anchor="middle" fill="#5E7A9A" font-size="10" font-weight="700" font-family="Calibri,sans-serif">Пример на рынке:</text>
+  <text x="360" y="434" text-anchor="middle" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">GBP/USD падал с 1.30</text>
+  <text x="360" y="449" text-anchor="middle" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">до 1.20 за 2 месяца —</text>
+  <text x="360" y="464" text-anchor="middle" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">каждый откат вверх</text>
+  <text x="360" y="479" text-anchor="middle" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">не превышал предыдущего пика.</text>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- PANEL 3: SIDEWAYS                          -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="488" y="36" width="220" height="460" rx="10" fill="#101928" stroke="#9AB6D4" stroke-width="2"/>
+
+  <rect x="488" y="36" width="220" height="38" rx="10" fill="#101C24"/>
+  <rect x="488" y="56" width="220" height="18" fill="#101C24"/>
+  <text x="598" y="62" text-anchor="middle" fill="#9AB6D4" font-size="14" font-weight="700" font-family="Calibri,sans-serif">↔  ФЛЕТ (боковик)</text>
+
+  <rect x="498" y="82" width="200" height="200" rx="6" fill="#0A1015"/>
+
+  <line x1="498" y1="132" x2="698" y2="132" stroke="#1C2E46" stroke-width=".7" stroke-dasharray="3,3"/>
+  <line x1="498" y1="182" x2="698" y2="182" stroke="#1C2E46" stroke-width=".7" stroke-dasharray="3,3"/>
+  <line x1="498" y1="232" x2="698" y2="232" stroke="#1C2E46" stroke-width=".7" stroke-dasharray="3,3"/>
+
+  <!-- RESISTANCE level line -->
+  <line x1="498" y1="120" x2="698" y2="120" stroke="#E05252" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="700" y="124" fill="#E05252" font-size="9" font-weight="700" font-family="Calibri,sans-serif">↑ Сопр.</text>
+
+  <!-- SUPPORT level line -->
+  <line x1="498" y1="225" x2="698" y2="225" stroke="#2ECC71" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="700" y="229" fill="#2ECC71" font-size="9" font-weight="700" font-family="Calibri,sans-serif">↓ Подд.</text>
+
+  <!-- Fill between support and resistance -->
+  <rect x="498" y="120" width="200" height="105" fill="#9AB6D4" opacity=".04"/>
+
+  <!-- Price bouncing between levels -->
+  <polyline points="510,222 540,122 570,218 600,124 630,220 660,126 688,215"
+    stroke="#9AB6D4" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Tops touching resistance -->
+  <circle cx="540" cy="122" r="6" fill="#E05252"/>
+  <circle cx="600" cy="124" r="6" fill="#E05252"/>
+  <circle cx="660" cy="126" r="6" fill="#E05252"/>
+  <text x="540" y="112" text-anchor="middle" fill="#E05252" font-size="8" font-family="Calibri,sans-serif">отскок</text>
+  <text x="600" y="112" text-anchor="middle" fill="#E05252" font-size="8" font-family="Calibri,sans-serif">отскок</text>
+  <text x="660" y="112" text-anchor="middle" fill="#E05252" font-size="8" font-family="Calibri,sans-serif">отскок</text>
+
+  <!-- Bottoms touching support -->
+  <circle cx="510" cy="222" r="6" fill="#2ECC71"/>
+  <circle cx="570" cy="218" r="6" fill="#2ECC71"/>
+  <circle cx="630" cy="220" r="6" fill="#2ECC71"/>
+  <text x="510" y="238" text-anchor="middle" fill="#2ECC71" font-size="8" font-family="Calibri,sans-serif">отскок</text>
+  <text x="570" y="238" text-anchor="middle" fill="#2ECC71" font-size="8" font-family="Calibri,sans-serif">отскок</text>
+  <text x="630" y="238" text-anchor="middle" fill="#2ECC71" font-size="8" font-family="Calibri,sans-serif">отскок</text>
+
+  <rect x="498" y="292" width="200" height="44" rx="6" fill="#101C24"/>
+  <text x="598" y="308" text-anchor="middle" fill="#9AB6D4" font-size="11" font-weight="700" font-family="Calibri,sans-serif">→ Пики на одном уровне</text>
+  <text x="598" y="323" text-anchor="middle" fill="#9AB6D4" font-size="11" font-weight="700" font-family="Calibri,sans-serif">→ Дны на одном уровне</text>
+  <text x="598" y="352" text-anchor="middle" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">Нет явного направления.</text>
+  <text x="598" y="367" text-anchor="middle" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">Цена «застряла» в диапазоне.</text>
+  <text x="598" y="382" text-anchor="middle" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">Ждут пробой границы.</text>
+
+  <rect x="498" y="400" width="200" height="86" rx="6" fill="#152030"/>
+  <text x="598" y="418" text-anchor="middle" fill="#5E7A9A" font-size="10" font-weight="700" font-family="Calibri,sans-serif">Что делать во флете:</text>
+  <text x="598" y="434" text-anchor="middle" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">Ждать, пока цена пробьёт</text>
+  <text x="598" y="449" text-anchor="middle" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">границу диапазона вверх</text>
+  <text x="598" y="464" text-anchor="middle" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">или вниз — это сигнал</text>
+  <text x="598" y="479" text-anchor="middle" fill="#9AB6D4" font-size="10" font-family="Calibri,sans-serif">начала нового тренда.</text>
+
+</svg><div class="lesson-chart-caption">Главное правило: определи тренд на старшем таймфрейме — потом ищи точку входа на младшем</div></div>
 
 
         <p>Тренд — это устойчивое преимущественное направление движения цены. Умение распознавать тренды — одна из базовых компетенций, которую изучают специалисты по финансовым рынкам.</p>
