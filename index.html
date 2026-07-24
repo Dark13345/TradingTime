@@ -1864,10 +1864,9 @@
   
   function switchChapter(chId, btn) {
     currentChapter = chId;
-    // hide all chapters
-    ['ch1','ch2','ch3','ch4','ch5'].forEach(id => {
-      const el = document.getElementById('lesson-' + id);
-      if (el) el.style.display = 'none';
+    // hide ALL chapters (including ch6)
+    document.querySelectorAll('[id^="lesson-ch"]').forEach(el => {
+      el.style.display = 'none';
     });
     // show selected
     const target = document.getElementById('lesson-' + chId);
@@ -1881,10 +1880,12 @@
       ch2: 'Глава 02 — Основы Форекс',
       ch3: 'Глава 03 — Фундаментальный анализ',
       ch4: 'Глава 04 — Технический анализ',
-      ch5: 'Глава 05 — Психология и риски',
+      ch5: 'Глава 05 — Финансовая грамотность',
+      ch6: 'Глава 06 — Алготрейдинг',
     };
     const labelEl = document.getElementById('lesson-chapter-label');
     if (labelEl) labelEl.textContent = labels[chId] || '';
+    if (chId === 'ch6') { setTimeout(initAlgoParticles, 100); }
     window.scrollTo(0, 0);
   }
 
