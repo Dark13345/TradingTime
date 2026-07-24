@@ -1839,103 +1839,131 @@
 <script>
   let currentChapter = 'ch1';
 
+  /* ── Section navigation ─────────────────────────────── */
   function showSection(name) {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    document.getElementById('section-' + name).classList.add('active');
-    document.querySelectorAll('.nav-tab').forEach((t, i) => {
-      t.classList.toggle('active', ['home','courses','lesson'][i] === name);
+    const sec = document.getElementById('section-' + name);
+    if (sec) sec.classList.add('active');
+    document.querySelectorAll('.nav-tab').forEach(t => {
+      t.classList.toggle('active', t.getAttribute('onclick') && t.getAttribute('onclick').includes("'" + name + "'"));
     });
     window.scrollTo(0, 0);
-    if (name === 'courses' || name === 'home') {
-      setTimeout(() => {
-        document.querySelectorAll('.xp-fill').forEach(el => {
-          if (el) el.style.width = '5%';
-        });
-      }, 300);
-    }
-    if (name === 'lesson') {
-      setTimeout(() => {
-        const lp = document.getElementById('lesson-progress');
-        if (lp) lp.style.width = '40%';
-      }, 300);
-    }
   }
 
-  
-  function switchChapter(chId, btn) {
-    currentChapter = chId;
-    // hide ALL chapters (including ch6)
-    document.querySelectorAll('[id^="lesson-ch"]').forEach(el => {
-      el.style.display = 'none';
-    });
-    // show selected
-    const target = document.getElementById('lesson-' + chId);
+  /* ── Chapter switching (tabs inside lesson) ─────────── */
+  function switchChapter(id, btn) {
+    currentChapter = id;
+    // Make sure lesson section is visible
+    showSection('lesson');
+    // Hide ALL chapter divs
+    document.querySelectorAll('[id^="lesson-ch"]').forEach(el => el.style.display = 'none');
+    // Show target
+    const target = document.getElementById('lesson-' + id);
     if (target) target.style.display = 'block';
-    // update tabs
+    // Update tabs
     document.querySelectorAll('.chapter-tab').forEach(t => t.classList.remove('active'));
     if (btn) btn.classList.add('active');
-    // update label
+    // Update breadcrumb
     const labels = {
-      ch1: 'Глава 01 — Введение в Форекс',
-      ch2: 'Глава 02 — Основы Форекс',
-      ch3: 'Глава 03 — Фундаментальный анализ',
-      ch4: 'Глава 04 — Технический анализ',
-      ch5: 'Глава 05 — Финансовая грамотность',
-      ch6: 'Глава 06 — Алготрейдинг',
+      ch1:'Глава 01 — Введение в Форекс',
+      ch2:'Глава 02 — Основы Форекс',
+      ch3:'Глава 03 — Фундаментальный анализ',
+      ch4:'Глава 04 — Технический анализ',
+      ch5:'Глава 05 — Финансовая грамотность',
+      ch6:'Глава 06 — Алготрейдинг'
     };
-    const labelEl = document.getElementById('lesson-chapter-label');
-    if (labelEl) labelEl.textContent = labels[chId] || '';
-    if (chId === 'ch6') { setTimeout(initAlgoParticles, 100); }
+    const lbl = document.getElementById('lesson-chapter-label');
+    if (lbl) lbl.textContent = labels[id] || '';
+    if (id === 'ch6') setTimeout(initAlgoParticles, 100);
     window.scrollTo(0, 0);
   }
 
-  function answerQuiz(el, correct, quizId) {
-    const container = document.getElementById(quizId);
-    if (container.querySelector('.correct, .wrong')) return;
-    el.classList.add(correct ? 'correct' : 'wrong');
-    if (correct) {
-      document.getElementById(quizId + '-correct').classList.add('show');
-    } else {
-      document.getElementById(quizId + '-wrong').classList.add('show');
-      // highlight correct answer
-      container.querySelectorAll('.quiz-option').forEach(opt => {
-        if (opt.querySelector('.quiz-num') && opt !== el) {
-          const onclick = opt.getAttribute('onclick');
-          if (onclick && onclick.includes('true')) opt.classList.add('correct');
-        }
-      });
+  /* ── Navigate to lesson from cards ─────────────────── */
+  function showLesson(id) {
+    currentChapter = id;
+    // Show lesson section
+    showSection('lesson');
+    // Hide ALL chapters
+    document.querySelectorAll('[id^="lesson-ch"]').forEach(el => el.style.display = 'none');
+    // Show target
+    const target = document.getElementById('lesson-' + id);
+    if (target) target.style.display = 'block';
+    // Update chapter tabs
+    document.querySelectorAll('.chapter-tab').forEach(t => {
+      const oc = t.getAttribute('onclick') || '';
+      t.classList.toggle('active', oc.includes("'" + id + "'"));
+    });
+    // Update breadcrumb
+    const labels = {
+      ch1:'Глава 01 — Введение в Форекс',
+      ch2:'Глава 02 — Основы Форекс',
+      ch3:'Глава 03 — Фундаментальный анализ',
+      ch4:'Глава 04 — Технический анализ',
+      ch5:'Глава 05 — Финансовая грамотность',
+      ch6:'Глава 06 — Алготрейдинг'
+    };
+    const lbl = document.getElementById('lesson-chapter-label');
+    if (lbl) lbl.textContent = labels[id] || '';
+    if (id === 'ch6') setTimeout(initAlgoParticles, 100);
+    window.scrollTo(0, 0);
+  }
+
+  /* ── Quiz step navigation ───────────────────────────── */
+  function showQuizStep(ch) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    const sec = document.getElementById('section-quiz');
+    if (sec) sec.classList.add('active');
+    document.querySelectorAll('.quiz-step').forEach(s => s.style.display = 'none');
+    const step = document.getElementById('quiz-step-' + ch);
+    if (step) step.style.display = 'block';
+    resetQuiz(ch);
+    window.scrollTo(0, 0);
+  }
+
+  function backFromQuiz(ch) {
+    showLesson(ch);
+  }
+
+  function resetQuiz(ch) {
+    document.querySelectorAll('#qopts-' + ch + ' .quiz-opt-btn').forEach(b => {
+      b.classList.remove('correct','wrong');
+      b.disabled = false;
+    });
+    const okFb = document.getElementById('qfb-' + ch + '-ok');
+    const noFb = document.getElementById('qfb-' + ch + '-no');
+    const nxt  = document.getElementById('qnext-' + ch);
+    if (okFb) okFb.classList.remove('show');
+    if (noFb) noFb.classList.remove('show');
+    if (nxt)  nxt.style.display = 'none';
+  }
+
+  function quizAnswer(btn, isCorrect, ch, idx) {
+    const opts = document.querySelectorAll('#qopts-' + ch + ' .quiz-opt-btn');
+    const alreadyAnswered = Array.from(opts).some(b => b.classList.contains('correct') || b.classList.contains('wrong'));
+    if (alreadyAnswered) return;
+    btn.classList.add(isCorrect ? 'correct' : 'wrong');
+    if (!isCorrect) {
+      opts.forEach(b => { if (b.dataset.correct === 'true') b.classList.add('correct'); });
+    }
+    const okFb = document.getElementById('qfb-' + ch + '-ok');
+    const noFb = document.getElementById('qfb-' + ch + '-no');
+    if (okFb) okFb.classList.toggle('show', isCorrect);
+    if (noFb) noFb.classList.toggle('show', !isCorrect);
+    const nxt = document.getElementById('qnext-' + ch);
+    if (nxt) {
+      nxt.style.display = 'block';
+      setTimeout(() => nxt.scrollIntoView({behavior:'smooth', block:'nearest'}), 300);
     }
   }
 
-  function nextLesson() {
-    const chapters = ['ch1','ch2','ch3','ch4','ch5'];
-    const idx = chapters.indexOf(currentChapter);
-    if (idx < chapters.length - 1) {
-      const nextCh = chapters[idx + 1];
-      const nextBtn = document.querySelectorAll('.chapter-tab')[idx + 1];
-      switchChapter(nextCh, nextBtn);
-    } else {
-      alert('Поздравляем! Ты прошёл все доступные главы 🎉');
-    }
-  }
-
-  // init
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      document.querySelectorAll('.xp-fill').forEach(el => {
-        if (el) el.style.width = '5%';
-      });
-    }, 500);
-  });
-
-  // ── Chapter 6 particle generator ──────────────────────
+  /* ── Algo particles (ch6) ───────────────────────────── */
   function initAlgoParticles() {
-    var area = document.getElementById('algo-particles-area');
+    const area = document.getElementById('algo-particles-area');
     if (!area || area.dataset.init) return;
     area.dataset.init = '1';
-    var symbols = ['0','1','%','→','≈','Δ','α','β','//','{}','[]','if'];
-    for (var i = 0; i < 18; i++) {
-      var el = document.createElement('div');
+    const symbols = ['0','1','%','→','≈','Δ','α','β','//','{}','[]','if'];
+    for (let i = 0; i < 18; i++) {
+      const el = document.createElement('div');
       el.className = 'algo-particle';
       el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
       el.style.left = Math.random() * 95 + '%';
@@ -1946,144 +1974,6 @@
       area.appendChild(el);
     }
   }
-
-  // Trigger particles when ch6 is shown
-  var _origSwitchChapter = typeof switchChapter !== 'undefined' ? switchChapter : null;
-  function switchChapter(id, btn) {
-    // Ensure lesson section is visible
-    document.querySelectorAll('.section').forEach(function(s){ s.classList.remove('active'); });
-    var ls = document.getElementById('section-lesson');
-    if (ls) ls.classList.add('active');
-    document.querySelectorAll('.nav-tab').forEach(function(t){ t.classList.remove('active'); });
-    document.querySelectorAll('.nav-tab').forEach(function(t){
-      if (t.getAttribute('onclick') && t.getAttribute('onclick').indexOf("'lesson'") > -1) t.classList.add('active');
-    });
-    // Activate tab
-    document.querySelectorAll('.chapter-tab').forEach(function(t){ t.classList.remove('active'); });
-    if (btn) btn.classList.add('active');
-    // Show chapter content
-    document.querySelectorAll('[id^="lesson-ch"]').forEach(function(el){ el.style.display='none'; });
-    var target = document.getElementById('lesson-' + id);
-    if (target) target.style.display = 'block';
-    // Update breadcrumb
-    var labels = {ch1:'Глава 01 — Введение в Форекс',ch2:'Глава 02 — Основы Форекс',ch3:'Глава 03 — Фундаментальный анализ',ch4:'Глава 04 — Технический анализ',ch5:'Глава 05 — Финансовая грамотность',ch6:'Глава 06 — Алготрейдинг'};
-    var lbl = document.getElementById('lesson-chapter-label');
-    if (lbl && labels[id]) lbl.textContent = labels[id];
-    if (id === 'ch6') { setTimeout(initAlgoParticles, 100); }
-    window.scrollTo(0, 0);
-  }
-
-  function showLesson(id) {
-    // 1. Switch to lesson section and update nav tabs
-    document.querySelectorAll('.section').forEach(function(s){ s.classList.remove('active'); });
-    var lessonSection = document.getElementById('section-lesson');
-    if (lessonSection) lessonSection.classList.add('active');
-    document.querySelectorAll('.nav-tab').forEach(function(t){ t.classList.remove('active'); });
-    document.querySelectorAll('.nav-tab').forEach(function(t){
-      if (t.getAttribute('onclick') && t.getAttribute('onclick').indexOf("'lesson'") > -1) {
-        t.classList.add('active');
-      }
-    });
-
-    // 2. Show the right chapter content, hide others
-    document.querySelectorAll('[id^="lesson-ch"]').forEach(function(el){ el.style.display='none'; });
-    var target = document.getElementById('lesson-' + id);
-    if (target) target.style.display = 'block';
-
-    // 3. Update chapter tabs
-    document.querySelectorAll('.chapter-tab').forEach(function(t){ t.classList.remove('active'); });
-    document.querySelectorAll('.chapter-tab').forEach(function(t){
-      if (t.getAttribute('onclick') && t.getAttribute('onclick').indexOf("'" + id + "'") > -1) {
-        t.classList.add('active');
-      }
-    });
-
-    // 4. Update lesson breadcrumb label
-    var labels = {
-      ch1: 'Глава 01 — Введение в Форекс',
-      ch2: 'Глава 02 — Основы Форекс',
-      ch3: 'Глава 03 — Фундаментальный анализ',
-      ch4: 'Глава 04 — Технический анализ',
-      ch5: 'Глава 05 — Финансовая грамотность',
-      ch6: 'Глава 06 — Алготрейдинг'
-    };
-    var lbl = document.getElementById('lesson-chapter-label');
-    if (lbl && labels[id]) lbl.textContent = labels[id];
-
-    // 5. Special: init algo particles for ch6
-    if (id === 'ch6') { setTimeout(initAlgoParticles, 100); }
-
-    // 6. Scroll to top
-    window.scrollTo(0, 0);
-    var ls = document.querySelector('.lesson-section');
-    if (ls) ls.scrollTop = 0;
-  }
-
-
-  // ══ QUIZ STEP NAVIGATION ══════════════════════════════
-  var _currentQuizCh = null;
-  var _currentLessonCh = null;
-
-  function showQuizStep(ch) {
-    _currentQuizCh = ch;
-    // Hide all sections, show quiz section
-    document.querySelectorAll('.section').forEach(function(s){ s.classList.remove('active'); });
-    document.getElementById('section-quiz').classList.add('active');
-    // Hide all quiz steps, show the right one
-    document.querySelectorAll('.quiz-step').forEach(function(s){ s.style.display='none'; });
-    var step = document.getElementById('quiz-step-' + ch);
-    if (step) step.style.display = 'block';
-    // Reset quiz state
-    resetQuiz(ch);
-    // Update nav tab
-    document.querySelectorAll('.nav-tab').forEach(function(t){ t.classList.remove('active'); });
-    window.scrollTo(0,0);
-  }
-
-  function backFromQuiz(ch) {
-    showLesson(ch);
-  }
-
-  function resetQuiz(ch) {
-    document.querySelectorAll('#qopts-' + ch + ' .quiz-opt-btn').forEach(function(b){
-      b.classList.remove('correct','wrong');
-      b.disabled = false;
-    });
-    var okFb = document.getElementById('qfb-' + ch + '-ok');
-    var noFb = document.getElementById('qfb-' + ch + '-no');
-    var nxt  = document.getElementById('qnext-' + ch);
-    if (okFb) { okFb.classList.remove('show'); }
-    if (noFb) { noFb.classList.remove('show'); }
-    if (nxt)  { nxt.style.display = 'none'; }
-  }
-
-  function quizAnswer(btn, isCorrect, ch, idx) {
-    var opts = document.querySelectorAll('#qopts-' + ch + ' .quiz-opt-btn');
-    // Prevent double-click
-    var alreadyAnswered = Array.from(opts).some(function(b){ return b.classList.contains('correct') || b.classList.contains('wrong'); });
-    if (alreadyAnswered) return;
-    // Mark selected
-    btn.classList.add(isCorrect ? 'correct' : 'wrong');
-    // If wrong, highlight correct
-    if (!isCorrect) {
-      opts.forEach(function(b){
-        if (b.dataset.correct === 'true') b.classList.add('correct');
-      });
-    }
-    // Show feedback
-    var okFb = document.getElementById('qfb-' + ch + '-ok');
-    var noFb = document.getElementById('qfb-' + ch + '-no');
-    if (okFb) okFb.classList.toggle('show', isCorrect);
-    if (noFb) noFb.classList.toggle('show', !isCorrect);
-    // Show next button
-    var nxt = document.getElementById('qnext-' + ch);
-    if (nxt) {
-      nxt.style.display = 'block';
-      // Scroll to it
-      setTimeout(function(){ nxt.scrollIntoView({behavior:'smooth', block:'nearest'}); }, 300);
-    }
-  }
-
 </script>
 
     <!-- ══ ГЛАВА 6: АЛГОТРЕЙДИНГ ══ -->
