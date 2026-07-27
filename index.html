@@ -556,6 +556,287 @@
   .trend-rule.down { background: rgba(224,82,82,.12);  color: #E05252; }
   .trend-rule.flat { background: rgba(154,182,212,.1); color: #9AB6D4; }
 
+
+  /* ══ COMPLETION SCREEN ══ */
+  #section-complete {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 40px 24px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(0,200,160,.08) 0%, transparent 60%),
+                var(--bg);
+  }
+  .complete-icon {
+    width: 120px; height: 120px; border-radius: 50%;
+    background: linear-gradient(135deg, #00C8A0, #00A882);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 56px;
+    box-shadow: 0 0 0 12px rgba(0,200,160,.1), 0 0 0 24px rgba(0,200,160,.05);
+    animation: completeGlow 2.5s ease-in-out infinite;
+    margin-bottom: 32px;
+  }
+  @keyframes completeGlow {
+    0%,100% { box-shadow: 0 0 0 12px rgba(0,200,160,.12), 0 0 0 24px rgba(0,200,160,.05); }
+    50%      { box-shadow: 0 0 0 16px rgba(0,200,160,.20), 0 0 0 32px rgba(0,200,160,.08); }
+  }
+  @keyframes completeFadeUp {
+    from { opacity:0; transform:translateY(20px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  .complete-card {
+    max-width: 560px; width: 100%;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 36px 32px;
+    text-align: center;
+    animation: completeFadeUp .6s ease both;
+  }
+  .complete-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(0,200,160,.12); border: 1px solid rgba(0,200,160,.3);
+    border-radius: 20px; padding: 5px 16px; margin-bottom: 20px;
+    font-size: 13px; font-weight: 700; color: var(--accent);
+    letter-spacing: .5px; text-transform: uppercase;
+  }
+  .complete-title {
+    font-size: 30px; font-weight: 900; color: var(--white);
+    line-height: 1.2; margin-bottom: 12px;
+  }
+  .complete-subtitle {
+    font-size: 15px; color: var(--gray-light);
+    line-height: 1.7; margin-bottom: 28px;
+  }
+  .complete-stats {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 12px; margin-bottom: 28px;
+  }
+  .complete-stat {
+    background: var(--card2); border-radius: 12px; padding: 16px 10px;
+    border: 1px solid var(--border);
+  }
+  .complete-stat-n {
+    font-size: 26px; font-weight: 900; color: var(--accent);
+    font-family: 'Calibri',sans-serif;
+  }
+  .complete-stat-l {
+    font-size: 12px; color: var(--gray); margin-top: 4px;
+  }
+  .complete-divider {
+    height: 1px; background: var(--border); margin: 0 0 24px;
+  }
+  .complete-chapters {
+    display: flex; flex-direction: column; gap: 10px;
+    margin-bottom: 28px; text-align: left;
+  }
+  .complete-chapter-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 14px; border-radius: 10px;
+    background: var(--card2); border: 1px solid var(--border);
+  }
+  .complete-chapter-row .check {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--accent); display: flex;
+    align-items: center; justify-content: center;
+    font-size: 14px; flex-shrink: 0;
+  }
+  .complete-chapter-row .ch-name {
+    font-size: 14px; font-weight: 600; color: var(--white);
+  }
+  .complete-chapter-row .ch-tag {
+    margin-left: auto; font-size: 12px; color: var(--accent);
+    font-weight: 700;
+  }
+  .complete-cta {
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .complete-btn-primary {
+    padding: 15px 28px; border-radius: 12px;
+    background: var(--accent); color: var(--black);
+    font-weight: 800; font-size: 15px; border: none;
+    cursor: pointer; width: 100%; font-family: inherit;
+    transition: opacity .2s;
+  }
+  .complete-btn-primary:hover { opacity: .88; }
+  .complete-btn-secondary {
+    padding: 13px 28px; border-radius: 12px;
+    background: none; border: 1.5px solid var(--border);
+    color: var(--white); font-weight: 600; font-size: 14px;
+    cursor: pointer; width: 100%; font-family: inherit;
+    transition: border-color .2s;
+  }
+  .complete-btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+  /* Confetti particles */
+  .confetti-container {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; overflow: hidden; z-index: 1;
+  }
+  .confetti-piece {
+    position: absolute; top: -10px;
+    width: 8px; height: 8px; border-radius: 2px;
+    animation: confettiFall linear forwards;
+  }
+  @keyframes confettiFall {
+    0%   { transform: translateY(0) rotate(0deg); opacity:1; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity:0; }
+  }
+
+
+  /* ══ COMPLETION SCREEN ══ */
+  #section-complete {
+    min-height: 100vh;
+    display: none;
+    background: radial-gradient(ellipse at 50% 0%, rgba(0,200,160,.12) 0%, transparent 70%),
+                radial-gradient(ellipse at 80% 100%, rgba(245,184,0,.08) 0%, transparent 60%),
+                var(--bg);
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    overflow: hidden;
+  }
+  #section-complete.active { display: flex; }
+
+  /* Confetti */
+  .confetti-wrap { position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+  .confetti-piece {
+    position:absolute; width:8px; height:12px; border-radius:2px;
+    animation: confettiFall linear infinite;
+    opacity: 0;
+  }
+  @keyframes confettiFall {
+    0%   { transform: translateY(-20px) rotate(0deg);   opacity:1; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity:0; }
+  }
+
+  /* Card */
+  .complete-wrap {
+    position: relative; z-index: 1;
+    max-width: 560px; width: 100%;
+    animation: completeReveal .7s cubic-bezier(.34,1.56,.64,1) both;
+  }
+  @keyframes completeReveal {
+    from { opacity:0; transform: translateY(40px) scale(.92); }
+    to   { opacity:1; transform: none; }
+  }
+
+  /* Trophy */
+  .complete-trophy {
+    text-align: center; margin-bottom: 24px;
+    animation: trophyBounce 1s cubic-bezier(.34,1.56,.64,1) .3s both;
+  }
+  @keyframes trophyBounce {
+    from { opacity:0; transform: scale(.4) rotate(-20deg); }
+    to   { opacity:1; transform: scale(1) rotate(0deg); }
+  }
+  .complete-trophy-icon {
+    font-size: 80px; line-height:1;
+    filter: drop-shadow(0 0 24px rgba(245,184,0,.6));
+  }
+
+  /* Main card */
+  .complete-card-new {
+    background: linear-gradient(145deg, #111928 0%, #0D1520 100%);
+    border: 1px solid rgba(0,200,160,.35);
+    border-radius: 20px;
+    padding: 36px 32px;
+    text-align: center;
+    box-shadow: 0 0 60px rgba(0,200,160,.12), 0 32px 64px rgba(0,0,0,.4);
+  }
+
+  .complete-badge-new {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(0,200,160,.1); border: 1px solid rgba(0,200,160,.3);
+    border-radius: 20px; padding: 6px 16px; margin-bottom: 20px;
+    font-size: 12px; font-weight: 700; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 1.5px;
+  }
+
+  .complete-title-new {
+    font-size: 30px; font-weight: 900; color: var(--white);
+    line-height: 1.2; margin-bottom: 10px;
+  }
+  @media (max-width:480px) { .complete-title-new { font-size:24px; } }
+
+  .complete-subtitle {
+    font-size: 16px; color: var(--gray-light);
+    margin-bottom: 32px; line-height: 1.6;
+  }
+
+  /* Stats row */
+  .complete-stats-new {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 12px;
+    margin-bottom: 28px;
+  }
+  .complete-stat-new {
+    background: rgba(255,255,255,.04); border: 1px solid var(--border);
+    border-radius: 14px; padding: 16px 10px;
+  }
+  .complete-stat-new .n {
+    font-size: 32px; font-weight: 900; color: var(--accent);
+    line-height: 1; font-family: 'Calibri', sans-serif;
+  }
+  .complete-stat-new .l {
+    font-size: 12px; color: var(--gray); margin-top: 4px; line-height: 1.3;
+  }
+
+  /* Chapter list */
+  .complete-chapters-new {
+    text-align: left; margin-bottom: 28px;
+    background: rgba(255,255,255,.03); border-radius: 14px; overflow: hidden;
+  }
+  .complete-ch-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 16px; border-bottom: 1px solid var(--border);
+    animation: slideIn .4s ease both;
+  }
+  .complete-ch-row:last-child { border-bottom: none; }
+  @keyframes slideIn {
+    from { opacity:0; transform: translateX(-16px); }
+    to   { opacity:1; transform: none; }
+  }
+  .complete-ch-row:nth-child(1){animation-delay:.5s}
+  .complete-ch-row:nth-child(2){animation-delay:.65s}
+  .complete-ch-row:nth-child(3){animation-delay:.8s}
+  .complete-ch-row:nth-child(4){animation-delay:.95s}
+  .complete-ch-row:nth-child(5){animation-delay:1.1s}
+  .complete-ch-row:nth-child(6){animation-delay:1.25s}
+  .complete-ch-check {
+    width:28px; height:28px; border-radius:50%; flex-shrink:0;
+    background: rgba(46,204,113,.15); border: 2px solid #2ECC71;
+    display:flex; align-items:center; justify-content:center;
+    font-size:14px; color:#2ECC71;
+  }
+  .complete-ch-row.gold .complete-ch-check {
+    background: rgba(245,184,0,.15); border-color: #F5B800; color: #F5B800;
+  }
+  .complete-ch-name { flex:1; font-size:14px; font-weight:600; color:var(--white); }
+  .complete-ch-badge {
+    font-size:11px; font-weight:700; padding:3px 10px; border-radius:20px;
+    background:rgba(46,204,113,.15); color:#2ECC71;
+  }
+  .complete-ch-row.gold .complete-ch-badge {
+    background:rgba(245,184,0,.15); color:#F5B800;
+  }
+
+  /* Buttons */
+  .complete-btns {
+    display: flex; gap: 12px; flex-direction: column;
+  }
+  .complete-btn-main {
+    padding: 16px 28px; border-radius: 12px;
+    background: var(--accent); color: var(--black);
+    font-size: 16px; font-weight: 800; border: none;
+    cursor: pointer; transition: all .2s; font-family: inherit;
+    letter-spacing: .3px;
+  }
+  .complete-btn-main:hover { opacity:.88; transform:translateY(-1px); }
+  .complete-btn-sec {
+    padding: 14px 28px; border-radius: 12px;
+    background: none; color: var(--gray-light);
+    font-size: 14px; font-weight: 600;
+    border: 1.5px solid var(--border);
+    cursor: pointer; transition: all .2s; font-family: inherit;
+  }
+  .complete-btn-sec:hover { border-color: var(--accent); color: var(--accent); }
+
 </style>
 </head>
 <body>
@@ -1962,6 +2243,31 @@
     }
   }
 
+
+  /* ── Confetti on course complete ── */
+  function launchConfetti() {
+    const area = document.getElementById('confetti-area');
+    if (!area) return;
+    area.innerHTML = '';
+    const colors = ['#00C8A0','#F5B800','#4A9EFF','#2ECC71','#E05252','#fff'];
+    for (let i = 0; i < 80; i++) {
+      const el = document.createElement('div');
+      el.className = 'confetti-piece';
+      el.style.left = Math.random() * 100 + '%';
+      el.style.background = colors[Math.floor(Math.random()*colors.length)];
+      el.style.animationDuration = (2.5 + Math.random()*3) + 's';
+      el.style.animationDelay = (Math.random()*2) + 's';
+      el.style.width = (6+Math.random()*8) + 'px';
+      el.style.height = (8+Math.random()*12) + 'px';
+      el.style.borderRadius = Math.random() > .5 ? '50%' : '2px';
+      area.appendChild(el);
+    }
+  }
+  function showComplete() {
+    showSection('complete');
+    setTimeout(launchConfetti, 300);
+  }
+
   /* ── Algo particles (ch6) ───────────────────────────── */
   function initAlgoParticles() {
     const area = document.getElementById('algo-particles-area');
@@ -1980,6 +2286,34 @@
       area.appendChild(el);
     }
   }
+
+  /* ── Course completion ──────────────────────────────── */
+  function showComplete() {
+    showSection('complete');
+    launchConfetti();
+  }
+
+  function launchConfetti() {
+    var area = document.getElementById('confetti-area');
+    if (!area) return;
+    area.innerHTML = '';
+    var colors = ['#00C8A0','#F5B800','#4A9EFF','#2ECC71','#E05252','#9AB6D4','#ffffff'];
+    for (var i = 0; i < 80; i++) {
+      var el = document.createElement('div');
+      el.className = 'confetti-piece';
+      el.style.left = Math.random() * 100 + '%';
+      el.style.background = colors[Math.floor(Math.random() * colors.length)];
+      el.style.width  = (6 + Math.random() * 8) + 'px';
+      el.style.height = (6 + Math.random() * 8) + 'px';
+      el.style.borderRadius = Math.random() > .5 ? '50%' : '2px';
+      el.style.animationDuration  = (2 + Math.random() * 3) + 's';
+      el.style.animationDelay     = (Math.random() * 1.5) + 's';
+      area.appendChild(el);
+    }
+    // Clean up after animation
+    setTimeout(function() { if (area) area.innerHTML = ''; }, 6000);
+  }
+
 </script>
 
     <!-- ══ ГЛАВА 6: АЛГОТРЕЙДИНГ ══ -->
@@ -2150,41 +2484,86 @@
         <span style="color:var(--gray);">Глава 05 — Финансовая грамотность</span>
       </div>
       <div class="quiz-step-header">🧩 Проверь себя</div>
-      <div class="quiz-visual"><svg viewBox="0 0 600 130" xmlns="http://www.w3.org/2000/svg"><rect width="600" height="130" fill="#101928" rx="12"/><text x="300" y="16" text-anchor="middle" fill="#9AB6D4" font-size="12" font-family="Calibri,sans-serif">Три эмоции инвестора — какая заставляет ждать вместо действия?</text><rect x="20" y="28" width="170" height="90" rx="10" fill="#1A0B0B" stroke="#E05252" stroke-width="1.5"/><text x="105" y="56" text-anchor="middle" font-size="26" font-family="Calibri,sans-serif">😨</text><text x="105" y="76" text-anchor="middle" fill="#E05252" font-size="13" font-weight="700" font-family="Calibri,sans-serif">СТРАХ</text><text x="105" y="92" text-anchor="middle" fill="#5E7A9A" font-size="9" font-family="Calibri,sans-serif">Продать слишком рано</text><rect x="215" y="28" width="170" height="90" rx="10" fill="#1A1600" stroke="#F5B800" stroke-width="1.5"/><text x="300" y="56" text-anchor="middle" font-size="26" font-family="Calibri,sans-serif">🤑</text><text x="300" y="76" text-anchor="middle" fill="#F5B800" font-size="13" font-weight="700" font-family="Calibri,sans-serif">ЖАДНОСТЬ</text><text x="300" y="92" text-anchor="middle" fill="#5E7A9A" font-size="9" font-family="Calibri,sans-serif">Нарушить план</text><rect x="410" y="28" width="170" height="90" rx="10" fill="#0A1218" stroke="#4A9EFF" stroke-width="2.5"/><text x="495" y="56" text-anchor="middle" font-size="26" font-family="Calibri,sans-serif">🙏</text><text x="495" y="76" text-anchor="middle" fill="#4A9EFF" font-size="13" font-weight="700" font-family="Calibri,sans-serif">НАДЕЖДА</text><text x="495" y="92" text-anchor="middle" fill="#9AB6D4" font-size="9" font-weight="700" font-family="Calibri,sans-serif">«Само вырастет» ←</text><text x="300" y="122" text-anchor="middle" fill="#5E7A9A" font-size="10" font-family="Calibri,sans-serif">Синяя рамка — это и есть ответ на вопрос</text></svg></div>
-      
-<div class="quiz-question-text">Инвестор видит убыток и не фиксирует его, думая «подождать — само вырастет». Какая эмоция им управляет?</div>
-      <div class="quiz-opts" id="qopts-ch5">
-        <button class="quiz-opt-btn" onclick="quizAnswer(this, false, 'ch5', 0)" data-correct="false">
-          <span class="quiz-opt-letter">А</span>
-          <span>Самодисциплина — он следует своему плану</span>
-        </button>
-        <button class="quiz-opt-btn" onclick="quizAnswer(this, false, 'ch5', 1)" data-correct="false">
-          <span class="quiz-opt-letter">Б</span>
-          <span>Жадность — он хочет получить большую доходность</span>
-        </button>
-        <button class="quiz-opt-btn" onclick="quizAnswer(this, true, 'ch5', 2)" data-correct="true">
-          <span class="quiz-opt-letter">В</span>
-          <span>Надежда — он ждёт разворота без анализа</span>
-        </button>
-        <button class="quiz-opt-btn" onclick="quizAnswer(this, false, 'ch5', 3)" data-correct="false">
-          <span class="quiz-opt-letter">Г</span>
-          <span>Страх — он боится принимать новые решения</span>
-        </button>
+      <div class="quiz-visual"><svg viewBox="0 0 600 130" xmlns="http://www.w3.org/2000/svg"><rect width="600" height="130" fill="#101928" rx="12"/><text x="300" y="16" text-anchor="middle" fill="#9AB6D4" font-size="12" font-family="Calibri,sans-serif">Три эмоции инвестора — какая заставляет ждать вместо действия?</text><rect x="20" y="28" width="170" height="90" rx="10" fill="#1A0B0B" stroke="#E05252" stroke-width="1.5"/><text x="105" y="56" text-anchor="middle" font-size="26" font-family="Calibri,sans-serif">😨</text><text x="105" y="76" text-anchor="middle" fill="#E05252" font-size="13" font-weight="700" font-family="Calibri,sans-serif">СТРАХ</text><text x="105" y="92" text-anchor="middle" fill="#5E7A9A" font-size="9" font-family="Calibri,sans-serif">Продать слишком рано</text><rect x="215" y="28" width="170" height="90" rx="10" fill="#1A1600" stroke="#F5B800" stroke-width="1.5"/><text x="300" y="56" text-anchor="middle" font-size="26" font-family="Calibri,sans-serif">🤑</text><text x="300" y="76" text-anchor="middle" fill="#F5B800" font-size="13" font-weight="700" font-family="Calibri,sans-serif">ЖАДНОСТЬ</text><text x="300" y="92" text-anchor="middle" fill="#5E7A9A" font-size="9" font-family="Calibri,sans-serif">Нарушить план</text><rect x="410" y="28" width="170" height="90" rx="10" fill="#0A1218" stroke=<section class="section" id="section-complete">
+  <!-- Confetti -->
+  <div class="confetti-wrap" id="confetti-area"></div>
+
+  <div class="complete-wrap">
+    <div class="complete-trophy">
+      <div class="complete-trophy-icon">🏆</div>
+    </div>
+
+    <div class="complete-card-new">
+      <div class="complete-badge-new">✦ Trading Time · Academy</div>
+
+      <div class="complete-title-new">Курс успешно пройден!</div>
+      <div class="complete-subtitle">
+        Ты изучил финансовые рынки с нуля.<br>
+        Это знание — твоё навсегда.
       </div>
-      <div class="quiz-feedback correct" id="qfb-ch5-ok">✅ Это надежда — одна из трёх деструктивных эмоций. «Само вырастет» — это не анализ, а ожидание. Исследователи называют это эффектом избегания потерь (loss aversion).</div>
-      <div class="quiz-feedback wrong"   id="qfb-ch5-no">❌ Посмотри на три эмоции: Страх, Жадность, Надежда. «Подождать — само вырастет» — это надежда без анализа. Именно она заставляет удерживать убыточные позиции.</div>
-      <div class="quiz-nav-row">
-        <button class="quiz-nav-back" onclick="backFromQuiz('ch5')">← К уроку</button>
-        <button class="quiz-nav-next" id="qnext-ch5" onclick="showLesson('ch6')" style="display:none;">Последняя глава →</button>
+
+      <!-- Stats -->
+      <div class="complete-stats-new">
+        <div class="complete-stat-new">
+          <div class="n">6</div>
+          <div class="l">глав<br>пройдено</div>
+        </div>
+        <div class="complete-stat-new">
+          <div class="n">28</div>
+          <div class="l">тем<br>изучено</div>
+        </div>
+        <div class="complete-stat-new">
+          <div class="n">6</div>
+          <div class="l">тестов<br>сдано</div>
+        </div>
+      </div>
+
+      <!-- Chapters list -->
+      <div class="complete-chapters-new">
+        <div class="complete-ch-row">
+          <div class="complete-ch-check">✓</div>
+          <div class="complete-ch-name">🌍 Введение в Форекс</div>
+          <div class="complete-ch-badge">Пройдено</div>
+        </div>
+        <div class="complete-ch-row">
+          <div class="complete-ch-check">✓</div>
+          <div class="complete-ch-name">📊 Основы Форекс</div>
+          <div class="complete-ch-badge">Пройдено</div>
+        </div>
+        <div class="complete-ch-row">
+          <div class="complete-ch-check">✓</div>
+          <div class="complete-ch-name">📰 Фундаментальный анализ</div>
+          <div class="complete-ch-badge">Пройдено</div>
+        </div>
+        <div class="complete-ch-row">
+          <div class="complete-ch-check">✓</div>
+          <div class="complete-ch-name">📈 Технический анализ</div>
+          <div class="complete-ch-badge">Пройдено</div>
+        </div>
+        <div class="complete-ch-row">
+          <div class="complete-ch-check">✓</div>
+          <div class="complete-ch-name">🧠 Финансовая грамотность</div>
+          <div class="complete-ch-badge">Пройдено</div>
+        </div>
+        <div class="complete-ch-row gold">
+          <div class="complete-ch-check">✓</div>
+          <div class="complete-ch-name">🤖 Алготрейдинг</div>
+          <div class="complete-ch-badge">Пройдено</div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="complete-btns">
+        <button class="complete-btn-main" onclick="showSection('home')">
+          🏠 Вернуться на главную
+        </button>
+        <button class="complete-btn-sec" onclick="showLesson('ch1')">
+          🔄 Повторить курс с начала
+        </button>
       </div>
     </div>
   </div>
-
-  <!-- QUIZ CH6 -->
-  <div class="quiz-step" id="quiz-step-ch6" style="display:none;">
-    <div class="quiz-page">
-      <div class="quiz-page-breadcrumb">
-        <span onclick="backFromQuiz('ch6')">← Вернуться к уроку</span>
+</section>ку</span>
         <span style="color:var(--border);">›</span>
         <span style="color:var(--gray);">Глава 06 — Алготрейдинг</span>
       </div>
@@ -2214,8 +2593,83 @@
       <div class="quiz-feedback wrong"   id="qfb-ch6-no">❌ Win rate — не единственная метрика. Важно соотношение средней прибыли к убытку. При risk/reward 1:3 даже 34% побед дают итоговый плюс.</div>
       <div class="quiz-nav-row">
         <button class="quiz-nav-back" onclick="backFromQuiz('ch6')">← К уроку</button>
-        <button class="quiz-nav-next" id="qnext-ch6" onclick="showSection('home')" style="display:none;">Завершить курс 🎓</button>
+        <button class="quiz-nav-next" id="qnext-ch6" onclick="showComplete()" style="display:none;">Завершить курс 🎓</button>
       </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ COMPLETION SCREEN ══ -->
+<section class="section" id="section-complete">
+  <div class="confetti-container" id="confetti-area"></div>
+  <div class="complete-icon">🏆</div>
+  <div class="complete-card" style="animation-delay:.1s">
+    <div class="complete-badge">✦ Academy Trading Time</div>
+    <div class="complete-title">Курс пройден!</div>
+    <div class="complete-subtitle">
+      Ты изучил все 6 глав и прошёл тесты после каждого урока.<br>
+      Теперь ты понимаешь, как устроены финансовые рынки.
+    </div>
+
+    <div class="complete-stats">
+      <div class="complete-stat">
+        <div class="complete-stat-n">6</div>
+        <div class="complete-stat-l">глав пройдено</div>
+      </div>
+      <div class="complete-stat">
+        <div class="complete-stat-n">28</div>
+        <div class="complete-stat-l">тем изучено</div>
+      </div>
+      <div class="complete-stat">
+        <div class="complete-stat-n">6</div>
+        <div class="complete-stat-l">тестов сдано</div>
+      </div>
+    </div>
+
+    <div class="complete-divider"></div>
+
+    <div class="complete-chapters">
+      <div class="complete-chapter-row">
+        <div class="check">✓</div>
+        <div class="ch-name">🌍 Введение в Форекс</div>
+        <div class="ch-tag">✅ Пройдено</div>
+      </div>
+      <div class="complete-chapter-row">
+        <div class="check">✓</div>
+        <div class="ch-name">📊 Основы Форекс</div>
+        <div class="ch-tag">✅ Пройдено</div>
+      </div>
+      <div class="complete-chapter-row">
+        <div class="check">✓</div>
+        <div class="ch-name">📰 Фундаментальный анализ</div>
+        <div class="ch-tag">✅ Пройдено</div>
+      </div>
+      <div class="complete-chapter-row">
+        <div class="check">✓</div>
+        <div class="ch-name">📈 Технический анализ</div>
+        <div class="ch-tag">✅ Пройдено</div>
+      </div>
+      <div class="complete-chapter-row">
+        <div class="check">✓</div>
+        <div class="ch-name">🧠 Финансовая грамотность</div>
+        <div class="ch-tag">✅ Пройдено</div>
+      </div>
+      <div class="complete-chapter-row"
+        style="border-color:rgba(245,184,0,.35);background:rgba(26,20,0,.5);">
+        <div class="check" style="background:#F5B800;color:#0D0900;">✓</div>
+        <div class="ch-name" style="color:#F5B800;">🤖 Алготрейдинг</div>
+        <div class="ch-tag" style="color:#F5B800;">✅ Пройдено</div>
+      </div>
+    </div>
+
+    <div class="complete-cta">
+      <button class="complete-btn-primary" onclick="showSection('home')">
+        🏠 Вернуться на главную
+      </button>
+      <button class="complete-btn-secondary" onclick="showLesson('ch1')">
+        🔄 Повторить курс с начала
+      </button>
     </div>
   </div>
 </section>
