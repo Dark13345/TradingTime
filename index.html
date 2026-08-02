@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trading Time — Академия финансовых знаний</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+  /* Шрифты только системные — приложение должно работать офлайн внутри WebView */
 
   :root {
     --accent: #00C8A0;
@@ -35,7 +35,7 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Calibri, sans-serif;
     background: var(--black);
     color: var(--white);
     line-height: 1.6;
@@ -871,11 +871,11 @@
         <div class="welcome-stat-l">глав</div>
       </div>
       <div class="welcome-stat">
-        <div class="welcome-stat-n">28</div>
+        <div class="welcome-stat-n">26</div>
         <div class="welcome-stat-l">тем</div>
       </div>
       <div class="welcome-stat">
-        <div class="welcome-stat-n">180</div>
+        <div class="welcome-stat-n">155</div>
         <div class="welcome-stat-l">минут контента</div>
       </div>
     </div>
@@ -899,11 +899,11 @@
           <span style="color:var(--accent); font-weight:700;">Глава 1 · В процессе</span>
         </div>
         <div class="xp-track">
-          <div class="xp-fill" id="xp-fill-home"></div>
+          <div class="xp-fill" id="xp-fill-home" style="width:8%;"></div>
         </div>
         <div class="xp-bar-row">
-          <span>2 из 22 тем завершено</span>
-          <span>5%</span>
+          <span>2 из 26 тем завершено</span>
+          <span>8%</span>
         </div>
       </div>
     </div>
@@ -1002,7 +1002,7 @@
     <div class="page-header">
       <div class="section-label">Академия Trading Time</div>
       <h2>Твой путь в финансовых знаниях</h2>
-      <p>6 глав · 28 тем · тест после каждой главы · все материалы открыты</p>
+      <p>6 глав · 26 тем · тест после каждой главы · все материалы открыты</p>
     </div>
 
     <div class="user-progress">
@@ -1014,7 +1014,7 @@
       <div class="xp-bar">
         <div class="xp-bar-row">
           <span>Прогресс</span>
-          <span style="color:var(--accent); font-weight:700;">2 из 22 тем</span>
+          <span style="color:var(--accent); font-weight:700;">2 из 26 тем</span>
         </div>
         <div class="xp-track">
           <div class="xp-fill" id="xp-fill"></div>
@@ -1126,7 +1126,7 @@
     
 
     <div class="lesson-progress-bar">
-      <div class="lesson-progress-fill" id="lesson-progress"></div>
+      <div class="lesson-progress-fill" id="lesson-progress" style="width:40%;"></div>
     </div>
 
     <!-- Chapter tabs -->
@@ -1135,7 +1135,7 @@
       <button class="chapter-tab" onclick="switchChapter('ch2', this)">📊 Основы Форекс</button>
       <button class="chapter-tab" onclick="switchChapter('ch3', this)">📰 Фундаментальный анализ</button>
       <button class="chapter-tab" onclick="switchChapter('ch4', this)">📈 Технический анализ</button>
-      <button class="chapter-tab" onclick="switchChapter('ch5', this)">🧠 Психология и риски</button>
+      <button class="chapter-tab" onclick="switchChapter('ch5', this)">🧠 Финансовая грамотность</button>
       <button class="chapter-tab algo-tab" onclick="switchChapter('ch6', this)">🤖 Алготрейдинг</button>
     </div>
 
@@ -1176,7 +1176,7 @@
           <div class="compare-row">
             <div class="compare-cell">Фиксированный курс к золоту</div>
             <div class="compare-cell">Плавающие курсы</div>
-            <div class="compare-cell" class="accent">Электронная торговля 24/5</div>
+            <div class="compare-cell" style="color:var(--accent);font-weight:700;">Электронная торговля 24/5</div>
           </div>
         </div>
       </div>
@@ -2103,11 +2103,6 @@
     </div>
 
   </div><!-- /lesson-layout -->
-
-<!-- ══════════════════════════════════════ -->
-<!-- QUIZ STEPS                             -->
-<!-- ══════════════════════════════════════ -->
-  </div>
 </section>
 
 <script>
@@ -2231,30 +2226,6 @@
   }
 
 
-  /* ── Confetti on course complete ── */
-  function launchConfetti() {
-    const area = document.getElementById('confetti-area');
-    if (!area) return;
-    area.innerHTML = '';
-    const colors = ['#00C8A0','#F5B800','#4A9EFF','#2ECC71','#E05252','#fff'];
-    for (let i = 0; i < 80; i++) {
-      const el = document.createElement('div');
-      el.className = 'confetti-piece';
-      el.style.left = Math.random() * 100 + '%';
-      el.style.background = colors[Math.floor(Math.random()*colors.length)];
-      el.style.animationDuration = (2.5 + Math.random()*3) + 's';
-      el.style.animationDelay = (Math.random()*2) + 's';
-      el.style.width = (6+Math.random()*8) + 'px';
-      el.style.height = (8+Math.random()*12) + 'px';
-      el.style.borderRadius = Math.random() > .5 ? '50%' : '2px';
-      area.appendChild(el);
-    }
-  }
-  function showComplete() {
-    showSection('complete');
-    setTimeout(launchConfetti, 300);
-  }
-
   /* ── Algo particles (ch6) ───────────────────────────── */
   function initAlgoParticles() {
     const area = document.getElementById('algo-particles-area');
@@ -2303,7 +2274,7 @@
 
 </script>
 
-    <!-- ══ ГЛАВА 6: АЛГОТРЕЙДИНГ ══ -->
+    <!-- ══ ТЕСТЫ ПОСЛЕ ГЛАВ ══ -->
 <section class="section" id="section-quiz">
 
   <!-- QUIZ CH1 -->
@@ -2527,7 +2498,7 @@
       <div class="complete-subtitle">Ты изучил финансовые рынки с нуля.<br>Это знание — твоё навсегда.</div>
       <div class="complete-stats-new">
         <div class="complete-stat-new"><div class="n">6</div><div class="l">глав<br>пройдено</div></div>
-        <div class="complete-stat-new"><div class="n">28</div><div class="l">тем<br>изучено</div></div>
+        <div class="complete-stat-new"><div class="n">26</div><div class="l">тем<br>изучено</div></div>
         <div class="complete-stat-new"><div class="n">6</div><div class="l">тестов<br>сдано</div></div>
       </div>
       <div class="complete-chapters-new">
@@ -2538,6 +2509,7 @@
         <div class="complete-ch-row"><div class="complete-ch-check">✓</div><div class="complete-ch-name">🧠 Финансовая грамотность</div><div class="complete-ch-badge">Пройдено</div></div>
         <div class="complete-ch-row gold"><div class="complete-ch-check">✓</div><div class="complete-ch-name">🤖 Алготрейдинг</div><div class="complete-ch-badge">Пройдено</div></div>
       </div>
+
       <div class="complete-btns">
         <button class="complete-btn-main" onclick="showSection('home')">🏠 Вернуться на главную</button>
         <button class="complete-btn-sec" onclick="showLesson('ch1')">🔄 Повторить курс с начала</button>
@@ -2547,3 +2519,4 @@
 </section>
 
 </body>
+</html>
