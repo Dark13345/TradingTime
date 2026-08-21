@@ -71,7 +71,7 @@
   }
   .nav-tab:hover { color: var(--white); }
   .nav-tab.active { background: var(--card); color: var(--white); }
-  .nav-cta {
+  .nav-cta { display: none;
     margin-left: auto; padding: 8px 20px; border-radius: 8px;
     background: var(--accent); color: var(--black);
     font-weight: 700; font-size: 14px; border: none;
@@ -96,7 +96,7 @@
     text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px;
   }
   .welcome h1 {
-    font-size: clamp(28px, 4vw, 42px); font-weight: 900;
+    font-size: 30px; font-weight: 900;
     line-height: 1.15; margin-bottom: 14px; letter-spacing: -0.5px;
   }
   .welcome h1 span { color: var(--accent); }
@@ -125,8 +125,8 @@
   /* ── USER PROGRESS BAR ── */
   .user-progress {
     background: var(--card); border: 1px solid var(--border);
-    border-radius: 14px; padding: 18px 22px;
-    display: flex; align-items: center; gap: 20px;
+    border-radius: 14px; padding: 18px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
     margin-bottom: 28px;
   }
   .user-avatar {
@@ -136,10 +136,10 @@
     font-weight: 800; font-size: 16px; color: var(--accent);
     flex-shrink: 0;
   }
-  .user-info { flex: 1; }
+  .user-info { flex: 1 1 auto; min-width: 0; }
   .user-info h4 { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
   .user-info p { font-size: 12px; color: var(--gray); }
-  .xp-bar { flex: 2; }
+  .xp-bar { flex: 1 0 100%; }
   .xp-bar-row { display: flex; justify-content: space-between; font-size: 12px; color: var(--gray); margin-bottom: 5px; }
   .xp-track { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
   .xp-fill { height: 100%; background: var(--accent); border-radius: 3px; width: 0%; transition: width 1s ease; }
@@ -332,7 +332,6 @@
   /* ── DIVIDER ── */
   .divider { height: 1px; background: var(--border); margin: 40px 0; }
 
-  @media (max-width: 640px) {
     nav { padding: 0 14px; gap: 6px; }
     .nav-tab { padding: 6px 8px; font-size: 12px; }
     .welcome { padding: 32px 16px 28px; }
@@ -341,7 +340,7 @@
     .compare-row { grid-template-columns: 1fr 1fr 1fr; }
     .compare-cell { padding: 9px 10px; font-size: 12px; }
     .lesson-layout { padding: 24px 14px; }
-  }
+  
 
   /* ── LESSON & QUIZ IMAGES ── */
   .lesson-img { margin:14px 0 20px; border-radius:10px; overflow:hidden; }
@@ -354,22 +353,10 @@
     0%,100% { box-shadow: 0 0 10px rgba(245,184,0,.25), 0 0 0 1px rgba(245,184,0,.3); }
     50%      { box-shadow: 0 0 22px rgba(245,184,0,.55), 0 0 0 1px rgba(245,184,0,.6); }
   }
-  /* Shimmer on the chapter 6 lesson title */
-    100% { background-position:  200% center; }
-  }
-  /* Floating code particles */
-    33%      { transform: translateY(-10px) rotate(6deg);  opacity:.9; }
-    66%      { transform: translateY(5px)  rotate(-4deg); opacity:.3; }
-  }
   /* Pulse dot */
   @keyframes algoDot {
     0%,100% { opacity:1; transform:scale(1); }
     50%      { opacity:.4; transform:scale(.7); }
-  }
-  /* Step counter count-up feel */
-    to   { opacity:1; transform:translateY(0); }
-  }
-  /* Metric bar fill */
   }
 
   /* Algo card in sidebar — glowing */
@@ -441,7 +428,7 @@
   .quiz-page {
     max-width: 720px; margin: 0 auto;
     padding: 32px 24px 60px;
-    display: flex; flex-direction: column; min-height: calc(100vh - 56px);
+    display: flex; flex-direction: column; min-height: 100%;
   }
   .quiz-page-breadcrumb {
     display: flex; align-items: center; gap: 8px;
@@ -559,7 +546,7 @@
 
   /* ══ COMPLETION SCREEN ══ */
   #section-complete {
-    min-height: 100vh;
+    min-height: 100%;
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
     padding: 40px 24px;
@@ -666,7 +653,7 @@
   .complete-btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
   /* Confetti particles */
   .confetti-container {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     pointer-events: none; overflow: hidden; z-index: 1;
   }
   .confetti-piece {
@@ -682,7 +669,7 @@
 
   /* ══ COMPLETION SCREEN ══ */
   #section-complete {
-    min-height: 100vh;
+    min-height: 100%;
     display: none;
     background: radial-gradient(ellipse at 50% 0%, rgba(0,200,160,.12) 0%, transparent 70%),
                 radial-gradient(ellipse at 80% 100%, rgba(245,184,0,.08) 0%, transparent 60%),
@@ -695,7 +682,7 @@
   #section-complete.active { display: flex; }
 
   /* Confetti */
-  .confetti-wrap { position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+  .confetti-wrap { position:absolute; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
   .confetti-piece {
     position:absolute; width:8px; height:12px; border-radius:2px;
     animation: confettiFall linear infinite;
@@ -753,7 +740,7 @@
     font-size: 30px; font-weight: 900; color: var(--white);
     line-height: 1.2; margin-bottom: 10px;
   }
-  @media (max-width:480px) { .complete-title-new { font-size:24px; } }
+.complete-title-new { font-size:24px; } 
 
   .complete-subtitle {
     font-size: 16px; color: var(--gray-light);
@@ -891,7 +878,7 @@
 
   /* Онбординг */
   .onb {
-    position: fixed; inset: 0; z-index: 500; display: none;
+    position: absolute; inset: 0; z-index: 500; display: none;
     align-items: center; justify-content: center; padding: 24px;
     background: rgba(6,8,12,.86); backdrop-filter: blur(6px);
   }
@@ -923,18 +910,17 @@
   /* Всплывающая подсказка */
   /* Подсказка вверху, под шапкой: снизу она перекрывала кнопку «дальше» в тесте */
   .tt-toast {
-    position: fixed; left: 50%; top: 74px; transform: translate(-50%, -14px);
-    z-index: 600; max-width: 90vw; padding: 12px 20px; border-radius: 11px;
+    position: absolute; left: 50%; top: 74px; transform: translate(-50%, -14px);
+    z-index: 600; max-width: calc(100% - 32px); padding: 12px 20px; border-radius: 11px;
     background: var(--card2); border: 1px solid var(--border); color: var(--white);
     font-size: 13.5px; font-weight: 600; box-shadow: 0 8px 28px rgba(0,0,0,.45);
     opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s;
   }
   .tt-toast.show { opacity: 1; transform: translate(-50%, 0); }
 
-  @media (max-width: 480px) {
     .continue-btn { padding: 13px 15px; }
     .onb-card { padding: 26px 20px; }
-  }
+  
   /* ── Анимации ответа в тесте ── */
   .quiz-opt-btn { position: relative; }
   .quiz-opt-letter { position: relative; }
@@ -1019,9 +1005,47 @@
     .quiz-nav-next.appear { animation: none !important; }
     .quiz-spark { display: none; }
   }
+  /* ══ ОБОЛОЧКА МОБИЛЬНОГО ПРИЛОЖЕНИЯ ══════════════════════
+     На телефоне занимает весь экран, на десктопе — карточка-телефон
+     по центру. Внутри прокручивается только #app-scroll, шапка стоит
+     на месте — как в нативном приложении. */
+  html { height: 100%; }
+  body {
+    min-height: 100vh; min-height: 100dvh;
+    display: flex; align-items: center; justify-content: center;
+  }
+  #app-shell {
+    position: relative;              /* якорь для онбординга, подсказки и конфетти */
+    width: 100%; max-width: 480px;
+    height: 100vh; height: 100dvh;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+    background: var(--black);
+  }
+  #app-scroll {
+    flex: 1; min-height: 0;
+    overflow-y: auto; overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; -ms-overflow-style: none;
+  }
+  #app-scroll::-webkit-scrollbar { width: 0; height: 0; display: none; }
+  nav { flex-shrink: 0; }
+
+  /* Десктоп: рамка телефона по центру страницы */
+  @media (min-width: 720px) {
+    body { padding: 30px; background: #05070B; }
+    #app-shell {
+      max-width: 420px;
+      height: min(92vh, 900px);
+      border-radius: 30px;
+      border: 1px solid var(--border);
+      box-shadow: 0 26px 70px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.03);
+    }
+  }
 </style>
 </head>
 <body>
+<div id="app-shell">
 
 <!-- Первый запуск: как обращаться к пользователю -->
 <div class="onb" id="onboarding">
@@ -1050,6 +1074,8 @@
   </div>
   <button class="nav-cta" onclick="showSection('courses')">Начать учиться</button>
 </nav>
+
+<div id="app-scroll">
 
 <!-- ══════════════════════════════════════ -->
 <!-- ГЛАВНАЯ — приветствие + сразу курсы  -->
@@ -2478,6 +2504,12 @@
   }
 
 
+  /* Прокручиваем оболочку приложения, а не окно браузера */
+  function scrollAppTop() {
+    const sc = document.getElementById('app-scroll');
+    if (sc) sc.scrollTop = 0; else window.scrollTo(0, 0);
+  }
+
   /* ── Section navigation ─────────────────────────────── */
   function showSection(name) {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
@@ -2486,7 +2518,7 @@
     document.querySelectorAll('.nav-tab').forEach(t => {
       t.classList.toggle('active', t.getAttribute('onclick') && t.getAttribute('onclick').includes("'" + name + "'"));
     });
-    window.scrollTo(0, 0);
+    scrollAppTop();
   }
 
   /* ── Chapter switching (tabs inside lesson) ─────────── */
@@ -2516,7 +2548,7 @@
     if (lbl) lbl.textContent = labels[id] || '';
     if (id === 'ch6') setTimeout(initAlgoParticles, 100);
     touchChapter(id);
-    window.scrollTo(0, 0);
+    scrollAppTop();
   }
 
   /* ── Navigate to lesson from cards ─────────────────── */
@@ -2548,7 +2580,7 @@
     if (lbl) lbl.textContent = labels[id] || '';
     if (id === 'ch6') setTimeout(initAlgoParticles, 100);
     touchChapter(id);
-    window.scrollTo(0, 0);
+    scrollAppTop();
   }
 
   /* ── Quiz step navigation ───────────────────────────── */
@@ -2560,7 +2592,7 @@
     const step = document.getElementById('quiz-step-' + ch);
     if (step) step.style.display = 'block';
     resetQuiz(ch);
-    window.scrollTo(0, 0);
+    scrollAppTop();
   }
 
   function backFromQuiz(ch) {
@@ -2957,6 +2989,9 @@
     </div>
   </div>
 </section>
+
+</div><!-- /app-scroll -->
+</div><!-- /app-shell -->
 
 </body>
 </html>
