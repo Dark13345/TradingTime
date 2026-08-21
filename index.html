@@ -837,9 +837,120 @@
   }
   .complete-btn-sec:hover { border-color: var(--accent); color: var(--accent); }
 
+  /* ── Прогресс, закладки, онбординг ── */
+  .course-card.locked { opacity: .55; }
+  .course-card.locked:hover { border-color: var(--border); transform: none; }
+  .card-mark { color: var(--gold); margin-left: 7px; font-size: 13px; }
+
+  .chapter-tab.locked { opacity: .45; }
+
+  .lesson-topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; flex-wrap: wrap; margin-bottom: 10px;
+  }
+  .mark-btn {
+    padding: 7px 14px; border-radius: 9px; font-size: 12.5px; font-weight: 600;
+    border: 1.5px solid var(--border); background: none; color: var(--gray-light);
+    cursor: pointer; font-family: inherit; flex-shrink: 0; transition: .2s;
+  }
+  .mark-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .mark-btn.on { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+
+  .continue-btn {
+    width: 100%; display: flex; align-items: center; gap: 12px; text-align: left;
+    padding: 15px 18px; margin-bottom: 18px; border-radius: 13px;
+    border: 1.5px solid var(--accent); background: rgba(0,200,160,.07);
+    color: var(--white); cursor: pointer; font-family: inherit; transition: .2s;
+  }
+  .continue-btn:hover { background: rgba(0,200,160,.14); }
+  .continue-btn .ic { font-size: 20px; flex-shrink: 0; }
+  .continue-btn .t {
+    display: block; font-size: 11px; color: var(--accent); font-weight: 700;
+    text-transform: uppercase; letter-spacing: .6px;
+  }
+  .continue-btn .n { display: block; font-size: 14.5px; font-weight: 700; margin-top: 2px; }
+
+  .marks-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; align-items: center; }
+  .marks-row .lbl {
+    font-size: 11.5px; color: var(--gray); text-transform: uppercase;
+    letter-spacing: .6px; font-weight: 700; width: 100%;
+  }
+  .mark-chip {
+    padding: 7px 13px; border-radius: 8px; font-size: 12.5px; font-weight: 600;
+    border: 1.5px solid var(--gold-dim); background: var(--gold-dim); color: var(--gold);
+    cursor: pointer; font-family: inherit;
+  }
+  .mark-chip:hover { border-color: var(--gold); }
+
+  .disclaimer {
+    margin-top: 28px; padding: 15px 17px; border-radius: 12px;
+    border: 1px solid var(--border); background: var(--card);
+    font-size: 12.5px; line-height: 1.65; color: var(--gray);
+  }
+  .disclaimer strong { color: var(--gray-light); }
+
+  /* Онбординг */
+  .onb {
+    position: fixed; inset: 0; z-index: 500; display: none;
+    align-items: center; justify-content: center; padding: 24px;
+    background: rgba(6,8,12,.86); backdrop-filter: blur(6px);
+  }
+  .onb.show { display: flex; }
+  .onb-card {
+    width: 100%; max-width: 380px; background: var(--card);
+    border: 1px solid var(--border); border-radius: 18px; padding: 30px 26px; text-align: center;
+  }
+  .onb-icon { font-size: 40px; margin-bottom: 10px; }
+  .onb-card h3 { font-size: 21px; font-weight: 800; margin-bottom: 8px; }
+  .onb-card p { font-size: 13.5px; color: var(--gray); line-height: 1.6; margin-bottom: 20px; }
+  .onb-card input {
+    width: 100%; padding: 13px 15px; border-radius: 11px; font-size: 15px;
+    border: 1.5px solid var(--border); background: var(--black); color: var(--white);
+    font-family: inherit; margin-bottom: 14px; outline: none;
+  }
+  .onb-card input:focus { border-color: var(--accent); }
+  .onb-go {
+    width: 100%; padding: 13px; border-radius: 11px; border: none; cursor: pointer;
+    background: var(--accent); color: var(--black); font-weight: 800; font-size: 14.5px;
+    font-family: inherit; margin-bottom: 9px;
+  }
+  .onb-skip {
+    width: 100%; padding: 9px; border: none; background: none; cursor: pointer;
+    color: var(--gray); font-size: 13px; font-family: inherit;
+  }
+  .onb-skip:hover { color: var(--gray-light); }
+
+  /* Всплывающая подсказка */
+  .tt-toast {
+    position: fixed; left: 50%; bottom: 26px; transform: translate(-50%, 20px);
+    z-index: 600; max-width: 90vw; padding: 12px 20px; border-radius: 11px;
+    background: var(--card2); border: 1px solid var(--border); color: var(--white);
+    font-size: 13.5px; font-weight: 600; box-shadow: 0 8px 28px rgba(0,0,0,.45);
+    opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s;
+  }
+  .tt-toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (max-width: 480px) {
+    .continue-btn { padding: 13px 15px; }
+    .onb-card { padding: 26px 20px; }
+  }
 </style>
 </head>
 <body>
+
+<!-- Первый запуск: как обращаться к пользователю -->
+<div class="onb" id="onboarding">
+  <div class="onb-card">
+    <div class="onb-icon">&#128075;</div>
+    <h3>Добро пожаловать</h3>
+    <p>Как к тебе обращаться? Имя и прогресс сохранятся только на этом устройстве и никуда не отправляются.</p>
+    <input id="onb-name" type="text" maxlength="24" placeholder="Твоё имя" autocomplete="off">
+    <button class="onb-go" onclick="finishOnboarding()">Начать обучение</button>
+    <button class="onb-skip" onclick="skipOnboarding()">Продолжить без имени</button>
+  </div>
+</div>
+
+<div class="tt-toast" id="tt-toast"></div>
 
 <!-- NAV -->
 <nav>
@@ -887,107 +998,17 @@
 
   <!-- User progress -->
   <div style="max-width:900px; margin:0 auto; padding:0 24px 48px;">
-    <div class="user-progress">
-      <div class="user-avatar">А</div>
-      <div class="user-info">
-        <h4>Алексей</h4>
-        <p>Уровень: Начинающий</p>
-      </div>
-      <div class="xp-bar">
-        <div class="xp-bar-row">
-          <span>Прогресс</span>
-          <span style="color:var(--accent); font-weight:700;">Глава 1 · В процессе</span>
-        </div>
-        <div class="xp-track">
-          <div class="xp-fill" id="xp-fill-home" style="width:8%;"></div>
-        </div>
-        <div class="xp-bar-row">
-          <span>2 из 26 тем завершено</span>
-          <span>8%</span>
-        </div>
-      </div>
-    </div>
+    <div class="user-progress" id="user-progress-home"></div>
+
+    <div id="continue-box"></div>
+    <div id="marks-box"></div>
 
     <!-- Quick chapters -->
     <div class="section-label" style="margin-bottom:14px;">Программа обучения</div>
-    <div class="courses-grid">
+    <div class="courses-grid" id="courses-grid-home"></div>
 
-      <div class="course-card active-course" onclick="showLesson('ch1')">
-        <div class="course-icon acc-bg">🌍</div>
-        <div class="course-info">
-          <div class="course-num">Глава 01 · 5 уроков · 25 мин</div>
-          <div class="course-title">Введение в Форекс</div>
-          <div class="course-desc">Что такое Форекс, история рынка, участники рынка, принципы работы</div>
-          <div class="course-progress-mini" style="margin-top:7px;">
-            <div class="course-progress-fill" style="width:40%"></div>
-          </div>
-        </div>
-        <div class="course-meta">
-          <div class="badge progress">● В процессе</div>
-          <div style="font-size:11px; color:var(--gray);">2 из 5 завершено</div>
-        </div>
-      </div>
-
-      <div class="course-card" onclick="showLesson('ch2')">
-        <div class="course-icon dark-bg">📊</div>
-        <div class="course-info">
-          <div class="course-num">Глава 02 · 4 темы · 25 мин</div>
-          <div class="course-title">Основы Форекс</div>
-          <div class="course-desc">Валютные пары, типы графиков, индикаторы, инструменты анализа</div>
-        </div>
-        <div class="course-meta">
-          <div class="badge open">→ Следующий</div>
-        </div>
-      </div>
-
-      <div class="course-card" onclick="showLesson('ch3')">
-        <div class="course-icon dark-bg">📰</div>
-        <div class="course-info">
-          <div class="course-num">Глава 03 · 3 темы · 20 мин</div>
-          <div class="course-title">Фундаментальный анализ</div>
-          <div class="course-desc">Экономический календарь, новостные события и их влияние на рынок</div>
-        </div>
-        <div class="course-meta">
-          <div class="badge open" style="background:var(--card2); color:var(--gray);">🔒 Заблокировано</div>
-        </div>
-      </div>
-
-      <div class="course-card" onclick="showLesson('ch4')">
-        <div class="course-icon dark-bg">📈</div>
-        <div class="course-info">
-          <div class="course-num">Глава 04 · 5 тем · 30 мин</div>
-          <div class="course-title">Технический анализ</div>
-          <div class="course-desc">Тренды, линии тренда, таймфреймы, уровни Фибоначчи</div>
-        </div>
-        <div class="course-meta">
-          <div class="badge open" style="background:var(--card2); color:var(--gray);">🔒 Заблокировано</div>
-        </div>
-      </div>
-
-      <div class="course-card" onclick="showLesson('ch5')">
-        <div class="course-icon dark-bg">🧠</div>
-        <div class="course-info">
-          <div class="course-num">Глава 05 · 3 темы · 20 мин</div>
-          <div class="course-title">Психология и риски</div>
-          <div class="course-desc">Финансовая дисциплина, поведение на рынке, принципы риск-менеджмента</div>
-        </div>
-        <div class="course-meta">
-          <div class="badge open" style="background:var(--card2); color:var(--gray);">🔒 Заблокировано</div>
-        </div>
-      </div>
-
-      <div class="course-card algo-card" onclick="showLesson('ch6')">
-        <div class="course-icon" style="background:rgba(245,184,0,.15);font-size:24px;display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:12px;flex-shrink:0;">🤖</div>
-        <div class="course-info">
-          <div class="course-num">Глава 06 · 6 тем · 35 мин</div>
-          <div class="course-title">Алготрейдинг</div>
-          <div class="course-desc">Алгоритмы, виды стратегий, ключевые метрики, бэктест и дисциплина</div>
-        </div>
-        <div class="course-meta">
-          <span class="algo-badge-new"><span class="dot"></span>НОВОЕ</span>
-        </div>
-      </div>
-
+    <div class="disclaimer">
+      <strong>Важно.</strong> Материалы курса носят исключительно образовательный характер. Это не индивидуальная инвестиционная рекомендация, не финансовый совет и не призыв совершать операции на финансовых рынках. Любые решения ты принимаешь самостоятельно и на свой риск.
     </div>
   </div>
 
@@ -1005,110 +1026,9 @@
       <p>6 глав · 26 тем · тест после каждой главы · все материалы открыты</p>
     </div>
 
-    <div class="user-progress">
-      <div class="user-avatar">А</div>
-      <div class="user-info">
-        <h4>Алексей</h4>
-        <p>Начинающий</p>
-      </div>
-      <div class="xp-bar">
-        <div class="xp-bar-row">
-          <span>Прогресс</span>
-          <span style="color:var(--accent); font-weight:700;">2 из 26 тем</span>
-        </div>
-        <div class="xp-track">
-          <div class="xp-fill" id="xp-fill"></div>
-        </div>
-        <div class="xp-bar-row">
-          <span>Продолжай в том же духе 🎯</span>
-          <span>5%</span>
-        </div>
-      </div>
-    </div>
+    <div class="user-progress" id="user-progress-catalog"></div>
 
-    <div class="courses-grid">
-
-      <div class="course-card active-course" onclick="showLesson('ch1')">
-        <div class="course-icon acc-bg">🌍</div>
-        <div class="course-info">
-          <div class="course-num">Глава 01 · 5 уроков · 25 мин</div>
-          <div class="course-title">Введение в Форекс</div>
-          <div class="course-desc">Что такое Форекс, история рынка, участники рынка, принципы работы</div>
-          <div class="course-progress-mini" style="margin-top:7px;">
-            <div class="course-progress-fill" style="width:40%"></div>
-          </div>
-        </div>
-        <div class="course-meta">
-          <div class="badge progress">● В процессе</div>
-          <div style="font-size:11px; color:var(--gray);">2 из 5 завершено</div>
-        </div>
-      </div>
-
-      <div class="course-card" onclick="showLesson('ch2')">
-        <div class="course-icon dark-bg">📊</div>
-        <div class="course-info">
-          <div class="course-num">Глава 02 · 4 темы · 25 мин</div>
-          <div class="course-title">Основы Форекс</div>
-          <div class="course-desc">Валютные пары, типы графиков, индикаторы, инструменты анализа</div>
-          <div class="course-progress-mini" style="margin-top:7px;">
-            <div class="course-progress-fill" style="width:0%"></div>
-          </div>
-        </div>
-        <div class="course-meta">
-          <div class="badge open">→ Следующий</div>
-          <div style="font-size:11px; color:var(--gray);">0 из 12 завершено</div>
-        </div>
-      </div>
-
-      <div class="course-card" onclick="showLesson('ch3')">
-        <div class="course-icon dark-bg">📰</div>
-        <div class="course-info">
-          <div class="course-num">Глава 03 · 3 темы · 20 мин</div>
-          <div class="course-title">Фундаментальный анализ</div>
-          <div class="course-desc">Экономический календарь, новостные события и их влияние на рынок</div>
-        </div>
-        <div class="course-meta">
-          <div class="badge open" style="background:var(--card2); color:var(--gray);">🔒 Заблокировано</div>
-        </div>
-      </div>
-
-      <div class="course-card" onclick="showLesson('ch4')">
-        <div class="course-icon dark-bg">📈</div>
-        <div class="course-info">
-          <div class="course-num">Глава 04 · 5 тем · 30 мин</div>
-          <div class="course-title">Технический анализ</div>
-          <div class="course-desc">Тренды, линии тренда, таймфреймы, уровни Фибоначчи</div>
-        </div>
-        <div class="course-meta">
-          <div class="badge open" style="background:var(--card2); color:var(--gray);">🔒 Заблокировано</div>
-        </div>
-      </div>
-
-      <div class="course-card" onclick="showLesson('ch5')">
-        <div class="course-icon dark-bg">🧠</div>
-        <div class="course-info">
-          <div class="course-num">Глава 05 · 3 темы · 20 мин</div>
-          <div class="course-title">Психология и риски</div>
-          <div class="course-desc">Финансовая дисциплина, поведение на рынке, принципы риск-менеджмента</div>
-        </div>
-        <div class="course-meta">
-          <div class="badge open" style="background:var(--card2); color:var(--gray);">🔒 Заблокировано</div>
-        </div>
-      </div>
-
-      <div class="course-card algo-card" onclick="showLesson('ch6')">
-        <div class="course-icon" style="background:rgba(245,184,0,.15); font-size:26px; display:flex; align-items:center; justify-content:center; width:48px; height:48px; border-radius:12px; flex-shrink:0;">🤖</div>
-        <div class="course-info">
-          <div class="course-num">Глава 06 · 6 тем · 35 мин</div>
-          <div class="course-title">Алготрейдинг</div>
-          <div class="course-desc">Алгоритмы, виды стратегий, ключевые метрики, бэктест и дисциплина</div>
-        </div>
-        <div class="course-meta">
-          <span class="algo-badge-new"><span class="dot"></span>НОВОЕ</span>
-        </div>
-      </div>
-
-    </div>
+    <div class="courses-grid" id="courses-grid-catalog"></div>
   </div>
 </section>
 
@@ -1118,10 +1038,13 @@
 <section class="section" id="section-lesson">
   <div class="lesson-layout">
 
-    <div class="lesson-breadcrumb">
-      <span onclick="showSection('courses')">← Все главы</span>
-      <span style="color:var(--border);">›</span>
-      <span id="lesson-chapter-label">Глава 01 — Введение в Форекс</span>
+    <div class="lesson-topbar">
+      <div class="lesson-breadcrumb">
+        <span onclick="showSection('courses')">← Все главы</span>
+        <span style="color:var(--border);">›</span>
+        <span id="lesson-chapter-label">Глава 01 — Введение в Форекс</span>
+      </div>
+      <button class="mark-btn" id="mark-btn" onclick="toggleMark()">☆ В закладки</button>
     </div>
     
 
@@ -2108,6 +2031,368 @@
 <script>
   let currentChapter = 'ch1';
 
+  /* ══ ПРОГРЕСС ПОЛЬЗОВАТЕЛЯ ══════════════════════════════
+     Всё хранится в localStorage этого устройства.
+     Никаких аккаунтов, серверов и передачи данных наружу.  */
+
+  var STORAGE_KEY = 'tt_progress_v1';
+
+  var CHAPTERS = [
+    { id: 'ch1', num: '01', icon: '\uD83C\uDF0D', title: 'Введение в Форекс',
+      desc: 'Что такое Форекс, история рынка, участники рынка, принципы работы',
+      themes: 5, minutes: 25, algo: false },
+    { id: 'ch2', num: '02', icon: '\uD83D\uDCCA', title: 'Основы Форекс',
+      desc: 'Валютные пары, типы графиков, индикаторы, инструменты анализа',
+      themes: 4, minutes: 25, algo: false },
+    { id: 'ch3', num: '03', icon: '\uD83D\uDCF0', title: 'Фундаментальный анализ',
+      desc: 'Экономический календарь, новостные события и их влияние на рынок',
+      themes: 3, minutes: 20, algo: false },
+    { id: 'ch4', num: '04', icon: '\uD83D\uDCC8', title: 'Технический анализ',
+      desc: 'Тренды, линии тренда, таймфреймы, уровни Фибоначчи',
+      themes: 5, minutes: 30, algo: false },
+    { id: 'ch5', num: '05', icon: '\uD83E\uDDE0', title: 'Финансовая грамотность',
+      desc: 'Финансовая дисциплина, поведение на рынке, принципы риск-менеджмента',
+      themes: 3, minutes: 20, algo: false },
+    { id: 'ch6', num: '06', icon: '\uD83E\uDD16', title: 'Алготрейдинг',
+      desc: 'Алгоритмы, виды стратегий, ключевые метрики, бэктест и дисциплина',
+      themes: 6, minutes: 35, algo: true }
+  ];
+
+  var TOTAL_THEMES = CHAPTERS.reduce(function (s, c) { return s + c.themes; }, 0);
+
+  var progress = { name: '', done: [], firstTry: [], marks: [], last: 'ch1' };
+
+  function loadProgress() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      var p = JSON.parse(raw);
+      if (typeof p.name === 'string') progress.name = p.name;
+      if (typeof p.last === 'string') progress.last = p.last;
+      if (Object.prototype.toString.call(p.done) === '[object Array]') progress.done = p.done;
+      if (Object.prototype.toString.call(p.firstTry) === '[object Array]') progress.firstTry = p.firstTry;
+      if (Object.prototype.toString.call(p.marks) === '[object Array]') progress.marks = p.marks;
+    } catch (e) {
+      /* приватный режим или повреждённые данные — работаем без сохранения */
+    }
+  }
+
+  function saveProgress() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(progress)); }
+    catch (e) { /* хранилище недоступно — прогресс живёт до перезагрузки */ }
+  }
+
+  function chapterById(id) {
+    for (var i = 0; i < CHAPTERS.length; i++) if (CHAPTERS[i].id === id) return CHAPTERS[i];
+    return CHAPTERS[0];
+  }
+  function chapterIndex(id) {
+    for (var i = 0; i < CHAPTERS.length; i++) if (CHAPTERS[i].id === id) return i;
+    return 0;
+  }
+
+  function isDone(id)   { return progress.done.indexOf(id) !== -1; }
+  function isMarked(id) { return progress.marks.indexOf(id) !== -1; }
+
+  /* Блокировка глав отключена — весь курс открыт сразу.
+     Чтобы вернуть последовательное прохождение, замени тело функции на:
+         var i = chapterIndex(id);
+         return i <= 0 ? true : isDone(CHAPTERS[i - 1].id);
+     Остальной механизм (подсказка, стиль .locked, проверки на входе
+     в showLesson и switchChapter) уже на месте и заработает сам. */
+  function isUnlocked(id) {
+    return true;
+  }
+
+  function doneThemes() {
+    return CHAPTERS.reduce(function (s, c) { return s + (isDone(c.id) ? c.themes : 0); }, 0);
+  }
+  function percentDone() {
+    return Math.round(doneThemes() / TOTAL_THEMES * 100);
+  }
+  function allDone() {
+    return progress.done.length >= CHAPTERS.length;
+  }
+
+  /* Первая непройденная глава — на неё ведёт кнопка «Продолжить» */
+  function nextChapter() {
+    for (var i = 0; i < CHAPTERS.length; i++) if (!isDone(CHAPTERS[i].id)) return CHAPTERS[i];
+    return CHAPTERS[CHAPTERS.length - 1];
+  }
+
+  /* Склонение слова «тема» по числу */
+  function themeWord(n) {
+    var d = n % 10, h2 = n % 100;
+    if (d === 1 && h2 !== 11) return 'тема';
+    if (d >= 2 && d <= 4 && (h2 < 10 || h2 > 20)) return 'темы';
+    return 'тем';
+  }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (ch) {
+      if (ch === '&') return '&amp;';
+      if (ch === '<') return '&lt;';
+      if (ch === '>') return '&gt;';
+      if (ch === '"') return '&quot;';
+      return '&#39;';
+    });
+  }
+
+  /* ── Всплывающая подсказка ── */
+  var toastTimer = null;
+  function toast(msg) {
+    var t = document.getElementById('tt-toast');
+    if (!t) return;
+    t.textContent = msg;
+    t.classList.add('show');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.classList.remove('show'); }, 2800);
+  }
+
+  function lockedHint(id) {
+    var i = chapterIndex(id);
+    var prev = CHAPTERS[i > 0 ? i - 1 : 0];
+    toast('Сначала пройди тест главы ' + prev.num + ' — «' + prev.title + '»');
+  }
+
+  /* ── Переходы с учётом блокировки ── */
+  function openChapter(id) {
+    if (!isUnlocked(id)) { lockedHint(id); return; }
+    showLesson(id);
+  }
+
+  /* Запоминаем, на какой главе пользователь остановился */
+  function touchChapter(id) {
+    progress.last = id;
+    saveProgress();
+    renderAll();
+  }
+
+  /* ── Результат теста ── */
+  function recordQuiz(ch, isCorrect) {
+    var wasNew = !isDone(ch);
+    if (wasNew) progress.done.push(ch);
+    if (isCorrect && progress.firstTry.indexOf(ch) === -1) progress.firstTry.push(ch);
+    progress.last = ch;
+    saveProgress();
+    renderAll();
+    if (wasNew) {
+      var i = chapterIndex(ch);
+      if (i + 1 < CHAPTERS.length) {
+        toast('Глава ' + CHAPTERS[i].num + ' пройдена. Дальше — глава ' + CHAPTERS[i + 1].num);
+      }
+    }
+  }
+
+  /* ── Закладки ── */
+  function toggleMark() {
+    var id = currentChapter;
+    var i = progress.marks.indexOf(id);
+    if (i === -1) { progress.marks.push(id); toast('Глава добавлена в закладки'); }
+    else { progress.marks.splice(i, 1); toast('Глава убрана из закладок'); }
+    saveProgress();
+    renderAll();
+  }
+
+  /* ── Сброс курса ── */
+  function restartCourse() {
+    if (!confirm('Сбросить прогресс и начать курс заново? Закладки останутся.')) return;
+    progress.done = [];
+    progress.firstTry = [];
+    progress.last = 'ch1';
+    saveProgress();
+    renderAll();
+    showLesson('ch1');
+  }
+
+  /* ── Онбординг при первом запуске ── */
+  function maybeOnboard() {
+    var known = false;
+    try { known = localStorage.getItem(STORAGE_KEY) !== null; } catch (e) { known = false; }
+    if (known) return;
+    var o = document.getElementById('onboarding');
+    if (!o) return;
+    o.classList.add('show');
+    var inp = document.getElementById('onb-name');
+    if (inp) {
+      inp.focus();
+      inp.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') finishOnboarding();
+      });
+    }
+  }
+  function finishOnboarding() {
+    var inp = document.getElementById('onb-name');
+    progress.name = inp ? inp.value.trim().slice(0, 24) : '';
+    saveProgress();
+    closeOnboarding();
+    renderAll();
+  }
+  function skipOnboarding() {
+    progress.name = '';
+    saveProgress();
+    closeOnboarding();
+    renderAll();
+  }
+  function closeOnboarding() {
+    var o = document.getElementById('onboarding');
+    if (o) o.classList.remove('show');
+  }
+
+  /* ══ РЕНДЕР ══════════════════════════════════════════════ */
+
+  function levelName(pct) {
+    if (pct >= 100) return 'Курс пройден';
+    if (pct >= 60)  return 'Уверенный';
+    if (pct >= 25)  return 'Продолжающий';
+    return 'Начинающий';
+  }
+
+  function userBlockHtml() {
+    var pct = percentDone(), dn = doneThemes();
+    var nm = progress.name || 'Гость';
+    var initial = (progress.name || '?').trim().charAt(0).toUpperCase() || '?';
+    var right;
+    if (allDone()) {
+      right = 'Все главы пройдены';
+    } else {
+      var c = nextChapter();
+      right = 'Глава ' + c.num + ' \u00B7 ' + (progress.done.length ? 'В процессе' : 'Не начата');
+    }
+    return '<div class="user-avatar">' + esc(initial) + '</div>' +
+      '<div class="user-info"><h4>' + esc(nm) + '</h4>' +
+      '<p>Уровень: ' + levelName(pct) + '</p></div>' +
+      '<div class="xp-bar">' +
+        '<div class="xp-bar-row"><span>Прогресс</span>' +
+        '<span style="color:var(--accent); font-weight:700;">' + right + '</span></div>' +
+        '<div class="xp-track"><div class="xp-fill" style="width:' + pct + '%"></div></div>' +
+        '<div class="xp-bar-row"><span>' + dn + ' из ' + TOTAL_THEMES + ' тем завершено</span>' +
+        '<span>' + pct + '%</span></div>' +
+      '</div>';
+  }
+
+  function badgeHtml(id) {
+    if (isDone(id))      return '<div class="badge free">\u2713 Пройдено</div>';
+    if (!isUnlocked(id)) return '<div class="badge open" style="background:var(--card2); color:var(--gray);">\uD83D\uDD12 Заблокировано</div>';
+    if (nextChapter().id === id) return '<div class="badge progress">\u25CF В процессе</div>';
+    return '<div class="badge open">Доступно</div>';
+  }
+
+  function cardHtml(c) {
+    var done = isDone(c.id), locked = !isUnlocked(c.id), current = nextChapter().id === c.id;
+    var cls = 'course-card';
+    if (current && !locked) cls += ' active-course';
+    if (locked) cls += ' locked';
+    if (c.algo) cls += ' algo-card';
+
+    var icon = c.algo
+      ? '<div class="course-icon" style="background:rgba(245,184,0,.15); font-size:24px; display:flex; align-items:center; justify-content:center; width:48px; height:48px; border-radius:12px; flex-shrink:0;">' + c.icon + '</div>'
+      : '<div class="course-icon ' + (done || current ? 'acc-bg' : 'dark-bg') + '">' + c.icon + '</div>';
+
+    var mark = isMarked(c.id) ? '<span class="card-mark" title="В закладках">\u2605</span>' : '';
+
+    return '<div class="' + cls + '" onclick="openChapter(\'' + c.id + '\')">' +
+      icon +
+      '<div class="course-info">' +
+        '<div class="course-num">Глава ' + c.num + ' \u00B7 ' + c.themes + ' ' + themeWord(c.themes) + ' \u00B7 ' + c.minutes + ' мин</div>' +
+        '<div class="course-title">' + c.title + mark + '</div>' +
+        '<div class="course-desc">' + c.desc + '</div>' +
+        '<div class="course-progress-mini" style="margin-top:7px;">' +
+          '<div class="course-progress-fill" style="width:' + (done ? 100 : 0) + '%"></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="course-meta">' + badgeHtml(c.id) +
+        '<div style="font-size:11px; color:var(--gray);">' + (done ? c.themes : 0) + ' из ' + c.themes + ' завершено</div>' +
+      '</div>' +
+    '</div>';
+  }
+
+  function renderUserBlocks() {
+    var html = userBlockHtml();
+    var ids = ['user-progress-home', 'user-progress-catalog'];
+    for (var i = 0; i < ids.length; i++) {
+      var el = document.getElementById(ids[i]);
+      if (el) el.innerHTML = html;
+    }
+  }
+
+  function renderGrids() {
+    var html = CHAPTERS.map(cardHtml).join('');
+    var ids = ['courses-grid-home', 'courses-grid-catalog'];
+    for (var i = 0; i < ids.length; i++) {
+      var el = document.getElementById(ids[i]);
+      if (el) el.innerHTML = html;
+    }
+  }
+
+  function renderContinue() {
+    var box = document.getElementById('continue-box');
+    if (!box) return;
+    if (allDone()) {
+      box.innerHTML = '<button class="continue-btn" onclick="showComplete()">' +
+        '<span class="ic">\uD83C\uDFC6</span><span><span class="t">Курс пройден</span>' +
+        '<span class="n">Посмотреть итоги</span></span></button>';
+      return;
+    }
+    var c = nextChapter();
+    var started = progress.done.length > 0;
+    box.innerHTML = '<button class="continue-btn" onclick="openChapter(\'' + c.id + '\')">' +
+      '<span class="ic">' + (started ? '\u25B6' : '\uD83D\uDE80') + '</span>' +
+      '<span><span class="t">' + (started ? 'Продолжить обучение' : 'Начать обучение') + '</span>' +
+      '<span class="n">Глава ' + c.num + ' \u2014 ' + c.title + '</span></span></button>';
+  }
+
+  function renderMarks() {
+    var box = document.getElementById('marks-box');
+    if (!box) return;
+    if (!progress.marks.length) { box.innerHTML = ''; return; }
+    var chips = '';
+    for (var i = 0; i < CHAPTERS.length; i++) {
+      var c = CHAPTERS[i];
+      if (!isMarked(c.id)) continue;
+      chips += '<button class="mark-chip" onclick="openChapter(\'' + c.id + '\')">\u2605 Глава ' + c.num + ' \u2014 ' + c.title + '</button>';
+    }
+    box.innerHTML = '<div class="marks-row"><span class="lbl">Закладки</span>' + chips + '</div>';
+  }
+
+  function renderTabs() {
+    var tabs = document.querySelectorAll('.chapter-tab');
+    for (var i = 0; i < tabs.length; i++) {
+      var oc = tabs[i].getAttribute('onclick') || '';
+      var m = oc.match(/'(ch\d)'/);
+      if (!m) continue;
+      tabs[i].classList.toggle('locked', !isUnlocked(m[1]));
+    }
+  }
+
+  function renderMarkBtn() {
+    var b = document.getElementById('mark-btn');
+    if (!b) return;
+    var on = isMarked(currentChapter);
+    b.classList.toggle('on', on);
+    b.innerHTML = on ? '\u2605 В закладках' : '\u2606 В закладки';
+  }
+
+  function renderCompleteStats() {
+    var a = document.getElementById('cmp-chapters');
+    var b = document.getElementById('cmp-themes');
+    var c = document.getElementById('cmp-quizzes');
+    if (a) a.textContent = progress.done.length;
+    if (b) b.textContent = doneThemes();
+    if (c) c.textContent = progress.firstTry.length;
+  }
+
+  function renderAll() {
+    renderUserBlocks();
+    renderGrids();
+    renderContinue();
+    renderMarks();
+    renderTabs();
+    renderMarkBtn();
+    renderCompleteStats();
+  }
+
+
   /* ── Section navigation ─────────────────────────────── */
   function showSection(name) {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
@@ -2121,6 +2406,7 @@
 
   /* ── Chapter switching (tabs inside lesson) ─────────── */
   function switchChapter(id, btn) {
+    if (!isUnlocked(id)) { lockedHint(id); return; }
     currentChapter = id;
     // Make sure lesson section is visible
     showSection('lesson');
@@ -2144,11 +2430,13 @@
     const lbl = document.getElementById('lesson-chapter-label');
     if (lbl) lbl.textContent = labels[id] || '';
     if (id === 'ch6') setTimeout(initAlgoParticles, 100);
+    touchChapter(id);
     window.scrollTo(0, 0);
   }
 
   /* ── Navigate to lesson from cards ─────────────────── */
   function showLesson(id) {
+    if (!isUnlocked(id)) { lockedHint(id); return; }
     currentChapter = id;
     // Show lesson section
     showSection('lesson');
@@ -2174,6 +2462,7 @@
     const lbl = document.getElementById('lesson-chapter-label');
     if (lbl) lbl.textContent = labels[id] || '';
     if (id === 'ch6') setTimeout(initAlgoParticles, 100);
+    touchChapter(id);
     window.scrollTo(0, 0);
   }
 
@@ -2211,6 +2500,7 @@
     const alreadyAnswered = Array.from(opts).some(b => b.classList.contains('correct') || b.classList.contains('wrong'));
     if (alreadyAnswered) return;
     btn.classList.add(isCorrect ? 'correct' : 'wrong');
+    recordQuiz(ch, isCorrect);
     if (!isCorrect) {
       opts.forEach(b => { if (b.dataset.correct === 'true') b.classList.add('correct'); });
     }
@@ -2271,6 +2561,13 @@
     // Clean up after animation
     setTimeout(function() { if (area) area.innerHTML = ''; }, 6000);
   }
+
+  /* ── Старт приложения ── */
+  loadProgress();
+  document.addEventListener('DOMContentLoaded', function () {
+    renderAll();
+    maybeOnboard();
+  });
 
 </script>
 
@@ -2497,9 +2794,9 @@
       <div class="complete-title-new">Курс успешно пройден!</div>
       <div class="complete-subtitle">Ты изучил финансовые рынки с нуля.<br>Это знание — твоё навсегда.</div>
       <div class="complete-stats-new">
-        <div class="complete-stat-new"><div class="n">6</div><div class="l">глав<br>пройдено</div></div>
-        <div class="complete-stat-new"><div class="n">26</div><div class="l">тем<br>изучено</div></div>
-        <div class="complete-stat-new"><div class="n">6</div><div class="l">тестов<br>сдано</div></div>
+        <div class="complete-stat-new"><div class="n" id="cmp-chapters">6</div><div class="l">глав<br>пройдено</div></div>
+        <div class="complete-stat-new"><div class="n" id="cmp-themes">26</div><div class="l">тем<br>изучено</div></div>
+        <div class="complete-stat-new"><div class="n" id="cmp-quizzes">6</div><div class="l">тестов<br>с первой попытки</div></div>
       </div>
       <div class="complete-chapters-new">
         <div class="complete-ch-row"><div class="complete-ch-check">✓</div><div class="complete-ch-name">🌍 Введение в Форекс</div><div class="complete-ch-badge">Пройдено</div></div>
@@ -2512,7 +2809,10 @@
 
       <div class="complete-btns">
         <button class="complete-btn-main" onclick="showSection('home')">🏠 Вернуться на главную</button>
-        <button class="complete-btn-sec" onclick="showLesson('ch1')">🔄 Повторить курс с начала</button>
+        <button class="complete-btn-sec" onclick="restartCourse()">🔄 Повторить курс с начала</button>
+      </div>
+      <div class="disclaimer" style="text-align:left;">
+        <strong>Важно.</strong> Курс носит образовательный характер и не является индивидуальной инвестиционной рекомендацией или призывом совершать операции на финансовых рынках.
       </div>
     </div>
   </div>
