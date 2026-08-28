@@ -1301,6 +1301,40 @@
     .welcome h1 { font-size: 23px; }
     .course-icon { width: 46px; height: 46px; font-size: 21px; }
   }
+  /* ══ ЭКРАН УРОКА ══════════════════════════════════════════════
+     Было: шесть вкладок глав в четыре ряда — полтора экрана
+     навигации до первой строки текста. Стало: одна лента
+     с горизонтальной прокруткой, как карусели у Сбера. */
+
+  .lesson-layout { padding: 18px 14px 28px; }
+
+  .lesson-topbar { margin-bottom: 14px; gap: 10px; }
+  .lesson-breadcrumb { font-size: 13px; color: var(--gray); min-width: 0; }
+  .lesson-breadcrumb span:first-child { cursor: pointer; }
+  .lesson-breadcrumb span:first-child:hover { color: var(--accent); }
+  /* Название главы дублирует заголовок ниже и всё равно не влезало */
+  .lesson-breadcrumb span:nth-child(2),
+  .lesson-breadcrumb #lesson-chapter-label { display: none; }
+
+  .mark-btn { padding: 6px 12px; font-size: 12px; border-radius: 9px; }
+
+  .lesson-progress-bar { height: 4px; margin-bottom: 16px; border-radius: 3px; }
+
+  .chapter-tabs {
+    display: flex; flex-wrap: nowrap; gap: 8px;
+    overflow-x: auto; overflow-y: hidden;
+    scrollbar-width: none; -ms-overflow-style: none;
+    margin: 0 -14px 20px; padding: 2px 14px 8px;
+    scroll-snap-type: x proximity;
+  }
+  .chapter-tabs::-webkit-scrollbar { width: 0; height: 0; display: none; }
+  .chapter-tab {
+    flex: 0 0 auto; scroll-snap-align: start; white-space: nowrap;
+    padding: 8px 14px; border-radius: 10px; font-size: 13px;
+  }
+
+  .lesson-title { font-size: 22px; line-height: 1.18; margin-bottom: 6px; }
+  .lesson-meta { font-size: 12.5px; margin-bottom: 20px; }
 </style>
 </head>
 <body>
@@ -1372,6 +1406,9 @@
     <!-- Quick chapters -->
     <div class="sec-head"><h2>Программа обучения</h2><span class="sec-note" id="prog-note"></span></div>
     <div class="courses-grid" id="courses-grid-home"></div>
+
+    <div class="sec-head"><h2>Достижения</h2><span class="sec-note" id="ach-note"></span></div>
+    <div class="ach-row" id="ach-row"></div>
 
     <div class="disclaimer">
       <strong>Важно.</strong> Материалы курса носят исключительно образовательный характер. Это не индивидуальная инвестиционная рекомендация, не финансовый совет и не призыв совершать операции на финансовых рынках. Любые решения вы принимаете самостоятельно и на свой риск.
@@ -2647,6 +2684,41 @@
     if (el) el.textContent = progress.done.length + ' из ' + CHAPTERS.length + ' глав';
   }
 
+  /* ── Достижения ──────────────────────────────────────
+     Считаются из реального прогресса, ничего не выдумываем. */
+  function achievements() {
+    var done = progress.done.length;
+    var clean = progress.firstTry.length;
+    return [
+      { icon: '\uD83C\uDFAF', name: 'Первый шаг',   got: done >= 1,
+        hint: 'пройти первую главу' },
+      { icon: '\uD83D\uDCDA', name: 'Половина пути', got: done >= 3,
+        hint: 'пройти три главы' },
+      { icon: '\uD83D\uDD16', name: 'Закладка',      got: progress.marks.length >= 1,
+        hint: 'сохранить главу в закладки' },
+      { icon: '\u2B50',        name: 'Без осечек',    got: done >= 3 && clean === done,
+        hint: 'три главы подряд с первой попытки' },
+      { icon: '\uD83C\uDFC6', name: 'Курс пройден',  got: done >= CHAPTERS.length,
+        hint: 'пройти все главы' }
+    ];
+  }
+
+  function renderAchievements() {
+    var row = document.getElementById('ach-row');
+    var note = document.getElementById('ach-note');
+    if (!row) return;
+    var list = achievements();
+    var got = list.filter(function (a) { return a.got; }).length;
+    row.innerHTML = list.map(function (a) {
+      return '<div class="ach' + (a.got ? ' got' : '') + '" title="' +
+        esc(a.got ? a.name : a.name + ' \u2014 ' + a.hint) + '">' + a.icon + '</div>';
+    }).join('') +
+      '<div class="ach-note">' + (got
+        ? 'Открыто ' + got + ' из ' + list.length
+        : 'Пока ни одного — начните с первой главы') + '</div>';
+    if (note) note.textContent = got + ' из ' + list.length;
+  }
+
   function renderContinue() {
     var box = document.getElementById('continue-box');
     if (!box) return;
@@ -2684,6 +2756,10 @@
       var m = oc.match(/'(ch\d)'/);
       if (!m) continue;
       tabs[i].classList.toggle('locked', !isUnlocked(m[1]));
+      if (m[1] === currentChapter && tabs[i].classList.contains('active')) {
+        // подтягиваем активную главу в видимую часть ленты
+        tabs[i].scrollIntoView({ block: 'nearest', inline: 'center' });
+      }
     }
   }
 
@@ -2709,6 +2785,7 @@
     renderGrids();
     renderContinue();
     renderProgNote();
+    renderAchievements();
     renderMarks();
     renderTabs();
     renderMarkBtn();
