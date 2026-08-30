@@ -1335,6 +1335,23 @@
 
   .lesson-title { font-size: 22px; line-height: 1.18; margin-bottom: 6px; }
   .lesson-meta { font-size: 12.5px; margin-bottom: 20px; }
+  /* ══ ОБЛОЖКА ГЛАВЫ ═══════════════════════════════════════════
+     3D-картинка задаётся переменными прямо в разметке главы.
+     Файла нет — блок просто не показывается, ничего не ломается. */
+  .lesson-hero {
+    height: 150px; margin: 0 -14px 18px;
+    background-color: var(--accent-dim);
+    background-image: var(--hero-light);
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: auto 132px;
+  }
+  :root[data-theme="dark"] .lesson-hero { background-image: var(--hero-dark); }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .lesson-hero { background-image: var(--hero-dark); }
+  }
+  /* Пока файлов нет — не занимаем место пустой плашкой */
+  .lesson-hero:not([style*="url"]) { display: none; }
 </style>
 </head>
 <body>
@@ -1467,6 +1484,7 @@
 
     <!-- ══ ГЛАВА 1: ВВЕДЕНИЕ В ФОРЕКС ══ -->
     <div id="lesson-ch1">
+      <div class="lesson-hero" style="--hero-light:url(images/ch1-hero-light.png); --hero-dark:url(images/ch1-hero-dark.png)"></div>
       <div class="lesson-title">Глава 1. Введение в Форекс</div>
       <div class="lesson-meta">
         <span>25 мин</span>
