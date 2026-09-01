@@ -1382,6 +1382,125 @@
     [id^="lesson-ch"].enter-chapter { animation: none; }
     .course-card:active, .continue-btn:active { transform: none; }
   }
+  /* ══ ДОСТИЖЕНИЯ: КАРТОЧКА И САЛЮТ ════════════════════════════════
+     Значок сам по себе ничего не объясняет. По нажатию показываем,
+     что это за награда и как её получить, а за полученную — салют. */
+
+  .ach {
+    cursor: pointer; padding: 0; font-family: inherit; position: relative;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform .13s ease, opacity .2s, filter .2s;
+  }
+  .ach:active { transform: scale(.89); }
+  /* Тонкое кольцо вокруг полученной награды — заметно даже боковым зрением */
+  .ach.got::after {
+    content: ''; position: absolute; inset: -3px; border-radius: 50%;
+    border: 1.5px solid var(--accent); opacity: .38; pointer-events: none;
+  }
+
+  .ach-modal {
+    position: absolute; inset: 0; z-index: 620; display: none;
+    align-items: flex-end; justify-content: center;
+    background: rgba(6,8,12,.7); backdrop-filter: blur(5px);
+  }
+  .ach-modal.show { display: flex; animation: achBackdrop .22s ease both; }
+  @keyframes achBackdrop { from { opacity: 0; } to { opacity: 1; } }
+
+  .ach-card {
+    width: 100%; position: relative; overflow: hidden; text-align: center;
+    background: var(--card); border-top: 1px solid var(--border);
+    border-radius: 22px 22px 0 0; padding: 14px 24px 24px;
+    animation: achUp .36s cubic-bezier(.2,.82,.28,1) both;
+  }
+  @keyframes achUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+  .ach-grip {
+    width: 38px; height: 4px; border-radius: 3px;
+    background: var(--border); margin: 0 auto 18px;
+  }
+
+  .ach-big {
+    width: 84px; height: 84px; margin: 0 auto 14px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 38px;
+    background: var(--card2); border: 1px solid var(--border);
+    filter: grayscale(1); opacity: .5; position: relative; z-index: 2;
+  }
+  .ach-card.is-got .ach-big {
+    filter: none; opacity: 1;
+    background: var(--accent-dim); border-color: var(--accent);
+    animation: achPop .55s cubic-bezier(.2,1.6,.35,1) both .08s;
+  }
+  @keyframes achPop {
+    0%   { transform: scale(.35); }
+    62%  { transform: scale(1.14); }
+    100% { transform: scale(1); }
+  }
+
+  .ach-state {
+    display: inline-block; font-size: 11.5px; font-weight: 800; letter-spacing: .04em;
+    text-transform: uppercase; padding: 4px 11px; border-radius: 7px; margin-bottom: 9px;
+    background: var(--card2); color: var(--gray);
+  }
+  .ach-card.is-got .ach-state { background: var(--accent-dim); color: var(--accent); }
+  .ach-card h3 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+  .ach-desc {
+    font-size: 13.5px; line-height: 1.6; color: var(--gray); margin-bottom: 16px;
+  }
+
+  .ach-how {
+    text-align: left; background: var(--card2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 13px 15px; margin-bottom: 16px;
+  }
+  .ach-how-t {
+    font-size: 11px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase;
+    color: var(--gray); margin-bottom: 5px;
+  }
+  .ach-how-v { font-size: 13.5px; line-height: 1.55; color: var(--white); }
+
+  .ach-bar { height: 6px; border-radius: 4px; background: var(--border); overflow: hidden; margin-top: 11px; }
+  .ach-bar span {
+    display: block; height: 100%; border-radius: 4px; background: var(--accent);
+    width: 0; transition: width .6s cubic-bezier(.25,.8,.3,1) .25s;
+  }
+  .ach-bar-n { font-size: 12px; color: var(--gray); margin-top: 7px; }
+
+  .ach-close {
+    width: 100%; padding: 13px; border-radius: 12px; border: none; cursor: pointer;
+    background: var(--accent); color: var(--black); font-weight: 800; font-size: 14.5px;
+    font-family: inherit;
+  }
+  .ach-card:not(.is-got) .ach-close {
+    background: var(--card2); color: var(--white); border: 1px solid var(--border);
+  }
+
+  /* ── Салют ───────────────────────────────────────────────────────
+     Частицы — обычные слои: направление и разлёт задаём переменными,
+     чтобы вся анимация шла на композиторе, без пересчёта раскладки. */
+  .ach-fx { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+  .ach-spark {
+    position: absolute; width: var(--sz); height: var(--sz); border-radius: 50%;
+    background: var(--col); opacity: 0;
+    animation: sparkFly var(--dur) cubic-bezier(.12,.68,.3,1) var(--del) both;
+  }
+  @keyframes sparkFly {
+    0%   { transform: translate(0,0) scale(.5); opacity: 1; }
+    58%  { transform: translate(calc(var(--fx) * .8), calc(var(--fy) * .8)) scale(1); opacity: 1; }
+    100% { transform: translate(var(--fx), calc(var(--fy) + var(--drop))) scale(.2); opacity: 0; }
+  }
+  .ach-ring {
+    position: absolute; width: 12px; height: 12px; margin: -6px 0 0 -6px;
+    border-radius: 50%; border: 2px solid var(--accent);
+    animation: sparkRing .75s ease-out var(--del) both;
+  }
+  @keyframes sparkRing {
+    from { transform: scale(.4); opacity: .75; }
+    to   { transform: scale(10); opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ach-modal.show, .ach-card, .ach-card.is-got .ach-big { animation: none; }
+    .ach-bar span { transition: none; }
+    .ach:active { transform: none; }
+  }
 </style>
 </head>
 <body>
@@ -1400,6 +1519,24 @@
 </div>
 
 <div class="tt-toast" id="tt-toast"></div>
+
+<!-- Карточка достижения -->
+<div class="ach-modal" id="ach-modal" onclick="if(event.target===this)closeAch()">
+  <div class="ach-card" id="ach-card">
+    <div class="ach-fx" id="ach-fx"></div>
+    <div class="ach-grip"></div>
+    <div class="ach-big" id="ach-big"></div>
+    <div class="ach-state" id="ach-state"></div>
+    <h3 id="ach-name"></h3>
+    <div class="ach-desc" id="ach-desc"></div>
+    <div class="ach-how">
+      <div class="ach-how-t" id="ach-how-t"></div>
+      <div class="ach-how-v" id="ach-how-v"></div>
+      <div id="ach-prog"></div>
+    </div>
+    <button class="ach-close" id="ach-close" onclick="closeAch()">Понятно</button>
+  </div>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -2324,11 +2461,15 @@
 
   var TOTAL_THEMES = CHAPTERS.reduce(function (s, c) { return s + c.themes; }, 0);
 
-  var progress = { name: '', done: [], firstTry: [], marks: [], last: 'ch1', theme: null };
+  var progress = { name: '', done: [], firstTry: [], marks: [], last: 'ch1', theme: null,
+                   seenAch: null };   // null = список ещё ни разу не заполняли
+
+  var hadSavedProgress = false;   // было ли что-то в хранилище при запуске
 
   function loadProgress() {
     try {
       var raw = localStorage.getItem(STORAGE_KEY);
+      hadSavedProgress = raw !== null;
       if (!raw) return;
       var p = JSON.parse(raw);
       if (typeof p.name === 'string') progress.name = p.name;
@@ -2337,6 +2478,7 @@
       if (Object.prototype.toString.call(p.done) === '[object Array]') progress.done = p.done;
       if (Object.prototype.toString.call(p.firstTry) === '[object Array]') progress.firstTry = p.firstTry;
       if (Object.prototype.toString.call(p.marks) === '[object Array]') progress.marks = p.marks;
+      if (Object.prototype.toString.call(p.seenAch) === '[object Array]') progress.seenAch = p.seenAch;
     } catch (e) {
       /* приватный режим или повреждённые данные — работаем без сохранения */
     }
@@ -2472,9 +2614,7 @@
 
   /* ── Онбординг при первом запуске ── */
   function maybeOnboard() {
-    var known = false;
-    try { known = localStorage.getItem(STORAGE_KEY) !== null; } catch (e) { known = false; }
-    if (known) return;
+    if (hadSavedProgress) return;
     var o = document.getElementById('onboarding');
     if (!o) return;
     o.classList.add('show');
@@ -2600,18 +2740,179 @@
   function achievements() {
     var done = progress.done.length;
     var clean = progress.firstTry.length;
+    var all = CHAPTERS.length;
+    // cur/max — сколько уже сделано из нужного. По ним рисуем полосу
+    // прогресса: человеку важнее видеть, сколько осталось, чем сам факт замка.
     return [
-      { icon: '\uD83C\uDFAF', name: 'Первый шаг',   got: done >= 1,
-        hint: 'пройти первую главу' },
-      { icon: '\uD83D\uDCDA', name: 'Половина пути', got: done >= 3,
-        hint: 'пройти три главы' },
-      { icon: '\uD83D\uDD16', name: 'Закладка',      got: progress.marks.length >= 1,
-        hint: 'сохранить главу в закладки' },
-      { icon: '\u2B50',        name: 'Без осечек',    got: done >= 3 && clean === done,
-        hint: 'три главы подряд с первой попытки' },
-      { icon: '\uD83C\uDFC6', name: 'Курс пройден',  got: done >= CHAPTERS.length,
-        hint: 'пройти все главы' }
+      { id: 'first', icon: '\uD83C\uDFAF', name: 'Первый шаг', got: done >= 1,
+        hint: 'пройти первую главу',
+        desc: 'Награда за начало обучения. Самый трудный шаг — первый.',
+        how: 'Прочитайте любую главу до конца и ответьте на вопрос теста.',
+        cur: Math.min(done, 1), max: 1, unit: 'Пройдено глав' },
+      { id: 'half', icon: '\uD83D\uDCDA', name: 'Половина пути', got: done >= 3,
+        hint: 'пройти три главы',
+        desc: 'Знак того, что базовые понятия разобраны и половина курса позади.',
+        how: 'Пройдите любые три главы курса.',
+        cur: Math.min(done, 3), max: 3, unit: 'Пройдено глав' },
+      { id: 'mark', icon: '\uD83D\uDD16', name: 'Закладка', got: progress.marks.length >= 1,
+        hint: 'сохранить главу в закладки',
+        desc: 'Закладки помогают быстро вернуться к тому, что хочется перечитать.',
+        how: 'Откройте любую главу и нажмите значок закладки в её заголовке.',
+        cur: Math.min(progress.marks.length, 1), max: 1, unit: 'Сохранено закладок' },
+      { id: 'clean', icon: '\u2B50', name: 'Без осечек', got: done >= 3 && clean === done,
+        hint: 'три главы подряд с первой попытки',
+        desc: 'Три главы подряд, где тест сдан с первой попытки. Значит, материал действительно усвоен.',
+        how: 'Ответьте верно с первого раза в трёх главах подряд. Одна ошибка — и счёт начнётся заново.',
+        cur: Math.min(clean, 3), max: 3, unit: 'Глав с первой попытки' },
+      { id: 'all', icon: '\uD83C\uDFC6', name: 'Курс пройден', got: done >= all,
+        hint: 'пройти все главы',
+        desc: 'Главная награда курса — за все шесть глав, от устройства рынка до алгоритмов.',
+        how: 'Пройдите все главы курса и сдайте их тесты.',
+        cur: done, max: all, unit: 'Пройдено глав' }
     ];
+  }
+
+  /* ── Салют ──────────────────────────────────────────
+     Три вспышки со сдвигом: одна крупная по центру значка
+     и две поменьше по бокам. */
+  function achFireworks(strong) {
+    var fx = document.getElementById('ach-fx');
+    if (!fx) return;
+    fx.innerHTML = '';
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var COLS = ['var(--accent)', 'var(--gold)', 'var(--green)', '#7CE7C4', '#FFD166'];
+    var BURSTS = [
+      { x: 50, y: 70, n: 18, r: 108, delay: 60,  ring: true },
+      { x: 24, y: 96, n: 11, r: 76,  delay: 260, ring: false },
+      { x: 76, y: 92, n: 11, r: 76,  delay: 380, ring: false }
+    ];
+    // Награда открылась только что — событие редкое, отмечаем заметнее
+    if (strong) {
+      BURSTS[0].n = 26; BURSTS[0].r = 126;
+      BURSTS.push({ x: 38, y: 52, n: 13, r: 92, delay: 520, ring: true });
+      BURSTS.push({ x: 64, y: 116, n: 13, r: 88, delay: 660, ring: false });
+    }
+    var frag = document.createDocumentFragment();
+    BURSTS.forEach(function (b) {
+      if (b.ring) {
+        var ring = document.createElement('div');
+        ring.className = 'ach-ring';
+        ring.style.cssText = 'left:' + b.x + '%;top:' + b.y + 'px;--del:' + b.delay + 'ms';
+        frag.appendChild(ring);
+      }
+      for (var i = 0; i < b.n; i++) {
+        var a = (i / b.n) * Math.PI * 2 + Math.random() * 0.4;
+        var d = b.r * (0.55 + Math.random() * 0.45);
+        var s = document.createElement('div');
+        s.className = 'ach-spark';
+        s.style.cssText =
+          'left:' + b.x + '%;top:' + b.y + 'px;' +
+          '--fx:' + Math.round(Math.cos(a) * d) + 'px;' +
+          '--fy:' + Math.round(Math.sin(a) * d * 0.6) + 'px;' +
+          '--drop:' + Math.round(26 + Math.random() * 34) + 'px;' +
+          '--sz:' + (4 + Math.round(Math.random() * 4)) + 'px;' +
+          '--col:' + COLS[i % COLS.length] + ';' +
+          '--dur:' + (900 + Math.round(Math.random() * 450)) + 'ms;' +
+          '--del:' + (b.delay + Math.round(Math.random() * 90)) + 'ms';
+        frag.appendChild(s);
+      }
+    });
+    fx.appendChild(frag);
+    // Частицы живут около 1,8 с; после этого чистим, чтобы не копить узлы
+    setTimeout(function () { if (fx) fx.innerHTML = ''; }, 2000);
+  }
+
+  function openAch(i, isNew) {
+    var a = achievements()[i];
+    if (!a) return;
+    var m = document.getElementById('ach-modal');
+    var card = document.getElementById('ach-card');
+    document.getElementById('ach-big').textContent = a.icon;
+    document.getElementById('ach-state').textContent =
+      isNew ? 'Новое достижение' : (a.got ? 'Завоёвано' : 'Ещё не открыто');
+    document.getElementById('ach-name').textContent = a.name;
+    document.getElementById('ach-desc').textContent = a.desc;
+    document.getElementById('ach-how-t').textContent = a.got ? 'Как вы его получили' : 'Как получить';
+    document.getElementById('ach-close').textContent = isNew ? 'Отлично' : 'Понятно';
+    document.getElementById('ach-how-v').textContent = a.how;
+
+    var prog = document.getElementById('ach-prog');
+    if (a.got || !a.max) {
+      prog.innerHTML = '';
+    } else {
+      prog.innerHTML = '<div class="ach-bar"><span></span></div>' +
+        '<div class="ach-bar-n">' + esc(a.unit) + ': ' + a.cur + ' из ' + a.max + '</div>';
+      // Ширину ставим следующим кадром, иначе переход не запустится
+      var bar = prog.querySelector('.ach-bar span');
+      requestAnimationFrame(function () {
+        bar.style.width = Math.round(a.cur / a.max * 100) + '%';
+      });
+    }
+
+    card.classList.toggle('is-got', !!a.got);
+    m.classList.add('show');
+    if (a.got) achFireworks(isNew);
+  }
+
+  function closeAch() {
+    var m = document.getElementById('ach-modal');
+    if (m) m.classList.remove('show');
+    var fx = document.getElementById('ach-fx');
+    if (fx) fx.innerHTML = '';
+    // За один тест можно открыть сразу две награды — показываем по очереди
+    if (achQueue.length) {
+      if (achTimer) clearTimeout(achTimer);
+      achTimer = setTimeout(achShowNext, 280);
+    }
+  }
+
+  /* ── Награда открылась впервые ───────────────────────
+     Показанные награды помним в прогрессе. Без этого салют
+     повторялся бы при каждой перезагрузке, а у тех, кто уже
+     прошёл главы до обновления, выстрелил бы задним числом. */
+  var achQueue = [];
+  var achTimer = null;
+  var achSeeded = false;
+
+  function achShowNext() {
+    if (!achQueue.length) return;
+    openAch(achQueue.shift(), true);
+  }
+
+  function syncAchievements() {
+    var list = achievements();
+    var got = [];
+    var i;
+    for (i = 0; i < list.length; i++) if (list[i].got) got.push(list[i].id);
+
+    if (!achSeeded) {
+      achSeeded = true;
+      if (!progress.seenAch) {           // первый запуск после обновления
+        // Именно без saveProgress: запись сюда создала бы ключ в хранилище
+        // раньше, чем онбординг проверит, новый ли это пользователь.
+        progress.seenAch = got;
+        return;
+      }
+    }
+
+    var seen = progress.seenAch || [];
+    var fresh = [];
+    for (i = 0; i < list.length; i++) {
+      if (list[i].got && seen.indexOf(list[i].id) === -1) fresh.push(i);
+    }
+    // Награду можно и потерять: «Без осечек» сбрасывается ошибкой, а сброс
+    // курса обнуляет всё. Тогда убираем её из списка — отпразднуем заново.
+    if (fresh.length || seen.length !== got.length) {
+      progress.seenAch = got;
+      saveProgress();
+    }
+    if (fresh.length) {
+      achQueue = fresh;
+      if (achTimer) clearTimeout(achTimer);
+      // Пауза, чтобы человек сначала увидел результат теста
+      achTimer = setTimeout(achShowNext, 950);
+    }
   }
 
   function renderAchievements() {
@@ -2620,9 +2921,11 @@
     if (!row) return;
     var list = achievements();
     var got = list.filter(function (a) { return a.got; }).length;
-    row.innerHTML = list.map(function (a) {
-      return '<div class="ach' + (a.got ? ' got' : '') + '" title="' +
-        esc(a.got ? a.name : a.name + ' \u2014 ' + a.hint) + '">' + a.icon + '</div>';
+    row.innerHTML = list.map(function (a, i) {
+      return '<button type="button" class="ach' + (a.got ? ' got' : '') +
+        '" onclick="openAch(' + i + ')" aria-label="' +
+        esc(a.name + (a.got ? '' : ' \u2014 ' + a.hint)) + '" title="' +
+        esc(a.got ? a.name : a.name + ' \u2014 ' + a.hint) + '">' + a.icon + '</button>';
     }).join('') +
       '<div class="ach-note">' + (got
         ? 'Открыто ' + got + ' из ' + list.length
@@ -2701,6 +3004,7 @@
     renderTabs();
     renderMarkBtn();
     renderCompleteStats();
+    syncAchievements();
   }
 
 
@@ -3004,7 +3308,7 @@
   <div class="quiz-step" id="quiz-step-ch1" style="display:none;">
     <div class="quiz-page">
       <div class="quiz-step-header">🧩 Проверьте себя</div>
-      <div class="quiz-visual"><svg viewBox="0 0 600 130" xmlns="http://www.w3.org/2000/svg"><rect width="600" height="130" fill="var(--c-panel)" rx="12"/><text x="300" y="20" text-anchor="middle" fill="var(--c-text-dim)" font-size="12" font-family="Calibri,sans-serif">Рабочие дни валютного рынка Foreign Exchange</text><rect x="30" y="35" width="76" height="60" rx="10" fill="var(--c-panel)" stroke="var(--c-teal)" stroke-width="1.5"/><text x="68" y="62" text-anchor="middle" fill="var(--c-text-dim)" font-size="11" font-family="Calibri,sans-serif">Пн</text><text x="68" y="83" text-anchor="middle" fill="var(--c-teal)" font-size="20" font-family="Calibri,sans-serif">✓</text><rect x="115" y="35" width="76" height="60" rx="10" fill="var(--c-panel)" stroke="var(--c-teal)" stroke-width="1.5"/><text x="153" y="62" text-anchor="middle" fill="var(--c-text-dim)" font-size="11" font-family="Calibri,sans-serif">Вт</text><text x="153" y="83" text-anchor="middle" fill="var(--c-teal)" font-size="20" font-family="Calibri,sans-serif">✓</text><rect x="200" y="35" width="76" height="60" rx="10" fill="var(--c-panel)" stroke="var(--c-teal)" stroke-width="1.5"/><text x="238" y="62" text-anchor="middle" fill="var(--c-text-dim)" font-size="11" font-family="Calibri,sans-serif">Ср</text><text x="238" y="83" text-anchor="middle" fill="var(--c-teal)" font-size="20" font-family="Calibri,sans-serif">✓</text><rect x="285" y="35" width="76" height="60" rx="10" fill="var(--c-panel)" stroke="var(--c-teal)" stroke-width="1.5"/><text x="323" y="62" text-anchor="middle" fill="var(--c-text-dim)" font-size="11" font-family="Calibri,sans-serif">Чт</text><text x="323" y="83" text-anchor="middle" fill="var(--c-teal)" font-size="20" font-family="Calibri,sans-serif">✓</text><rect x="370" y="35" width="76" height="60" rx="10" fill="var(--c-panel)" stroke="var(--c-teal)" stroke-width="1.5"/><text x="408" y="62" text-anchor="middle" fill="var(--c-text-dim)" font-size="11" font-family="Calibri,sans-serif">Пт</text><text x="408" y="83" text-anchor="middle" fill="var(--c-teal)" font-size="20" font-family="Calibri,sans-serif">✓</text><rect x="462" y="35" width="62" height="60" rx="10" fill="var(--c-bg)" stroke="var(--c-grid)" stroke-width="1.5"/><text x="493" y="62" text-anchor="middle" fill="var(--c-text-faint)" font-size="11" font-family="Calibri,sans-serif">Сб</text><text x="493" y="83" text-anchor="middle" fill="var(--c-red)" font-size="20" font-family="Calibri,sans-serif">✗</text><rect x="533" y="35" width="55" height="60" rx="10" fill="var(--c-bg)" stroke="var(--c-grid)" stroke-width="1.5"/><text x="560" y="62" text-anchor="middle" fill="var(--c-text-faint)" font-size="11" font-family="Calibri,sans-serif">Вс</text><text x="560" y="83" text-anchor="middle" fill="var(--c-red)" font-size="20" font-family="Calibri,sans-serif">✗</text><text x="300" y="118" text-anchor="middle" fill="var(--c-text-faint)" font-size="10" font-family="Calibri,sans-serif">Зелёные дни — рынок открыт 24 часа подряд</text></svg></div>
+      <div class="quiz-visual"><svg viewBox="0 0 400 132" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="132" rx="12" fill="var(--c-bg)" stroke="var(--c-grid)"/><text x="200" y="24" text-anchor="middle" fill="var(--c-text)" font-size="12.5" font-weight="700" font-family="system-ui,Segoe UI,Roboto,sans-serif">Рабочие дни валютного рынка</text><rect x="17.0" y="38" width="48" height="52" rx="9" fill="var(--c-green)" fill-opacity=".12" stroke="var(--c-green)" stroke-width="1.5"/><text x="41.0" y="57" text-anchor="middle" fill="var(--c-text-dim)" font-size="11" font-weight="600" font-family="system-ui,Segoe UI,Roboto,sans-serif">Пн</text><text x="41.0" y="82" text-anchor="middle" fill="var(--c-green)" font-size="20" font-family="system-ui,Segoe UI,Roboto,sans-serif">✓</text><rect x="70.0" y="38" width="48" height="52" rx="9" fill="var(--c-green)" fill-opacity=".12" stroke="var(--c-green)" stroke-width="1.5"/><text x="94.0" y="57" text-anchor="middle" fill="var(--c-text-dim)" font-size="11" font-weight="600" font-family="system-ui,Segoe UI,Roboto,sans-serif">Вт</text><text x="94.0" y="82" text-anchor="middle" fill="var(--c-green)" font-size="20" font-family="system-ui,Segoe UI,Roboto,sans-serif">✓</text><rect x="123.0" y="38" width="48" height="52" rx="9" fill="var(--c-green)" fill-opacity=".12" stroke="var(--c-green)" stroke-width="1.5"/><text x="147.0" y="57" text-anchor="middle" fill="var(--c-text-dim)" font-size="11" font-weight="600" font-family="system-ui,Segoe UI,Roboto,sans-serif">Ср</text><text x="147.0" y="82" text-anchor="middle" fill="var(--c-green)" font-size="20" font-family="system-ui,Segoe UI,Roboto,sans-serif">✓</text><rect x="176.0" y="38" width="48" height="52" rx="9" fill="var(--c-green)" fill-opacity=".12" stroke="var(--c-green)" stroke-width="1.5"/><text x="200.0" y="57" text-anchor="middle" fill="var(--c-text-dim)" font-size="11" font-weight="600" font-family="system-ui,Segoe UI,Roboto,sans-serif">Чт</text><text x="200.0" y="82" text-anchor="middle" fill="var(--c-green)" font-size="20" font-family="system-ui,Segoe UI,Roboto,sans-serif">✓</text><rect x="229.0" y="38" width="48" height="52" rx="9" fill="var(--c-green)" fill-opacity=".12" stroke="var(--c-green)" stroke-width="1.5"/><text x="253.0" y="57" text-anchor="middle" fill="var(--c-text-dim)" font-size="11" font-weight="600" font-family="system-ui,Segoe UI,Roboto,sans-serif">Пт</text><text x="253.0" y="82" text-anchor="middle" fill="var(--c-green)" font-size="20" font-family="system-ui,Segoe UI,Roboto,sans-serif">✓</text><rect x="282.0" y="38" width="48" height="52" rx="9" fill="var(--c-red)" fill-opacity=".12" stroke="var(--c-red)" stroke-width="1.5"/><text x="306.0" y="57" text-anchor="middle" fill="var(--c-text-dim)" font-size="11" font-weight="600" font-family="system-ui,Segoe UI,Roboto,sans-serif">Сб</text><text x="306.0" y="82" text-anchor="middle" fill="var(--c-red)" font-size="20" font-family="system-ui,Segoe UI,Roboto,sans-serif">✗</text><rect x="335.0" y="38" width="48" height="52" rx="9" fill="var(--c-red)" fill-opacity=".12" stroke="var(--c-red)" stroke-width="1.5"/><text x="359.0" y="57" text-anchor="middle" fill="var(--c-text-dim)" font-size="11" font-weight="600" font-family="system-ui,Segoe UI,Roboto,sans-serif">Вс</text><text x="359.0" y="82" text-anchor="middle" fill="var(--c-red)" font-size="20" font-family="system-ui,Segoe UI,Roboto,sans-serif">✗</text><text x="200" y="120" text-anchor="middle" fill="var(--c-green)" font-size="10.5" font-family="system-ui,Segoe UI,Roboto,sans-serif">Зелёные дни — рынок открыт 24 часа подряд</text></svg></div>
       
 <div class="quiz-question-text">По каким дням в неделю работает валютный рынок Foreign Exchange?</div>
       <div class="quiz-opts" id="qopts-ch1">
@@ -3038,7 +3342,7 @@
   <div class="quiz-step" id="quiz-step-ch2" style="display:none;">
     <div class="quiz-page">
       <div class="quiz-step-header">🧩 Проверьте себя</div>
-      <div class="quiz-visual"><svg viewBox="0 0 600 110" xmlns="http://www.w3.org/2000/svg"><rect width="600" height="110" fill="var(--c-panel)" rx="12"/><text x="300" y="18" text-anchor="middle" fill="var(--c-text-dim)" font-size="12" font-family="Calibri,sans-serif">Как читать валютную пару EUR/USD?</text><rect x="40" y="30" width="160" height="60" rx="10" fill="var(--c-panel)" stroke="var(--c-teal)" stroke-width="1.8"/><text x="120" y="54" text-anchor="middle" fill="var(--c-text-dim)" font-size="10" font-family="Calibri,sans-serif">Базовая валюта</text><text x="120" y="76" text-anchor="middle" fill="var(--c-teal)" font-size="24" font-weight="800" font-family="Calibri,sans-serif">EUR</text><text x="218" y="70" text-anchor="middle" fill="var(--c-text-dim)" font-size="26" font-family="Calibri,sans-serif">/</text><rect x="238" y="30" width="160" height="60" rx="10" fill="var(--c-panel)" stroke="var(--c-blue-2)" stroke-width="1.8"/><text x="318" y="54" text-anchor="middle" fill="var(--c-text-dim)" font-size="10" font-family="Calibri,sans-serif">Котируемая валюта</text><text x="318" y="76" text-anchor="middle" fill="var(--c-blue-2)" font-size="24" font-weight="800" font-family="Calibri,sans-serif">USD</text><text x="420" y="68" text-anchor="middle" fill="var(--c-text-dim)" font-size="18" font-family="Calibri,sans-serif">=</text><text x="510" y="76" text-anchor="middle" fill="var(--c-text)" font-size="28" font-weight="900" font-family="Calibri,sans-serif">1.0850</text><text x="300" y="102" text-anchor="middle" fill="var(--c-text-faint)" font-size="10" font-family="Calibri,sans-serif">Котировка = сколько единиц USD стоит 1 EUR</text></svg></div>
+      <div class="quiz-visual"><svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="150" rx="12" fill="var(--c-bg)" stroke="var(--c-grid)"/><text x="200" y="24" text-anchor="middle" fill="var(--c-text)" font-size="12.5" font-weight="700" font-family="system-ui,Segoe UI,Roboto,sans-serif">Как читать валютную пару EUR/USD?</text><text x="92" y="50" text-anchor="middle" fill="var(--c-text-dim)" font-size="10.5" font-family="system-ui,Segoe UI,Roboto,sans-serif">Базовая валюта</text><text x="92" y="82" text-anchor="middle" fill="var(--c-teal)" font-size="26" font-weight="700" font-family="system-ui,Segoe UI,Roboto,sans-serif">EUR</text><text x="268" y="50" text-anchor="middle" fill="var(--c-text-dim)" font-size="10.5" font-family="system-ui,Segoe UI,Roboto,sans-serif">Котируемая валюта</text><text x="268" y="82" text-anchor="middle" fill="var(--c-blue)" font-size="26" font-weight="700" font-family="system-ui,Segoe UI,Roboto,sans-serif">USD</text><text x="180" y="80" text-anchor="middle" fill="var(--c-text-faint)" font-size="24" font-family="system-ui,Segoe UI,Roboto,sans-serif">/</text><text x="200" y="112" text-anchor="middle" fill="var(--c-text)" font-size="20" font-weight="700" font-family="system-ui,Segoe UI,Roboto,sans-serif" style="font-variant-numeric:tabular-nums">= 1.0850</text><text x="200" y="138" text-anchor="middle" fill="var(--c-text-dim)" font-size="10.5" font-family="system-ui,Segoe UI,Roboto,sans-serif">Сколько единиц USD стоит один EUR</text></svg></div>
       
 <div class="quiz-question-text">EUR/USD = 1.0850. Что это означает?</div>
       <div class="quiz-opts" id="qopts-ch2">
@@ -3072,7 +3376,7 @@
   <div class="quiz-step" id="quiz-step-ch3" style="display:none;">
     <div class="quiz-page">
       <div class="quiz-step-header">🧩 Проверьте себя</div>
-      <div class="quiz-visual"><svg viewBox="0 0 600 130" xmlns="http://www.w3.org/2000/svg"><rect width="600" height="130" fill="var(--c-panel)" rx="12"/><text x="300" y="18" text-anchor="middle" fill="var(--c-text-dim)" font-size="12" font-family="Calibri,sans-serif">События экономического календаря — сила влияния на рынок</text><rect x="12" y="28" width="576" height="24" rx="0" fill="var(--c-panel)"/><text x="22" y="44" fill="var(--c-text-faint)" font-size="10" font-weight="700" font-family="Calibri,sans-serif">СОБЫТИЕ</text><text x="400" y="44" fill="var(--c-text-faint)" font-size="10" font-weight="700" font-family="Calibri,sans-serif">ВЛИЯНИЕ</text><text x="22" y="68" fill="var(--c-text)" font-size="11" font-family="Calibri,sans-serif">Прогноз погоды / Результаты спортивных событий</text><circle cx="415" cy="64" r="8" fill="var(--c-text-faint)"/><text x="430" y="68" fill="var(--c-text-faint)" font-size="10" font-weight="700" font-family="Calibri,sans-serif">НЕ ВЛИЯЕТ</text><rect x="12" y="76" width="576" height="1" fill="var(--c-grid)"/><text x="22" y="96" fill="var(--c-text)" font-size="11" font-family="Calibri,sans-serif">Уровень безработицы (NFP), ВВП страны</text><circle cx="415" cy="92" r="8" fill="var(--c-gold)"/><text x="430" y="96" fill="var(--c-gold)" font-size="10" font-weight="700" font-family="Calibri,sans-serif">ВЫСОКОЕ ⚡</text><rect x="12" y="104" width="576" height="1" fill="var(--c-grid)"/><text x="22" y="122" fill="var(--c-text)" font-size="11" font-family="Calibri,sans-serif">Решение центрального банка по процентной ставке</text><circle cx="415" cy="118" r="8" fill="var(--c-red)"/><text x="430" y="122" fill="var(--c-red)" font-size="10" font-weight="700" font-family="Calibri,sans-serif">ОЧЕНЬ ВЫСОКОЕ 🔥</text></svg></div>
+      <div class="quiz-visual"><svg viewBox="0 0 400 194" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="194" rx="12" fill="var(--c-bg)" stroke="var(--c-grid)"/><text x="200" y="24" text-anchor="middle" fill="var(--c-text)" font-size="12.5" font-weight="700" font-family="system-ui,Segoe UI,Roboto,sans-serif">Что двигает рынок сильнее</text><text x="14" y="44" fill="var(--c-text-faint)" font-size="10" font-weight="700" font-family="system-ui,Segoe UI,Roboto,sans-serif">СОБЫТИЕ</text><text x="386" y="44" text-anchor="end" fill="var(--c-text-faint)" font-size="10" font-weight="700" font-family="system-ui,Segoe UI,Roboto,sans-serif">ВЛИЯНИЕ</text><rect x="10" y="54" width="380" height="34" rx="8" fill="var(--c-text-faint)" fill-opacity=".1"/><text x="20" y="68" fill="var(--c-text)" font-size="10.5" font-family="system-ui,Segoe UI,Roboto,sans-serif">Прогноз погоды,</text><text x="20" y="81" fill="var(--c-text-dim)" font-size="10.5" font-family="system-ui,Segoe UI,Roboto,sans-serif">спортивные события</text><text x="380" y="75" text-anchor="end" fill="var(--c-text-faint)" font-size="11" font-weight="700" font-family="system-ui,Segoe UI,Roboto,sans-serif">не влияет</text><rect x="10" y="92" width="380" height="34" rx="8" fill="var(--c-gold)" fill-opacity=".1"/><text x="20" y="106" fill="var(--c-text)" font-size="10.5" font-family="system-ui,Segoe UI,Roboto,sans-serif">Безработица (NFP),</text><text x="20" y="119" fill="var(--c-text-dim)" font-size="10.5" font-family="system-ui,Segoe UI,Roboto,sans-serif">ВВП страны</text><text x="380" y="113" text-anchor="end" fill="var(--c-gold)" font-size="11" font-weight="700" font-family="system-ui,Segoe UI,Roboto,sans-serif">высокое</text><rect x="10" y="130" width="380" height="34" rx="8" fill="var(--c-red)" fill-opacity=".1"/><text x="20" y="144" fill="var(--c-text)" font-size="10.5" font-family="system-ui,Segoe UI,Roboto,sans-serif">Решение центробанка</text><text x="20" y="157" fill="var(--c-text-dim)" font-size="10.5" font-family="system-ui,Segoe UI,Roboto,sans-serif">по ставке</text><text x="380" y="151" text-anchor="end" fill="var(--c-red)" font-size="11" font-weight="700" font-family="system-ui,Segoe UI,Roboto,sans-serif">очень высокое</text><text x="200" y="182" text-anchor="middle" fill="var(--c-text-dim)" font-size="10.5" font-family="system-ui,Segoe UI,Roboto,sans-serif">Чем неожиданнее цифра, тем сильнее движение</text></svg></div>
       
 <div class="quiz-question-text">Какое событие из экономического календаря сильнее всего влияет на курс валюты?</div>
       <div class="quiz-opts" id="qopts-ch3">
@@ -3106,7 +3410,7 @@
   <div class="quiz-step" id="quiz-step-ch4" style="display:none;">
     <div class="quiz-page">
       <div class="quiz-step-header">🧩 Проверьте себя</div>
-      <div class="quiz-visual"><svg viewBox="0 0 600 120" xmlns="http://www.w3.org/2000/svg"><rect width="600" height="120" fill="var(--c-panel)" rx="12"/><text x="300" y="16" text-anchor="middle" fill="var(--c-text-dim)" font-size="12" font-family="Calibri,sans-serif">Посмотрите — каждый пик выше предыдущего. Как называется такое движение?</text><rect x="12" y="24" width="576" height="72" rx="8" fill="var(--c-panel)"/><polyline points="32,88 90,72 128,78 185,58 234,64 292,44 342,50 400,32 455,38 560,20" stroke="var(--c-teal)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="88" r="4" fill="var(--c-teal)"/><circle cx="185" cy="58" r="4" fill="var(--c-teal)"/><circle cx="292" cy="44" r="4" fill="var(--c-teal)"/><circle cx="455" cy="38" r="4" fill="var(--c-teal)"/><line x1="32" y1="88" x2="560" y2="20" stroke="var(--c-green)" stroke-width="1" stroke-dasharray="5,4" opacity=".5"/><text x="470" y="34" fill="var(--c-green)" font-size="14" font-family="Calibri,sans-serif">↑</text><text x="505" y="26" fill="var(--c-green)" font-size="14" font-family="Calibri,sans-serif">↑</text><text x="555" y="20" fill="var(--c-green)" font-size="14" font-family="Calibri,sans-serif">↑</text><text x="300" y="110" text-anchor="middle" fill="var(--c-text-faint)" font-size="10" font-family="Calibri,sans-serif">Каждый максимум выше предыдущего</text></svg></div>
+      <div class="quiz-visual"><svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="150" rx="12" fill="var(--c-bg)" stroke="var(--c-grid)"/><text x="200" y="24" text-anchor="middle" fill="var(--c-text)" font-size="12.5" font-weight="700" font-family="system-ui,Segoe UI,Roboto,sans-serif">Каждый следующий пик выше предыдущего</text><polyline points="20,112 60,88 100,96 150,66 196,76 246,44 292,56 340,34" fill="none" stroke="var(--c-teal)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="60" cy="74" r="8" fill="var(--c-bg)" stroke="var(--c-green)" stroke-width="1.8"/><text x="60" y="77" text-anchor="middle" fill="var(--c-green)" font-size="10" font-weight="700" font-family="system-ui,Segoe UI,Roboto,sans-serif">1</text><circle cx="150" cy="52" r="8" fill="var(--c-bg)" stroke="var(--c-green)" stroke-width="1.8"/><text x="150" y="55" text-anchor="middle" fill="var(--c-green)" font-size="10" font-weight="700" font-family="system-ui,Segoe UI,Roboto,sans-serif">2</text><circle cx="246" cy="30" r="8" fill="var(--c-bg)" stroke="var(--c-green)" stroke-width="1.8"/><text x="246" y="33" text-anchor="middle" fill="var(--c-green)" font-size="10" font-weight="700" font-family="system-ui,Segoe UI,Roboto,sans-serif">3</text><circle cx="340" cy="20" r="8" fill="var(--c-bg)" stroke="var(--c-green)" stroke-width="1.8"/><text x="340" y="23" text-anchor="middle" fill="var(--c-green)" font-size="10" font-weight="700" font-family="system-ui,Segoe UI,Roboto,sans-serif">4</text><text x="200" y="138" text-anchor="middle" fill="var(--c-green)" font-size="10.5" font-family="system-ui,Segoe UI,Roboto,sans-serif">Так выглядит восходящий тренд</text></svg></div>
       
 <div class="quiz-question-text">На графике выше цена делает всё более высокие пики. Как называется такое движение?</div>
       <div class="quiz-opts" id="qopts-ch4">
@@ -3140,7 +3444,7 @@
   <div class="quiz-step" id="quiz-step-ch5" style="display:none;">
     <div class="quiz-page">
       <div class="quiz-step-header">🧩 Проверьте себя</div>
-      <div class="quiz-visual"><svg viewBox="0 0 600 130" xmlns="http://www.w3.org/2000/svg"><rect width="600" height="130" fill="var(--c-panel)" rx="12"/><text x="300" y="16" text-anchor="middle" fill="var(--c-text-dim)" font-size="12" font-family="Calibri,sans-serif">Три эмоции инвестора — какая заставляет ждать вместо действия?</text><rect x="20" y="28" width="170" height="90" rx="10" fill="var(--c-red-dim)" stroke="var(--c-red)" stroke-width="1.5"/><text x="105" y="56" text-anchor="middle" font-size="26" font-family="Calibri,sans-serif">😨</text><text x="105" y="76" text-anchor="middle" fill="var(--c-red)" font-size="13" font-weight="700" font-family="Calibri,sans-serif">СТРАХ</text><text x="105" y="92" text-anchor="middle" fill="var(--c-text-faint)" font-size="9" font-family="Calibri,sans-serif">Продать слишком рано</text><rect x="215" y="28" width="170" height="90" rx="10" fill="var(--c-gold-dim)" stroke="var(--c-gold)" stroke-width="1.5"/><text x="300" y="56" text-anchor="middle" font-size="26" font-family="Calibri,sans-serif">🤑</text><text x="300" y="76" text-anchor="middle" fill="var(--c-gold)" font-size="13" font-weight="700" font-family="Calibri,sans-serif">ЖАДНОСТЬ</text><text x="300" y="92" text-anchor="middle" fill="var(--c-text-faint)" font-size="9" font-family="Calibri,sans-serif">Нарушить план</text><rect x="410" y="28" width="170" height="90" rx="10" fill="var(--c-bg)" stroke="var(--c-blue-2)" stroke-width="2.5"/><text x="495" y="56" text-anchor="middle" font-size="26" font-family="Calibri,sans-serif">🙏</text><text x="495" y="76" text-anchor="middle" fill="var(--c-blue-2)" font-size="13" font-weight="700" font-family="Calibri,sans-serif">НАДЕЖДА</text><text x="495" y="92" text-anchor="middle" fill="var(--c-text-dim)" font-size="9" font-weight="700" font-family="Calibri,sans-serif">«Само вырастет» ←</text><text x="300" y="122" text-anchor="middle" fill="var(--c-text-faint)" font-size="10" font-family="Calibri,sans-serif">Синяя рамка — это и есть ответ на вопрос</text></svg></div>
+      <div class="quiz-visual"><svg viewBox="0 0 400 186" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="186" rx="12" fill="var(--c-bg)" stroke="var(--c-grid)"/><text x="200" y="24" text-anchor="middle" fill="var(--c-text)" font-size="12.5" font-weight="700" font-family="system-ui,Segoe UI,Roboto,sans-serif">Три эмоции участника рынка</text><rect x="12" y="38" width="120" height="112" rx="11" fill="var(--c-panel)" stroke="var(--c-blue)" stroke-opacity=".45"/><text x="72" y="74" text-anchor="middle" font-size="26" font-family="system-ui,Segoe UI,Roboto,sans-serif">😨</text><text x="72" y="98" text-anchor="middle" fill="var(--c-blue)" font-size="12" font-weight="700" font-family="system-ui,Segoe UI,Roboto,sans-serif">Страх</text><text x="72" y="118" text-anchor="middle" fill="var(--c-text-dim)" font-size="10.5" font-family="system-ui,Segoe UI,Roboto,sans-serif">Продать</text><text x="72" y="132" text-anchor="middle" fill="var(--c-text-dim)" font-size="10.5" font-family="system-ui,Segoe UI,Roboto,sans-serif">слишком рано</text><rect x="140" y="38" width="120" height="112" rx="11" fill="var(--c-panel)" stroke="var(--c-gold)" stroke-opacity=".45"/><text x="200" y="74" text-anchor="middle" font-size="26" font-family="system-ui,Segoe UI,Roboto,sans-serif">🤑</text><text x="200" y="98" text-anchor="middle" fill="var(--c-gold)" font-size="12" font-weight="700" font-family="system-ui,Segoe UI,Roboto,sans-serif">Жадность</text><text x="200" y="118" text-anchor="middle" fill="var(--c-text-dim)" font-size="10.5" font-family="system-ui,Segoe UI,Roboto,sans-serif">Нарушить</text><text x="200" y="132" text-anchor="middle" fill="var(--c-text-dim)" font-size="10.5" font-family="system-ui,Segoe UI,Roboto,sans-serif">свой план</text><rect x="268" y="38" width="120" height="112" rx="11" fill="var(--c-panel)" stroke="var(--c-red)" stroke-opacity=".45"/><text x="328" y="74" text-anchor="middle" font-size="26" font-family="system-ui,Segoe UI,Roboto,sans-serif">🙏</text><text x="328" y="98" text-anchor="middle" fill="var(--c-red)" font-size="12" font-weight="700" font-family="system-ui,Segoe UI,Roboto,sans-serif">Надежда</text><text x="328" y="118" text-anchor="middle" fill="var(--c-text-dim)" font-size="10.5" font-family="system-ui,Segoe UI,Roboto,sans-serif">Ждать, что</text><text x="328" y="132" text-anchor="middle" fill="var(--c-text-dim)" font-size="10.5" font-family="system-ui,Segoe UI,Roboto,sans-serif">вырастет само</text><text x="200" y="174" text-anchor="middle" fill="var(--c-text-dim)" font-size="10.5" font-family="system-ui,Segoe UI,Roboto,sans-serif">Какая из них заставляет бездействовать?</text></svg></div>
       <div class="quiz-question-text">Инвестор видит убыток и не фиксирует его, думая «подождать — само вырастет». Какая эмоция им управляет?</div>
       <div class="quiz-opts" id="qopts-ch5">
         <button class="quiz-opt-btn" onclick="quizAnswer(this, false, 'ch5', 0)" data-correct="false"><span class="quiz-opt-letter">А</span><span>Самодисциплина — он следует своему плану</span></button>
@@ -3161,7 +3465,7 @@
   <div class="quiz-step" id="quiz-step-ch6" style="display:none;">
     <div class="quiz-page">
       <div class="quiz-step-header">🤖 Проверьте себя</div>
-      <div class="quiz-visual"><svg viewBox="0 0 600 130" xmlns="http://www.w3.org/2000/svg"><rect width="600" height="130" fill="var(--c-panel)" rx="12"/><text x="300" y="16" text-anchor="middle" fill="var(--c-text-dim)" font-size="12" font-family="Calibri,sans-serif">Математика: win rate 40% — прибыльно ли это?</text><rect x="20" y="28" width="255" height="80" rx="10" fill="var(--c-green-dim)" stroke="var(--c-green)" stroke-width="1.5"/><text x="147" y="52" text-anchor="middle" fill="var(--c-green)" font-size="11" font-weight="700" font-family="Calibri,sans-serif">40 ПРИБЫЛЬНЫХ сделок</text><text x="147" y="70" text-anchor="middle" fill="var(--c-text-dim)" font-size="10" font-family="Calibri,sans-serif">× средний выигрыш $3</text><text x="147" y="96" text-anchor="middle" fill="var(--c-green)" font-size="22" font-weight="900" font-family="Calibri,sans-serif">= $120</text><text x="300" y="80" text-anchor="middle" fill="var(--c-text-dim)" font-size="26" font-family="Calibri,sans-serif">–</text><rect x="325" y="28" width="255" height="80" rx="10" fill="var(--c-red-dim)" stroke="var(--c-red)" stroke-width="1.5"/><text x="452" y="52" text-anchor="middle" fill="var(--c-red)" font-size="11" font-weight="700" font-family="Calibri,sans-serif">60 УБЫТОЧНЫХ сделок</text><text x="452" y="70" text-anchor="middle" fill="var(--c-text-dim)" font-size="10" font-family="Calibri,sans-serif">× средний убыток $1</text><text x="452" y="96" text-anchor="middle" fill="var(--c-red)" font-size="22" font-weight="900" font-family="Calibri,sans-serif">= $60</text><text x="300" y="122" text-anchor="middle" fill="var(--c-green)" font-size="13" font-weight="700" font-family="Calibri,sans-serif">Итог: $120 − $60 = +$60 ✓ Прибыльно!</text></svg></div>
+      <div class="quiz-visual"><svg viewBox="0 0 400 176" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="176" rx="12" fill="var(--c-bg)" stroke="var(--c-grid)"/><text x="200" y="24" text-anchor="middle" fill="var(--c-text)" font-size="12.5" font-weight="700" font-family="system-ui,Segoe UI,Roboto,sans-serif">Может ли win rate 40% быть прибыльным?</text><rect x="10" y="40" width="172" height="76" rx="10" fill="var(--c-green)" fill-opacity=".12" stroke="var(--c-green)" stroke-width="1.4"/><text x="96" y="60" text-anchor="middle" fill="var(--c-green)" font-size="11" font-weight="700" font-family="system-ui,Segoe UI,Roboto,sans-serif">40 прибыльных</text><text x="96" y="76" text-anchor="middle" fill="var(--c-text-dim)" font-size="10.5" font-family="system-ui,Segoe UI,Roboto,sans-serif">средний плюс $3</text><text x="96" y="104" text-anchor="middle" fill="var(--c-text)" font-size="20" font-weight="700" font-family="system-ui,Segoe UI,Roboto,sans-serif" style="font-variant-numeric:tabular-nums">+$120</text><rect x="218" y="40" width="172" height="76" rx="10" fill="var(--c-red)" fill-opacity=".12" stroke="var(--c-red)" stroke-width="1.4"/><text x="304" y="60" text-anchor="middle" fill="var(--c-red)" font-size="11" font-weight="700" font-family="system-ui,Segoe UI,Roboto,sans-serif">60 убыточных</text><text x="304" y="76" text-anchor="middle" fill="var(--c-text-dim)" font-size="10.5" font-family="system-ui,Segoe UI,Roboto,sans-serif">средний минус $1</text><text x="304" y="104" text-anchor="middle" fill="var(--c-text)" font-size="20" font-weight="700" font-family="system-ui,Segoe UI,Roboto,sans-serif" style="font-variant-numeric:tabular-nums">−$60</text><text x="200" y="84" text-anchor="middle" fill="var(--c-text-faint)" font-size="22" font-family="system-ui,Segoe UI,Roboto,sans-serif">−</text><text x="200" y="140" text-anchor="middle" fill="var(--c-green)" font-size="13" font-weight="700" font-family="system-ui,Segoe UI,Roboto,sans-serif">Итог: +$60 — прибыльно</text><text x="200" y="164" text-anchor="middle" fill="var(--c-text-dim)" font-size="10.5" font-family="system-ui,Segoe UI,Roboto,sans-serif">Важен не процент побед, а размер плюса и минуса</text></svg></div>
       <div class="quiz-question-text">Алгоритм показал win rate 40% на демо-тесте. Это значит, что...</div>
       <div class="quiz-opts" id="qopts-ch6">
         <button class="quiz-opt-btn" onclick="quizAnswer(this, false, 'ch6', 0)" data-correct="false"><span class="quiz-opt-letter">А</span><span>Алгоритм убыточный — побеждает меньше половины</span></button>
