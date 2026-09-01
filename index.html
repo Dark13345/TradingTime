@@ -1170,7 +1170,7 @@
   }
   #app-scroll {
     flex: 1; min-height: 0;
-    overflow-y: auto; overflow-x: hidden;
+    overflow-y: auto; overflow-x: clip;   /* clip, а не hidden: не создаёт область прокрутки при сдвиге экрана */
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none; -ms-overflow-style: none;
   }
@@ -1355,6 +1355,39 @@
   }
   /* Пока файлов нет — не занимаем место пустой плашкой */
   .lesson-hero:not([style*="url"]) { display: none; }
+  /* ══ ПЕРЕХОДЫ МЕЖДУ ЭКРАНАМИ ═════════════════════════════════
+     Вход в главу — как в нативных приложениях: экран въезжает
+     справа. Обычное переключение вкладок — короткое проявление. */
+
+  @keyframes screenPush {
+    from { opacity: 0; transform: translateX(30px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes screenFade {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes chapterFade {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section.enter-push { animation: screenPush .34s cubic-bezier(.22,.72,.3,1) both; }
+  .section.enter-fade { animation: screenFade .24s ease both; }
+  [id^="lesson-ch"].enter-chapter { animation: chapterFade .24s ease both; }
+
+  /* Карточка вдавливается под пальцем — подтверждение нажатия */
+  .course-card { transition: transform .12s ease, border-color .2s; }
+  .course-card:active { transform: scale(.972); }
+  .continue-btn { transition: transform .12s ease, background .2s; }
+  .continue-btn:active { transform: scale(.985); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .section.enter-push,
+    .section.enter-fade,
+    [id^="lesson-ch"].enter-chapter { animation: none; }
+    .course-card:active, .continue-btn:active { transform: none; }
+  }
 </style>
 </head>
 <body>
@@ -2396,7 +2429,7 @@
   /* ── Переходы с учётом блокировки ── */
   function openChapter(id) {
     if (!isUnlocked(id)) { lockedHint(id); return; }
-    showLesson(id);
+    showLesson(id, true);
   }
 
   /* Запоминаем, на какой главе пользователь остановился */
@@ -2715,10 +2748,21 @@
   }
 
   /* ── Section navigation ─────────────────────────────── */
-  function showSection(name) {
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  function showSection(name, push) {
     const sec = document.getElementById('section-' + name);
-    if (sec) sec.classList.add('active');
+    // Если экран уже открыт, повторно не анимируем — иначе дёргается
+    // при переключении вкладок глав внутри урока
+    const wasActive = sec && sec.classList.contains('active');
+    document.querySelectorAll('.section').forEach(s => {
+      s.classList.remove('active', 'enter-push', 'enter-fade');
+    });
+    if (sec) {
+      sec.classList.add('active');
+      if (!wasActive) {
+        void sec.offsetWidth;                 // перезапуск анимации
+        sec.classList.add(push ? 'enter-push' : 'enter-fade');
+      }
+    }
     document.querySelectorAll('.nav-tab').forEach(t => {
       t.classList.toggle('active', t.getAttribute('onclick') && t.getAttribute('onclick').includes("'" + name + "'"));
     });
@@ -2730,12 +2774,17 @@
     if (!isUnlocked(id)) { lockedHint(id); return; }
     currentChapter = id;
     // Make sure lesson section is visible
-    showSection('lesson');
+    showSection('lesson', false);
     // Hide ALL chapter divs
     document.querySelectorAll('[id^="lesson-ch"]').forEach(el => el.style.display = 'none');
     // Show target
     const target = document.getElementById('lesson-' + id);
-    if (target) target.style.display = 'block';
+    if (target) {
+      target.style.display = 'block';
+      target.classList.remove('enter-chapter');
+      void target.offsetWidth;
+      target.classList.add('enter-chapter');
+    }
     // Update tabs
     document.querySelectorAll('.chapter-tab').forEach(t => t.classList.remove('active'));
     if (btn) btn.classList.add('active');
@@ -2756,16 +2805,21 @@
   }
 
   /* ── Navigate to lesson from cards ─────────────────── */
-  function showLesson(id) {
+  function showLesson(id, push) {
     if (!isUnlocked(id)) { lockedHint(id); return; }
     currentChapter = id;
     // Show lesson section
-    showSection('lesson');
+    showSection('lesson', push !== false);
     // Hide ALL chapters
     document.querySelectorAll('[id^="lesson-ch"]').forEach(el => el.style.display = 'none');
     // Show target
     const target = document.getElementById('lesson-' + id);
-    if (target) target.style.display = 'block';
+    if (target) {
+      target.style.display = 'block';
+      target.classList.remove('enter-chapter');
+      void target.offsetWidth;
+      target.classList.add('enter-chapter');
+    }
     // Update chapter tabs
     document.querySelectorAll('.chapter-tab').forEach(t => {
       const oc = t.getAttribute('onclick') || '';
